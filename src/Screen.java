@@ -1,7 +1,7 @@
 import javax.swing.JFrame;
 
 public class Screen {
-	final private int w = 1800; // screen width
+	final private int w = 1000; // screen width
 	final private int h = 1000; // screen height
 	private String title;
 	
