@@ -19,7 +19,7 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("Testing Arcade Game");
 		
-		Screen testScreen = new Screen("Start Screen");
+		Screen testScreen = new Level("Level 0", level0);
 		
 		testScreen.main(args);
 		

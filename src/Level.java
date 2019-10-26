@@ -12,7 +12,7 @@ public class Level extends Screen {
 	ArrayList<Tile> tilesToDraw;
 	
 
-	public Level(String title) {
+	public Level(String title, String fileName) {
 		super(title);
 		mobsToDraw = new ArrayList<Mob>();
 		tilesToDraw = new ArrayList<Tile>();
