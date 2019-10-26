@@ -6,7 +6,7 @@
  * 
  * Also don't forget to write javadocs for your classes and functions!
  * 
- * @author Buffalo
+ * @author Kyle Brown
  *
  */
 public class Main {
