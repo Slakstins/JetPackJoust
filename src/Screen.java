@@ -1,12 +1,25 @@
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 
-public class Screen {
+public abstract class Screen extends JComponent{
 	final private int w = 1800; // screen width
 	final private int h = 1000; // screen height
 	private String title;
+	public abstract void drawEverything(Graphics2D g2);
 	
 	public Screen(String title) {
 		this.title = title;
+	}
+	
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		// Get the 2D graphics object
+		Graphics2D g2 = (Graphics2D) g;
+		this.drawEverything(g2);
+		
 	}
 	
 	public void main(String[] args) {

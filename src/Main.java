@@ -1,3 +1,7 @@
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 /**
@@ -13,8 +17,8 @@ import javax.swing.JFrame;
  */
 public class Main {
 	
-	
-	
+
+
 	
 
 	/**
@@ -25,6 +29,8 @@ public class Main {
 		
 		Screen testScreen = new Level("Level 0", 0);
 		LevelGenerator levelGenerator = new LevelGenerator();
+		
+
 		
 		
 		levelGenerator.createLevel1Script();
