@@ -19,8 +19,9 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("Testing Arcade Game");
 		
-		Screen testScreen = new Screen();
+		Screen testScreen = new Screen("Start Screen");
 		
+		testScreen.main(args);
 		
 		
 	}

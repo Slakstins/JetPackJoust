@@ -5,24 +5,22 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Level {
+public class Level extends Screen {
 
-	public static void main(String[] args) {
-		new Level();
-
-	}
+	
 	ArrayList<Mob> mobsToDraw;
 	ArrayList<Tile> tilesToDraw;
 	
 
-	public Level() {
+	public Level(String title) {
+		super(title);
 		mobsToDraw = new ArrayList<Mob>();
 		tilesToDraw = new ArrayList<Tile>();
-		createLevel1();
-		readLevel1File();
+		createLevel();
+		readLevelFile();
 	}
 
-	private void readLevel1File() {
+	private void readLevelFile() {
 		Scanner scanner;
 		try {
 			scanner = new Scanner(new File("level1.txt"));
@@ -76,7 +74,7 @@ public class Level {
 		
 		for (int i = 0; i < this.mobsToDraw.size(); i ++) {
 			int observer;
-			g2.drawImage(this.mobsToDraw.getImage, this.mobsToDraw.get(i).getX, 
+			g2.drawImage(this.mobsToDraw.get(i).getImage, this.mobsToDraw.get(i).getX, 
 					this.mobsToDraw.get(i).getY, observer);
 		}
 	}
@@ -86,7 +84,7 @@ public class Level {
 	
 	
 	//NOT NECESSARY, UPDATES WILL HAPPEN WITH DRAW
-	private void createLevel1() {
+	private void createLevel() {
 		PrintWriter pw = null;
 		try {
 			pw = new PrintWriter("level1.txt");
