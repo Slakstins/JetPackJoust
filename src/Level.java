@@ -52,7 +52,10 @@ public class Level extends Screen {
 				
 				if (toBuild == 'T') {
 					System.out.println("Tile drawn! @" + i + ' ' + posY);
-					
+				}
+				else if (toBuild =='E') {
+					System.out.println("Empty space drawn! @" + i + ' ' + posY);
+					tilesToDraw.add(new Air(i * 100, posY, 100, 100));
 				}
 				
 				// i gives posX
