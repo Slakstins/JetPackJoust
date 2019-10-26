@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Tile {
-	protected final int WIDTH
+	protected final int WIDTH = 50;
 	
 	public Tile(ImageIO image) {
 		
