@@ -52,7 +52,7 @@ public class Level {
 				}
 				
 				// i gives posX
-				//posY gives y value(0 at top of page)
+				//posY gives y value(0 at top of page)aslkfdsdjfk
 			}
 			
 			
