@@ -10,22 +10,24 @@ public class Level extends Screen {
 	
 	ArrayList<Mob> mobsToDraw;
 	ArrayList<Tile> tilesToDraw;
+	private int levelNum;
 	
 
-	public Level(String title, String fileName) {
+	public Level(String title, int levelNum) {
 		super(title);
+		this.levelNum = levelNum;
 		mobsToDraw = new ArrayList<Mob>();
 		tilesToDraw = new ArrayList<Tile>();
-		createLevel();
+		
 		readLevelFile();
 	}
 
 	private void readLevelFile() {
 		Scanner scanner;
 		try {
-			scanner = new Scanner(new File("level1.txt"));
+			scanner = new Scanner(new File("level" + levelNum + ".txt"));
 		} catch (FileNotFoundException e) {
-			System.out.println("level1.txt not found");
+			System.out.println("level" + levelNum + ".txt not found");
 			//e.printStackTrace();
 			return;
 		}
@@ -82,22 +84,5 @@ public class Level extends Screen {
 	// H is = Hero
 
 	
-	
-	//NOT NECESSARY, UPDATES WILL HAPPEN WITH DRAW
-	private void createLevel() {
-		PrintWriter pw = null;
-		try {
-			pw = new PrintWriter("level1.txt");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return;
-		}
 
-		pw.append("EEE\n");
-		pw.append("ETE\n");
-		pw.append("EMH\n");
-
-		pw.close();
-	}
 }

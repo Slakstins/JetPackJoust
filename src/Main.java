@@ -12,6 +12,10 @@ import javax.swing.JFrame;
  *
  */
 public class Main {
+	
+	
+	
+	
 
 	/**
 	 * @param args
@@ -19,7 +23,15 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("Testing Arcade Game");
 		
-		Screen testScreen = new Level("Level 0", "level0");
+		Screen testScreen = new Level("Level 0", 0);
+		LevelGenerator levelGenerator = new LevelGenerator();
+		
+		
+		levelGenerator.createLevel1Script();
+		Level level1 = new Level("Title", 1);
+		
+		
+		
 		
 		testScreen.main(args);
 		

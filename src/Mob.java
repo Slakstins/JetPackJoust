@@ -1,13 +1,15 @@
 import java.awt.Image;
 
 public abstract class Mob {
-	int xPos;
-	int yPos;
-	double xVel;
-	double yVel;
-	double xAcceleration;
-	double yAcceleration;
+	private int xPos;
+	private int yPos;
+	private double xVel;
+	private double yVel;
+	private double xAcceleration;
+	private double yAcceleration;
+	private Image image;
 	public final double gravity = 9.8;
+	
 	
 	public Mob(int xPos, int yPos) {
 		this.xPos = xPos;
@@ -16,8 +18,9 @@ public abstract class Mob {
 		this.yVel = 0;
 		this.xAcceleration = 0;
 		this.yAcceleration = gravity;
+		this.image = null;
 	}
-	
+
 	public abstract void fly();
 	public abstract void kill();
 	public abstract void spawn();
@@ -47,6 +50,16 @@ public abstract class Mob {
 	public void setYAcceleration(int accelerationY) {
 		this.yAcceleration = accelerationY;
 	}
+	
+	public void setImage(Image newImage) {
+		this.image = newImage;
+	}
+	
+	public Image getImage() {
+		return this.image;
+	}
+	
+
 	
 	
 	
