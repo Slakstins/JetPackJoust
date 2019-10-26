@@ -50,7 +50,7 @@ public class Level extends Screen {
 				}
 				
 				// i gives posX
-				//posY gives y value(0 at top of page)
+				//posY gives y value(0 at top of page)aslkfdsdjfk
 			}
 			
 			
