@@ -9,9 +9,14 @@ public abstract class Mob {
 	private double yAcceleration;
 	private Image image;
 	public final double gravity = 9.8;
-	
+	private int width;
+	private int height;
+	public final int defaultMobHeight = 100;
+	public final int defaultMobWidth = 100;
 	
 	public Mob(int xPos, int yPos) {
+		this.height = defaultMobHeight;
+		this.width = defaultMobWidth;
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.xVel = 0;
@@ -50,6 +55,15 @@ public abstract class Mob {
 	public void setYAcceleration(int accelerationY) {
 		this.yAcceleration = accelerationY;
 	}
+	
+	public int getX() {
+		return this.xPos;
+	}
+	public int getY() {
+		return this.yPos;
+	}
+	
+	
 	
 	public void setImage(Image newImage) {
 		this.image = newImage;

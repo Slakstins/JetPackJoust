@@ -1,4 +1,5 @@
 import java.awt.Graphics2D;
+import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -6,11 +7,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Level extends Screen {
+	
 
 	
 	ArrayList<Mob> mobsToDraw;
 	ArrayList<Tile> tilesToDraw;
 	private int levelNum;
+	public final int cellWidthHeight = 100;
+	
 	
 
 	public Level(String title, int levelNum) {
@@ -40,7 +44,7 @@ public class Level extends Screen {
 					System.out.println("Mob drawn! @" + i + ' ' + posY);
 					Mob newMob;
 					if (toBuild == 'H') {
-						newMob = new Hero(i, posY);
+						newMob = new Hero(i * this.cellWidthHeight, posY* this.cellWidthHeight);
 						
 					}
 					
@@ -75,9 +79,9 @@ public class Level extends Screen {
 	public void drawEverything(Graphics2D g2) {
 		
 		for (int i = 0; i < this.mobsToDraw.size(); i ++) {
-			int observer;
-			g2.drawImage(this.mobsToDraw.get(i).getImage, this.mobsToDraw.get(i).getX, 
-					this.mobsToDraw.get(i).getY, observer);
+			ImageObserver observer = null; // is this a problem????
+			g2.drawImage(this.mobsToDraw.get(i).getImage(), this.mobsToDraw.get(i).getX(), 
+					this.mobsToDraw.get(i).getY(), observer);
 		}
 	}
 	//MasterList SOMEWHERE! for letters
