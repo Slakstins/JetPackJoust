@@ -45,7 +45,7 @@ public class Level extends Screen {
 					Mob newMob;
 					if (toBuild == 'H') {
 						newMob = new Hero(i * this.cellWidthHeight, posY* this.cellWidthHeight);
-						
+						mobsToDraw.add(newMob);
 					}
 					
 				}

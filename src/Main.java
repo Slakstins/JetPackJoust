@@ -16,9 +16,12 @@ import javax.swing.JFrame;
  *
  */
 public class Main {
+	private int level;
+
+	public Main() {
+		this.level = 1;
+	}
 	
-
-
 	
 
 	/**
@@ -27,19 +30,37 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("Testing Arcade Game");
 		
-		Screen testScreen = new Level("Level 0", 0);
 		LevelGenerator levelGenerator = new LevelGenerator();
-		
-
-		
-		
 		levelGenerator.createLevel1Script();
-		Level level1 = new Level("Title", 1);
+		levelGenerator.createLevel2Script();
 		
 		
 		
 		
-		testScreen.main(args);
+		
+		//have only a draw component in main?? 
+		//Draw component needs access to the stuff to draw it
+		//need to find a way to only create the level
+		JFrame frame = new JFrame();
+		int frameWidth2 = 1000;
+		int frameHeight2 = 1000;
+
+		frame.setSize(frameWidth2, frameHeight2);
+		ScreenComponent component = new ScreenComponent();
+		
+		
+	
+		frame.add(component);
+		frame.setTitle("Level " + component.getLevel());
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocation(0, 0);
+		
+		
+		frame.setVisible(true);
+		
+		
+		
+//		initialScreen.main(args);
 		
 		
 	}
