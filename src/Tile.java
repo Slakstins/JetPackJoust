@@ -1,4 +1,5 @@
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +24,10 @@ public class Tile {
 		this.setImage();
 	}
 	
+	public void setSolid(boolean isSolid) {
+		this.isSolid = isSolid;
+	}
+	
 	
 	public void setImage() {
 		try {
@@ -30,6 +35,21 @@ public class Tile {
 		} catch (IOException e) {
 		    throw new RuntimeException("Could not load image file " + this.filename);
 		}
+	}
+
+	public Image getImage() {
+	
+		return this.image;
+	}
+
+	public int getX() {
+		
+		return this.xPos;
+	}
+
+	public int getY() {
+	
+		return this.yPos;
 	}
 
 }

@@ -11,7 +11,7 @@ public class Hero extends Mob {
 
 	public Hero(int xPos, int yPos) {
 		super(xPos, yPos);
-		setImage("heroImage.png");  // MAKE THIS WORK
+		setImage("heroImage.png"); 
 		
 		
 		

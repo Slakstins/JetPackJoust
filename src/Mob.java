@@ -30,7 +30,7 @@ public abstract class Mob {
 	public abstract void kill();
 	public abstract void spawn();
 	public abstract void shoot();
-	
+
 	
 	/**
 	 * Call this often to make smooth!
