@@ -65,9 +65,12 @@ public class Hero extends Mob {
 	public void fly() {
 		// TODO Auto-generated method stub
 		if (this.keyMap.get("up") && this.getYVel() > -1.5) {
-			
+			this.setImage("HeroFly.png");
 			this.setYVel(this.getYVel() - 0.07);
 //			this.setPostition(this.getX(), this.getY());
+		}
+		else {
+			this.setImage("Hero.png");
 		}
 		
 

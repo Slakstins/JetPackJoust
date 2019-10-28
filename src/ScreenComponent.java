@@ -63,19 +63,18 @@ public class ScreenComponent extends JComponent {
 			}
 
 
-			System.out.println("Level 1 painted!");
+			//System.out.println("Level 1 painted!");
 		}
 
 		if (levelNum == 2) {
 			
 			
-			System.out.println("Level 2");
 			if (this.firstTry2 == 0) {
 				this.firstTry1 = 0;
 				this.level = new Level("Level 2", 2);
 				this.level.setKeyMap(keyMap);
 
-				System.out.println("Level 2 painted!");
+				//System.out.println("Level 2 painted!");
 				this.level.readLevelFile();
 				this.firstTry2++;
 			}

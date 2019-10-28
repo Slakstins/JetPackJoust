@@ -152,7 +152,7 @@ public class Level extends Screen {
 
 				// Will need to differnetiate between mob types for position update
 
-			System.out.println("everything drawn!");
+			//System.out.println("everything drawn!");
 
 		}
 		// MasterList SOMEWHERE! for letters

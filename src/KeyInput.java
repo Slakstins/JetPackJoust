@@ -36,27 +36,27 @@ public class KeyInput extends KeyAdapter {
         
          if (keyCode == event.VK_LEFT) {
         	 this.keyMap.put("left", true);
-             System.out.println("leftpressed!");
+             //System.out.println("leftpressed!");
              this.updatePaint();
              
          }
          if (keyCode == event.VK_RIGHT){
         	 this.keyMap.put("right", true);
          
-        	 System.out.println("rightpressed!");
+        	 //System.out.println("rightpressed!");
         	 
          }
          if (keyCode == event.VK_UP){
         	 this.keyMap.put("up", true);
          
-        	 System.out.println("uppressed!");
+        	// System.out.println("uppressed!");
         	 
         	
          }
          if (keyCode == event.VK_DOWN){
         	 this.keyMap.put("down", true);
          
-        	 System.out.println("downpressed!");
+        	 //System.out.println("downpressed!");
         	
          }
          if (keyCode == event.VK_U) {
