@@ -25,7 +25,7 @@ public class Level extends Screen {
 
 //		readLevelFile();
 	}
-	
+
 	public void giveHeroKeyMap(Hero hero) {
 		hero.giveKeyMap(keyMap);
 		System.out.println("KeyMap got");
@@ -40,29 +40,28 @@ public class Level extends Screen {
 			return;
 		}
 		int posY = 0;
-		
-		//add bakground tiles before others
+
+		// add bakground tiles before others
 		for (int i = 0; i < this.xCells; i++) {
 			for (int j = 0; j < this.yCells; j++) {
 				Tile backgroundTile = new Air(i * this.cellWidthHeight, j * this.cellWidthHeight, this.cellWidthHeight,
-								this.cellWidthHeight);
+						this.cellWidthHeight);
 				this.tilesToDraw.add(backgroundTile);
 			}
 		}
-		
-		
+
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
 			for (int i = 0; i < line.length(); i++) {
 				char toBuild = line.charAt(i);
 				if (toBuild == 'H' || toBuild == 'M') {
-					
+
 					if (toBuild == 'H') {
-						
+
 						Hero newMob = new Hero(i * this.cellWidthHeight, posY * this.cellWidthHeight);
 						giveHeroKeyMap(newMob);
 						mobsToDraw.add(newMob);
-						
+
 					}
 
 				}
@@ -72,7 +71,7 @@ public class Level extends Screen {
 					if (toBuild == 'T') {
 						newTile = new Tile(i * this.cellWidthHeight, posY * this.cellWidthHeight, this.cellWidthHeight,
 								this.cellWidthHeight, "Tile.png");
-						
+
 						this.tilesToDraw.add(newTile);
 					}
 					if (toBuild == 'E') {
@@ -80,7 +79,7 @@ public class Level extends Screen {
 //								this.cellWidthHeight);
 //						
 //						this.tilesToDraw.add(newTile);
-						//need to put air behind all other tiles -- put in draw everything
+						// need to put air behind all other tiles -- put in draw everything
 					}
 
 				}
@@ -91,7 +90,6 @@ public class Level extends Screen {
 
 			posY++;
 
-
 			// PUT METHOD HERE THAT BUILDS CHARACTERS AND BLOCKS FROM CHAR USING DRAW
 
 		}
@@ -100,8 +98,8 @@ public class Level extends Screen {
 	}
 
 	public void drawEverything(Graphics2D g2) {
-		
-		//draw background and solids
+
+		// draw background and solids
 		for (int i = 0; i < this.tilesToDraw.size(); i++) {
 			ImageObserver observer = null; // is this a problem????
 
@@ -109,10 +107,9 @@ public class Level extends Screen {
 			g2.drawImage(thisTile.getImage(), thisTile.getX(), thisTile.getY(), thisTile.getX() + this.cellWidthHeight,
 					thisTile.getY() + this.cellWidthHeight, 0, 0, thisTile.getImage().getWidth(observer),
 					thisTile.getImage().getHeight(observer), observer);
-			
-			
+
 		}
-		//draw mobs
+		// draw mobs
 		for (int i = 0; i < this.mobsToDraw.size(); i++) {
 			ImageObserver observer = null; // is this a problem????
 			Mob thisMob = this.mobsToDraw.get(i);
@@ -120,19 +117,13 @@ public class Level extends Screen {
 					thisMob.getY() + this.cellWidthHeight, 0, 0, thisMob.getImage().getWidth(observer),
 					thisMob.getImage().getHeight(observer), observer);
 			thisMob.updateMovement();
-			if (thisMob instanceof Hero) { //replace with the fancy way to check
-				if (keyMap.get("left")) {
-					thisMob.setXAcceleration(-10);
-				}
-				
-				
+
+			if (keyMap.get("left")) {
+				thisMob.setXAcceleration(-10);
 			}
 
 		}
-		
-		
-		
-		
+
 	}
 	// MasterList SOMEWHERE! for letters
 	// H is = Hero
