@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Level extends Screen {
@@ -14,6 +15,7 @@ public class Level extends Screen {
 	public final int cellWidthHeight = 100;
 	public final int xCells = 10;
 	public final int yCells = 10;
+	private HashMap<String, Boolean> keyMap;
 
 	public Level(String title, int levelNum) {
 		super(title);
@@ -21,15 +23,19 @@ public class Level extends Screen {
 		mobsToDraw = new ArrayList<Mob>();
 		tilesToDraw = new ArrayList<Tile>();
 
-		readLevelFile();
+//		readLevelFile();
+	}
+	
+	public void giveHeroKeyMap(Hero hero) {
+		hero.giveKeyMap(keyMap);
+		System.out.println("KeyMap got");
 	}
 
-	private void readLevelFile() {
+	public void readLevelFile() {
 		Scanner scanner;
 		try {
 			scanner = new Scanner(new File("level" + levelNum + ".txt"));
 		} catch (FileNotFoundException e) {
-			System.out.println("level" + levelNum + ".txt not found");
 			// e.printStackTrace();
 			return;
 		}
@@ -50,21 +56,22 @@ public class Level extends Screen {
 			for (int i = 0; i < line.length(); i++) {
 				char toBuild = line.charAt(i);
 				if (toBuild == 'H' || toBuild == 'M') {
-					System.out.println("Mob drawn! @" + i + ' ' + posY);
-					Mob newMob;
+					
 					if (toBuild == 'H') {
-						newMob = new Hero(i * this.cellWidthHeight, posY * this.cellWidthHeight);
+						
+						Hero newMob = new Hero(i * this.cellWidthHeight, posY * this.cellWidthHeight);
+						giveHeroKeyMap(newMob);
 						mobsToDraw.add(newMob);
+						
 					}
 
 				}
 
 				if (toBuild == 'T' || toBuild == 'E') {
 					Tile newTile;
-					System.out.println("Tile drawn! @" + i + ' ' + posY);
 					if (toBuild == 'T') {
 						newTile = new Tile(i * this.cellWidthHeight, posY * this.cellWidthHeight, this.cellWidthHeight,
-								this.cellWidthHeight, "SolidTile.png");
+								this.cellWidthHeight, "Tile.png");
 						
 						this.tilesToDraw.add(newTile);
 					}
@@ -84,7 +91,6 @@ public class Level extends Screen {
 
 			posY++;
 
-			System.out.println(line);
 
 			// PUT METHOD HERE THAT BUILDS CHARACTERS AND BLOCKS FROM CHAR USING DRAW
 
@@ -104,6 +110,7 @@ public class Level extends Screen {
 					thisTile.getY() + this.cellWidthHeight, 0, 0, thisTile.getImage().getWidth(observer),
 					thisTile.getImage().getHeight(observer), observer);
 			
+			
 		}
 		//draw mobs
 		for (int i = 0; i < this.mobsToDraw.size(); i++) {
@@ -112,8 +119,19 @@ public class Level extends Screen {
 			g2.drawImage(thisMob.getImage(), thisMob.getX(), thisMob.getY(), thisMob.getX() + this.cellWidthHeight,
 					thisMob.getY() + this.cellWidthHeight, 0, 0, thisMob.getImage().getWidth(observer),
 					thisMob.getImage().getHeight(observer), observer);
+			thisMob.updateMovement();
+			if (thisMob instanceof Hero) { //replace with the fancy way to check
+				if (keyMap.get("left")) {
+					thisMob.setXAcceleration(-10);
+				}
+				
+				
+			}
 
 		}
+		
+		
+		
 		
 	}
 	// MasterList SOMEWHERE! for letters
