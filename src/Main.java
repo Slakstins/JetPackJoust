@@ -20,12 +20,12 @@ import javax.swing.JFrame;
  *
  */
 public class Main {
-	private int level;
+	
 	private final static int FRAME_HEIGHT = 1000;
 	private final static int FRAME_WIDTH = 1000;
 
 	public Main() {
-		this.level = 1;
+		
 		System.out.println("Testing Arcade Game");
 		
 		LevelGenerator levelGenerator = new LevelGenerator();

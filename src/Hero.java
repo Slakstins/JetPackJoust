@@ -38,14 +38,16 @@ public class Hero extends Mob {
 	
 	
 	public void keyAcceleration() {
-		if (keyMap.get("left")) {
-			super.setXAcceleration(-10);
+		if (keyMap.get("left") && this.getXVel() > -2) {
+			super.setXVel(this.getXVel() - 0.05);
 		}
-		if (keyMap.get("right")) {
-			super.setXAcceleration(10);
+		if (keyMap.get("right") && this.getXVel() < 2) {
+			super.setXVel(this.getXVel() + 0.05);
 		}
 	}
 	
+	
+
 	@Override
 	public void updateMovement() {
 		
@@ -62,9 +64,10 @@ public class Hero extends Mob {
 	@Override
 	public void fly() {
 		// TODO Auto-generated method stub
-		if (this.keyMap.get("up")) {
-			this.setYVel(this.getYVel() - 10);
-			this.setPostition(this.getX(), this.getY() - 5);
+		if (this.keyMap.get("up") && this.getYVel() > -1.5) {
+			
+			this.setYVel(this.getYVel() - 0.07);
+//			this.setPostition(this.getX(), this.getY());
 		}
 		
 

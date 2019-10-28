@@ -9,7 +9,7 @@ public abstract class Mob {
 	private double xAcceleration;
 	private double yAcceleration;
 	private Image image;
-	public final double gravity = 5;
+	public final double gravity = 0.05;
 	private int width;
 	private int height;
 	public final int defaultMobHeight = 100;
@@ -60,7 +60,13 @@ public abstract class Mob {
 	public double getYVel() {
 		return this.yVel;
 	}
+	public double getXVel() {
+		return this.xVel;
+	}
 	
+	public void setXVel(double vel) {
+		this.xVel = vel;
+	}
 	
 
 	
@@ -76,8 +82,16 @@ public abstract class Mob {
 	 * call often to make smooth
 	 */
 	public void velUpdate() {
+		if (this.xVel > 0) {
+			this.xVel -= 0.01;
+		}
+		if (this.xVel < 0) {
+			this.xVel += 0.01;
+		}
 		this.xVel += this.xAcceleration;
+		if (this.getYVel() < 2) {
 		this.yVel += this.yAcceleration;
+		}
 	}
 	
 	public void setXAcceleration(int accelerationX) {

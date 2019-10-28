@@ -44,26 +44,33 @@ public class KeyInput extends KeyAdapter {
         	 this.keyMap.put("right", true);
          
         	 System.out.println("rightpressed!");
-        	 this.updatePaint();
+        	 
          }
          if (keyCode == event.VK_UP){
         	 this.keyMap.put("up", true);
          
         	 System.out.println("uppressed!");
-        	 this.updatePaint();
+        	 
         	
          }
          if (keyCode == event.VK_DOWN){
         	 this.keyMap.put("down", true);
          
         	 System.out.println("downpressed!");
-        	 this.updatePaint();
+        	
          }
          if (keyCode == event.VK_U) {
-        	 this.keyMap.put("u", true);
         	 this.screenComponent.addLevel();
-        	 this.updatePaint();
+        	
          }
+         if (keyCode == event.VK_D) {
+        	 this.screenComponent.removeLevel();
+        	
+         }
+         
+         
+        
+         
          
      }
 	 @Override
@@ -84,6 +91,8 @@ public class KeyInput extends KeyAdapter {
          if (keyCode == event.VK_DOWN){
         	 this.keyMap.put("down", false);
          }
+         
+
      }
 
 

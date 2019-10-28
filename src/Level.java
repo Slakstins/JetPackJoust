@@ -34,22 +34,19 @@ public class Level extends Screen {
 
 	public void setKeyMap(HashMap<String, Boolean> keyMap) {
 		this.keyMap = keyMap;
-		if (this.keyMap.get("left")) {
-			System.out.println("KEY GOT AGAIn");
-		}
+		
+		
 	}
 
-//	public void giveHeroKeyMap(Hero hero) {
-//		hero.getKeyMap(keyMap);
-//		System.out.println("KeyMap got");
-//	}
+
 
 	public void readLevelFile() {
 		Scanner scanner;
 		try {
 			scanner = new Scanner(new File("level" + levelNum + ".txt"));
+			System.out.println("txt load successful");
 		} catch (FileNotFoundException e) {
-			// e.printStackTrace();
+			 e.printStackTrace();
 			return;
 		}
 		int posY = 0;
@@ -155,7 +152,7 @@ public class Level extends Screen {
 
 				// Will need to differnetiate between mob types for position update
 
-			
+			System.out.println("everything drawn!");
 
 		}
 		// MasterList SOMEWHERE! for letters
