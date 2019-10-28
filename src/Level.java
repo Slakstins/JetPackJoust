@@ -130,7 +130,7 @@ public class Level extends Screen {
 			
 			for (int j = 0; j < this.solidTiles.size(); j++) {
 				Tile thisTile = solidTiles.get(j);
-				if (thisMob.getY() + thisMob.getTravelDistance() + this.cellWidthHeight >= thisTile.getY()  &&
+				if (thisMob.getY() + thisMob.getTravelDistance() + this.cellWidthHeight >= thisTile.getY() &&
 						thisMob.getX()  >= thisTile.getX() - this.cellWidthHeight &&
 						thisMob.getX() <= thisTile.getX() + this.cellWidthHeight &&
 					
