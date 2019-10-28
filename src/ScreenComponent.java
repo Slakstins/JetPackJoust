@@ -1,50 +1,64 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.HashMap;
 
 import javax.swing.JComponent;
 
-public class ScreenComponent extends JComponent{
-	private int level;
+public class ScreenComponent extends JComponent {
+	private int levelNum;
+	private HashMap<String, Boolean> keyMap;
+	private Level level;
 	public ScreenComponent() {
-		this.level = 1;
+		this.levelNum = 1;
+		if (levelNum == 1) {
+		level = new Level("Title", 1);
+		}
+		if (levelNum == 2) {
+		level = new Level("Title", 2);
+		}
+		
+		this.level.readLevelFile();
 	}
 	public void addLevel() {
-		level += 1;
-		
+		this.levelNum += 1;
 	}
-	
 	public void removeLevel() {
-		level -= 1;
+		this.levelNum -= 1;
 	}
-	
 	public int getLevel() {
-		return this.level;
+		return this.levelNum;
 	}
-	
-	
+	public void giveKeyMap(HashMap<String, Boolean> keyMap) {
+		this.keyMap = keyMap;
+		System.out.println("KEY GOT");
+	}
+	public HashMap<String, Boolean> getKeyMap() {
+		return this.keyMap;
+	}
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		// Get the 2D graphics object
 		Graphics2D g2 = (Graphics2D) g;
 		// need a BETTER WAY to access level info for drawing in screen.
-		//is there a way to do this without putting level1 in Main and DrawComponent?
-		if (level == 0) {
-//			Screen level1 = new StartScreen("Title, 0");
+		// is there a way to do this without putting level1 in Main and DrawComponent?
+
+		if (levelNum == 0) {
+//			Screen level0 = new StartScreen("Title, 0");
 		}
-		
-		if (level == 1) {
-			Screen level1 = new Level("Title", 1);
-			level1.drawEverything(g2);
-			
+
+		if (levelNum == 1) {
+			this.level.drawEverything(g2);
+			this.level.giveKeyMap(this.keyMap);
+			System.out.println("Level painted!");
+
 		}
-	
-		if (level == 2) {
+
+		if (levelNum == 2) {
 			Screen level2 = new Level("Title", 2);
 			level2.drawEverything(g2);
+			level2.giveKeyMap(this.keyMap);
 		}
-		
-		
-		
+
 	}
-	
+
 }

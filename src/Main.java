@@ -1,5 +1,9 @@
 import java.awt.Graphics;
+
 import java.awt.Graphics2D;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -22,14 +26,6 @@ public class Main {
 
 	public Main() {
 		this.level = 1;
-	}
-	
-	
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
 		System.out.println("Testing Arcade Game");
 		
 		LevelGenerator levelGenerator = new LevelGenerator();
@@ -44,21 +40,41 @@ public class Main {
 		//Draw component needs access to the stuff to draw it
 		//need to find a way to only create the level
 		JFrame frame = new JFrame();
+
 		int frameWidth2 = FRAME_WIDTH;
 		int frameHeight2 = FRAME_HEIGHT;
 
+		
+		KeyInput input = new KeyInput();
+		
+		
+		frame.addKeyListener(input);
+
 		frame.setSize(frameWidth2, frameHeight2);
 		ScreenComponent component = new ScreenComponent();
-		
+		component.giveKeyMap(input.getKeyMap());
 		
 	
 		frame.add(component);
+		input.setScreenComponent(component);
 		frame.setTitle("Level " + component.getLevel());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocation(0, 0);
 		
-		
+//		frame.setFocusable(true);
 		frame.setVisible(true);
+	}
+	
+	
+	
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		new Main();
+		
+		
 		
 		
 		

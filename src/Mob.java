@@ -24,12 +24,21 @@ public abstract class Mob {
 		this.xAcceleration = 0;
 		this.yAcceleration = gravity;
 		this.image = null;
+		System.out.println("Position updated!");
 	}
+	
+	
 
 	public abstract void fly();
 	public abstract void kill();
 	public abstract void spawn();
 	public abstract void shoot();
+	
+	public void updateMovement() {
+		this.velUpdate();
+		this.posUpdate();
+	
+	}
 
 	
 	/**

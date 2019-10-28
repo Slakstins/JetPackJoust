@@ -3,8 +3,9 @@
 public class Air extends Tile {
 
 	public Air(int x, int y, int width, int height) {
-		super(x, y, width, height, "airTile.png");
-		this.setSolid(true);
+		super(x, y, width, height, "Air.png");
+		this.setSolid(false);
+
 	}
 
 	
