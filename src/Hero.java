@@ -64,7 +64,7 @@ public class Hero extends Mob {
 		// TODO Auto-generated method stub
 		if (this.keyMap.get("up")) {
 			this.setYVel(this.getYVel() - 10);
-			this.setPostition(this.getX(), this.getY() - 1);
+			this.setPostition(this.getX(), this.getY() - 5);
 		}
 		
 

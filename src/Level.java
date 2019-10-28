@@ -28,6 +28,10 @@ public class Level extends Screen {
 //		readLevelFile();
 	}
 	
+	public int getLevelNum() {
+		return this.levelNum;
+	}
+
 	public void setKeyMap(HashMap<String, Boolean> keyMap) {
 		this.keyMap = keyMap;
 		if (this.keyMap.get("left")) {
@@ -50,11 +54,9 @@ public class Level extends Screen {
 		}
 		int posY = 0;
 
-
 		// add bakground tiles before others
 
-		
-		//add background tiles before others
+		// add background tiles before others
 		for (int i = 0; i < this.xCells; i++) {
 			for (int j = 0; j < this.yCells; j++) {
 				Tile backgroundTile = new Air(i * this.cellWidthHeight, j * this.cellWidthHeight, this.cellWidthHeight,
@@ -111,6 +113,10 @@ public class Level extends Screen {
 
 	}
 
+	private boolean collision(Mob mob, Tile tile) {
+		return mob.getBounds().intersects(tile.getBounds());
+	}
+
 	public void drawEverything(Graphics2D g2) {
 
 		// draw background and solids
@@ -127,37 +133,33 @@ public class Level extends Screen {
 		for (int i = 0; i < this.mobsToDraw.size(); i++) {
 			ImageObserver observer = null; // is this a problem????
 			Mob thisMob = this.mobsToDraw.get(i);
-			
+
 			for (int j = 0; j < this.solidTiles.size(); j++) {
 				Tile thisTile = solidTiles.get(j);
-				if (thisMob.getY() + thisMob.getTravelDistance() + this.cellWidthHeight >= thisTile.getY() &&
-						thisMob.getX()  >= thisTile.getX() - this.cellWidthHeight &&
-						thisMob.getX() <= thisTile.getX() + this.cellWidthHeight &&
+
+				if (collision(thisMob, thisTile)) {
+										
 					
-						thisMob.getY() + thisMob.getTravelDistance() < thisTile.getY() + cellWidthHeight
-						) {
+					
+					
 					thisMob.setYVel(0);
 					thisMob.setPostition(thisMob.getX(), thisTile.getY() - this.cellWidthHeight);
 				}
 			}
-			
-			
-		
-			g2.drawImage(thisMob.getImage(), thisMob.getX(), thisMob.getY(), thisMob.getX() + this.cellWidthHeight,
-					thisMob.getY() + this.cellWidthHeight, 0, 0, thisMob.getImage().getWidth(observer),
-					thisMob.getImage().getHeight(observer), observer);
-			
-			thisMob.updateMovement();
-			
-			//Will need to differnetiate between mob types for position update
 
-			
+				g2.drawImage(thisMob.getImage(), thisMob.getX(), thisMob.getY(), thisMob.getX() + this.cellWidthHeight,
+						thisMob.getY() + this.cellWidthHeight, 0, 0, thisMob.getImage().getWidth(observer),
+						thisMob.getImage().getHeight(observer), observer);
+
+				thisMob.updateMovement();
+
+				// Will need to differnetiate between mob types for position update
+
 			
 
 		}
+		// MasterList SOMEWHERE! for letters
+		// H is = Hero
 
 	}
-	// MasterList SOMEWHERE! for letters
-	// H is = Hero
-
 }

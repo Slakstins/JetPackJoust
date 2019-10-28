@@ -1,4 +1,5 @@
 import java.awt.Image;
+import java.awt.Rectangle;
 
 public abstract class Mob {
 	private int xPos;
@@ -25,6 +26,10 @@ public abstract class Mob {
 		this.yAcceleration = gravity;
 		this.image = null;
 		System.out.println("Position updated!");
+	}
+	
+	public Rectangle getBounds() {
+		return new Rectangle(this.getX(), this.getY(), this.defaultMobWidth, this.defaultMobHeight);
 	}
 	
 	
@@ -55,6 +60,8 @@ public abstract class Mob {
 	public double getYVel() {
 		return this.yVel;
 	}
+	
+	
 
 	
 	/**

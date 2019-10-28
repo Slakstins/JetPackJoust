@@ -14,7 +14,7 @@ public class KeyInput extends KeyAdapter {
 		this.keyMap.put("right", false);
 		this.keyMap.put("up", false);
 		this.keyMap.put("down", false);
-		
+		this.keyMap.put("u", false);
 	}
 	
 	
@@ -60,7 +60,9 @@ public class KeyInput extends KeyAdapter {
         	 this.updatePaint();
          }
          if (keyCode == event.VK_U) {
-        	 
+        	 this.keyMap.put("u", true);
+        	 this.screenComponent.addLevel();
+        	 this.updatePaint();
          }
          
      }

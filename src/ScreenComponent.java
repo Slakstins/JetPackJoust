@@ -8,12 +8,15 @@ public class ScreenComponent extends JComponent {
 	private int levelNum;
 	private HashMap<String, Boolean> keyMap;
 	private Level level;
-	private int firstTry;
+	private int firstTry1;
+	private int firstTry2;
+	
 	public ScreenComponent() {
-		this.firstTry = 0;
+		this.firstTry1 = 0;
+		this.firstTry2 = 0;
 		this.levelNum = 1;
 		if (levelNum == 1) {
-		level = new Level("Title", 1);
+		level = new Level("Level 1", 1);
 		}
 		if (levelNum == 2) {
 		level = new Level("Title", 2);
@@ -54,27 +57,37 @@ public class ScreenComponent extends JComponent {
 
 		if (levelNum == 1) {
 			this.level.setKeyMap(keyMap);
-			if (this.firstTry == 0) {
+			if (this.firstTry1 == 0) {
 				this.level.readLevelFile();
-				this.firstTry++;
+				this.firstTry1++;
 			}
 			
 			
 			this.level.drawEverything(g2);
 
 			System.out.println("Level painted!");
-			if (keyMap.get("left")) {
-				System.out.println("HI");
-			}
+			
 
 		}
 
 		if (levelNum == 2) {
-			Screen level2 = new Level("Title", 2);
-			level2.drawEverything(g2);
-			level2.giveKeyMap(this.keyMap);
-		}
+			
+			this.level.setKeyMap(keyMap);
+			if (this.firstTry2 == 0) {
+				this.level = new Level("Level 2", 2);
+				
+				
+				this.level.readLevelFile();
+				this.firstTry2++;
+			}
+			
+			
+			this.level.drawEverything(g2);
 
+			System.out.println("Level painted!");
+			
+
+		}
 	}
 
 }
