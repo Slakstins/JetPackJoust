@@ -41,7 +41,11 @@ public class Level extends Screen {
 		}
 		int posY = 0;
 
+
 		// add bakground tiles before others
+
+		
+		//add background tiles before others
 		for (int i = 0; i < this.xCells; i++) {
 			for (int j = 0; j < this.yCells; j++) {
 				Tile backgroundTile = new Air(i * this.cellWidthHeight, j * this.cellWidthHeight, this.cellWidthHeight,
@@ -118,9 +122,9 @@ public class Level extends Screen {
 					thisMob.getImage().getHeight(observer), observer);
 			thisMob.updateMovement();
 
-			if (keyMap.get("left")) {
-				thisMob.setXAcceleration(-10);
-			}
+//			if (keyMap.get("left")) {
+//				thisMob.setXAcceleration(-10);
+//			}
 
 		}
 

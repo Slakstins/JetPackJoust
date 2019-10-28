@@ -21,6 +21,8 @@ import javax.swing.JFrame;
  */
 public class Main {
 	private int level;
+	private final static int FRAME_HEIGHT = 1000;
+	private final static int FRAME_WIDTH = 1000;
 
 	public Main() {
 		this.level = 1;
@@ -38,8 +40,10 @@ public class Main {
 		//Draw component needs access to the stuff to draw it
 		//need to find a way to only create the level
 		JFrame frame = new JFrame();
-		int frameWidth2 = 1000;
-		int frameHeight2 = 1000;
+
+		int frameWidth2 = FRAME_WIDTH;
+		int frameHeight2 = FRAME_HEIGHT;
+
 		
 		KeyInput input = new KeyInput();
 		
