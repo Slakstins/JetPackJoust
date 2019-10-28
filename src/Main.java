@@ -52,7 +52,7 @@ public class Main {
 
 		frame.setSize(frameWidth2, frameHeight2);
 		ScreenComponent component = new ScreenComponent();
-		component.giveKeyMap(input.getKeyMap());
+		component.setKeyMap(input.getKeyMap());
 		
 	
 		frame.add(component);

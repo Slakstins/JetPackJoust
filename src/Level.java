@@ -11,6 +11,7 @@ public class Level extends Screen {
 
 	ArrayList<Mob> mobsToDraw;
 	ArrayList<Tile> tilesToDraw;
+	ArrayList<Tile> solidTiles;
 	private int levelNum;
 	public final int cellWidthHeight = 100;
 	public final int xCells = 10;
@@ -22,14 +23,22 @@ public class Level extends Screen {
 		this.levelNum = levelNum;
 		mobsToDraw = new ArrayList<Mob>();
 		tilesToDraw = new ArrayList<Tile>();
+		solidTiles = new ArrayList<Tile>();
 
 //		readLevelFile();
 	}
-
-	public void giveHeroKeyMap(Hero hero) {
-		hero.giveKeyMap(keyMap);
-		System.out.println("KeyMap got");
+	
+	public void setKeyMap(HashMap<String, Boolean> keyMap) {
+		this.keyMap = keyMap;
+		if (this.keyMap.get("left")) {
+			System.out.println("KEY GOT AGAIn");
+		}
 	}
+
+//	public void giveHeroKeyMap(Hero hero) {
+//		hero.getKeyMap(keyMap);
+//		System.out.println("KeyMap got");
+//	}
 
 	public void readLevelFile() {
 		Scanner scanner;
@@ -63,7 +72,7 @@ public class Level extends Screen {
 					if (toBuild == 'H') {
 
 						Hero newMob = new Hero(i * this.cellWidthHeight, posY * this.cellWidthHeight);
-						giveHeroKeyMap(newMob);
+						newMob.setKeyMap(this.keyMap);
 						mobsToDraw.add(newMob);
 
 					}
@@ -77,6 +86,7 @@ public class Level extends Screen {
 								this.cellWidthHeight, "Tile.png");
 
 						this.tilesToDraw.add(newTile);
+						this.solidTiles.add(newTile);
 					}
 					if (toBuild == 'E') {
 //						newTile = new Air(i * this.cellWidthHeight, posY * this.cellWidthHeight, this.cellWidthHeight,
@@ -117,14 +127,32 @@ public class Level extends Screen {
 		for (int i = 0; i < this.mobsToDraw.size(); i++) {
 			ImageObserver observer = null; // is this a problem????
 			Mob thisMob = this.mobsToDraw.get(i);
+			
+			for (int j = 0; j < this.solidTiles.size(); j++) {
+				Tile thisTile = solidTiles.get(j);
+				if (thisMob.getY() + thisMob.getTravelDistance() + this.cellWidthHeight >= thisTile.getY()  &&
+						thisMob.getX()  >= thisTile.getX() - this.cellWidthHeight &&
+						thisMob.getX() <= thisTile.getX() + this.cellWidthHeight &&
+					
+						thisMob.getY() + thisMob.getTravelDistance() < thisTile.getY() + cellWidthHeight
+						) {
+					thisMob.setYVel(0);
+					thisMob.setPostition(thisMob.getX(), thisTile.getY() - this.cellWidthHeight);
+				}
+			}
+			
+			
+		
 			g2.drawImage(thisMob.getImage(), thisMob.getX(), thisMob.getY(), thisMob.getX() + this.cellWidthHeight,
 					thisMob.getY() + this.cellWidthHeight, 0, 0, thisMob.getImage().getWidth(observer),
 					thisMob.getImage().getHeight(observer), observer);
+			
 			thisMob.updateMovement();
+			
+			//Will need to differnetiate between mob types for position update
 
-//			if (keyMap.get("left")) {
-//				thisMob.setXAcceleration(-10);
-//			}
+			
+			
 
 		}
 

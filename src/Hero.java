@@ -32,7 +32,7 @@ public class Hero extends Mob {
 		
 	}
 	
-	public void giveKeyMap(HashMap<String, Boolean> keyMap) {
+	public void setKeyMap(HashMap<String, Boolean> keyMap) {
 		this.keyMap = keyMap;
 	}
 	
@@ -42,14 +42,30 @@ public class Hero extends Mob {
 			super.setXAcceleration(-10);
 		}
 		if (keyMap.get("right")) {
-			super.setYAcceleration(10);
+			super.setXAcceleration(10);
 		}
+	}
+	
+	@Override
+	public void updateMovement() {
+		
+		this.keyAcceleration();
+		
+		
+		this.velUpdate();
+		this.posUpdate();
+		this.fly();
+		
 	}
 	
 	
 	@Override
 	public void fly() {
 		// TODO Auto-generated method stub
+		if (this.keyMap.get("up")) {
+			this.setYVel(this.getYVel() - 10);
+			this.setPostition(this.getX(), this.getY() - 1);
+		}
 		
 
 	}
@@ -71,5 +87,7 @@ public class Hero extends Mob {
 		// TODO Auto-generated method stub
 
 	}
+
+	
 
 }

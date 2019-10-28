@@ -8,7 +8,9 @@ public class ScreenComponent extends JComponent {
 	private int levelNum;
 	private HashMap<String, Boolean> keyMap;
 	private Level level;
+	private int firstTry;
 	public ScreenComponent() {
+		this.firstTry = 0;
 		this.levelNum = 1;
 		if (levelNum == 1) {
 		level = new Level("Title", 1);
@@ -17,7 +19,7 @@ public class ScreenComponent extends JComponent {
 		level = new Level("Title", 2);
 		}
 		
-		this.level.readLevelFile();
+		
 	}
 	public void addLevel() {
 		this.levelNum += 1;
@@ -28,13 +30,17 @@ public class ScreenComponent extends JComponent {
 	public int getLevel() {
 		return this.levelNum;
 	}
-	public void giveKeyMap(HashMap<String, Boolean> keyMap) {
+	public void setKeyMap(HashMap<String, Boolean> keyMap) {
 		this.keyMap = keyMap;
-		System.out.println("KEY GOT");
+		
+		if (this.keyMap.get("left") == false) {
+			System.out.println("KEY GOT");
+		}
 	}
-	public HashMap<String, Boolean> getKeyMap() {
-		return this.keyMap;
-	}
+//	public HashMap<String, Boolean> setLevelKeyMap(Level level) {
+//		return this.keyMap;
+//	}
+	
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		// Get the 2D graphics object
@@ -47,8 +53,15 @@ public class ScreenComponent extends JComponent {
 		}
 
 		if (levelNum == 1) {
+			this.level.setKeyMap(keyMap);
+			if (this.firstTry == 0) {
+				this.level.readLevelFile();
+				this.firstTry++;
+			}
+			
+			
 			this.level.drawEverything(g2);
-			this.level.giveKeyMap(this.keyMap);
+
 			System.out.println("Level painted!");
 			if (keyMap.get("left")) {
 				System.out.println("HI");

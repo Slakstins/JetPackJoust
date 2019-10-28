@@ -8,7 +8,7 @@ public abstract class Mob {
 	private double xAcceleration;
 	private double yAcceleration;
 	private Image image;
-	public final double gravity = 9.8;
+	public final double gravity = 5;
 	private int width;
 	private int height;
 	public final int defaultMobHeight = 100;
@@ -37,7 +37,23 @@ public abstract class Mob {
 	public void updateMovement() {
 		this.velUpdate();
 		this.posUpdate();
+		
 	
+	}
+	
+	public double getTravelDistance() {
+		return this.yVel;
+	}
+	public void setPostition(int x, int y) {
+		this.xPos = x;
+		this.yPos = y;
+	}
+	
+	public void setYVel(double d) {
+		this.yVel = d;
+	}
+	public double getYVel() {
+		return this.yVel;
 	}
 
 	
