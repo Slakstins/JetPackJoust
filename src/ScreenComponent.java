@@ -50,6 +50,9 @@ public class ScreenComponent extends JComponent {
 			this.level.drawEverything(g2);
 			this.level.giveKeyMap(this.keyMap);
 			System.out.println("Level painted!");
+			if (keyMap.get("left")) {
+				System.out.println("HI");
+			}
 
 		}
 

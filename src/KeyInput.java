@@ -10,10 +10,10 @@ public class KeyInput extends KeyAdapter {
 	
 	public KeyInput() {
 		this.keyMap = new HashMap<String, Boolean>();
-		keyMap.put("left", false);
-		keyMap.put("right", false);
-		keyMap.put("up", false);
-		keyMap.put("down", false);
+		this.keyMap.put("left", false);
+		this.keyMap.put("right", false);
+		this.keyMap.put("up", false);
+		this.keyMap.put("down", false);
 		
 	}
 	
@@ -35,24 +35,24 @@ public class KeyInput extends KeyAdapter {
          int keyCode = event.getKeyCode();
         
          if (keyCode == event.VK_LEFT) {
-        	 keyMap.put("left", true);
+        	 this.keyMap.put("left", true);
              System.out.println("leftpressed!");
              this.updatePaint();
              
          }
          if (keyCode == event.VK_RIGHT){
-        	 keyMap.put("right", true);
+        	 this.keyMap.put("right", true);
          
         	 System.out.println("rightpressed!");
          }
          if (keyCode == event.VK_UP){
-        	 keyMap.put("up", true);
+        	 this.keyMap.put("up", true);
          
         	 System.out.println("uppressed!");
         	
          }
          if (keyCode == event.VK_DOWN){
-        	 keyMap.put("down", true);
+        	 this.keyMap.put("down", true);
          
         	 System.out.println("downpressed!");
          }
@@ -65,19 +65,19 @@ public class KeyInput extends KeyAdapter {
      public void keyReleased(KeyEvent event) {
          int keyCode = event.getKeyCode();
          if (keyCode == event.VK_LEFT) {
-        	 keyMap.put("left", false);
+        	 this.keyMap.put("left", false);
          }
          if (keyCode == event.VK_RIGHT){
-        	 keyMap.put("right", false);
+        	 this.keyMap.put("right", false);
          
         	
          }
          if (keyCode == event.VK_UP){
-        	 keyMap.put("up", false);
+        	 this.keyMap.put("up", false);
         	 
          }
          if (keyCode == event.VK_DOWN){
-        	 keyMap.put("down", false);
+        	 this.keyMap.put("down", false);
          }
      }
 
