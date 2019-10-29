@@ -9,6 +9,8 @@ public class Hero extends Mob {
 	
 	
 	private HashMap<String, Boolean> keyMap;
+	private double xMoveVel = 0.05;
+	
 
 	public Hero(int xPos, int yPos) {
 		super(xPos, yPos);
@@ -38,11 +40,11 @@ public class Hero extends Mob {
 	
 	
 	public void keyAcceleration() {
-		if (keyMap.get("left") && this.getXVel() > -2) {
-			super.setXVel(this.getXVel() - 0.05);
+		if (keyMap.get("left")) {
+			this.setXVel(this.getXVel() - this.xMoveVel);
 		}
-		if (keyMap.get("right") && this.getXVel() < 2) {
-			super.setXVel(this.getXVel() + 0.05);
+		if (keyMap.get("right")) {
+			this.setXVel(this.getXVel() + this.xMoveVel);
 		}
 	}
 	

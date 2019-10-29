@@ -27,18 +27,14 @@ public class Level extends Screen {
 
 //		readLevelFile();
 	}
-	
+
 	public int getLevelNum() {
 		return this.levelNum;
 	}
 
 	public void setKeyMap(HashMap<String, Boolean> keyMap) {
 		this.keyMap = keyMap;
-		
-		
 	}
-
-
 
 	public void readLevelFile() {
 		Scanner scanner;
@@ -46,7 +42,7 @@ public class Level extends Screen {
 			scanner = new Scanner(new File("level" + levelNum + ".txt"));
 			System.out.println("txt load successful");
 		} catch (FileNotFoundException e) {
-			 e.printStackTrace();
+			e.printStackTrace();
 			return;
 		}
 		int posY = 0;
@@ -110,6 +106,14 @@ public class Level extends Screen {
 
 	}
 
+	/**
+	 * checks for collisions between a mob and a tile
+	 * 
+	 * @param mob
+	 * @param tile
+	 * @return
+	 */
+
 	private boolean collision(Mob mob, Tile tile) {
 		return mob.getBounds().intersects(tile.getBounds());
 	}
@@ -133,26 +137,36 @@ public class Level extends Screen {
 
 			for (int j = 0; j < this.solidTiles.size(); j++) {
 				Tile thisTile = solidTiles.get(j);
+				//check for collision on sides of tiles
 
 				if (collision(thisMob, thisTile)) {
-										
-					
-					
-					
-					thisMob.setYVel(0);
-					thisMob.setPostition(thisMob.getX(), thisTile.getY() - this.cellWidthHeight);
+					if (thisMob.getX() + this.cellWidthHeight < thisTile.getX() + 5) {
+						thisMob.setXVel(0);
+						thisMob.setPostition(thisTile.getX() - this.cellWidthHeight, thisMob.getY());
+					}
+					if (thisMob.getX() + 5 > thisTile.getX() + this.cellWidthHeight) {
+						thisMob.setXVel(0);
+						thisMob.setPostition(thisTile.getX() + this.cellWidthHeight, thisMob.getY());
+				//check for collisions on top and bottom of tiles
+					}
+					if (thisMob.getY() + this.cellWidthHeight < thisTile.getY() + 5) {
+						thisMob.setYVel(0);
+						thisMob.setPostition(thisMob.getX(), thisTile.getY() - this.cellWidthHeight);
+					}
+
+
 				}
 			}
 
-				g2.drawImage(thisMob.getImage(), thisMob.getX(), thisMob.getY(), thisMob.getX() + this.cellWidthHeight,
-						thisMob.getY() + this.cellWidthHeight, 0, 0, thisMob.getImage().getWidth(observer),
-						thisMob.getImage().getHeight(observer), observer);
+			g2.drawImage(thisMob.getImage(), thisMob.getX(), thisMob.getY(), thisMob.getX() + this.cellWidthHeight,
+					thisMob.getY() + this.cellWidthHeight, 0, 0, thisMob.getImage().getWidth(observer),
+					thisMob.getImage().getHeight(observer), observer);
 
-				thisMob.updateMovement();
+			thisMob.updateMovement();
 
-				// Will need to differnetiate between mob types for position update
+			// Will need to differnetiate between mob types for position update
 
-			//System.out.println("everything drawn!");
+			// System.out.println("everything drawn!");
 
 		}
 		// MasterList SOMEWHERE! for letters

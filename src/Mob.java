@@ -14,6 +14,8 @@ public abstract class Mob {
 	private int height;
 	public final int defaultMobHeight = 100;
 	public final int defaultMobWidth = 100;
+	private double maxXVel = 2;
+	private double maxYVel = 1.5;
 	
 	public Mob(int xPos, int yPos) {
 		this.height = defaultMobHeight;
@@ -55,9 +57,12 @@ public abstract class Mob {
 	}
 	
 	public void setYVel(double d) {
+		if (this.yVel > -1.5) {
 		this.yVel = d;
+		}
 	}
 	public double getYVel() {
+		
 		return this.yVel;
 	}
 	public double getXVel() {
@@ -65,6 +70,9 @@ public abstract class Mob {
 	}
 	
 	public void setXVel(double vel) {
+//		if (vel > -this.maxXVel && vel < this.maxXVel) {
+//			
+//		}
 		this.xVel = vel;
 	}
 	

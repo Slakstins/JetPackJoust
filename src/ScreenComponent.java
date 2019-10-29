@@ -81,7 +81,14 @@ public class ScreenComponent extends JComponent {
 
 
 		}
+		
 		this.level.drawEverything(g2);
+		
+		repaint();
+	}
+	public void updateState(Graphics2D g2) {
+		this.level.drawEverything(g2);
+		
 		repaint();
 	}
 
