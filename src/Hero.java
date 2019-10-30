@@ -10,7 +10,8 @@ public class Hero extends Mob {
 	
 	private HashMap<String, Boolean> keyMap;
 	private double xMoveVel = 0.05;
-	
+	private double thrust = 0.07;
+	private double maxThrustSpeed = 1.5;
 
 	public Hero(int xPos, int yPos) {
 		super(xPos, yPos);
@@ -66,9 +67,9 @@ public class Hero extends Mob {
 	@Override
 	public void fly() {
 		// TODO Auto-generated method stub
-		if (this.keyMap.get("up") && this.getYVel() > -1.5) {
+		if (this.keyMap.get("up") && this.getYVel() > -this.maxThrustSpeed) {
 			this.setImage("HeroFly.png");
-			this.setYVel(this.getYVel() - 0.07);
+			this.setYVel(this.getYVel() - this.thrust);
 //			this.setPostition(this.getX(), this.getY());
 		}
 		else {

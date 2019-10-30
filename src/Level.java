@@ -141,16 +141,20 @@ public class Level extends Screen {
 				if (collision(thisMob, thisTile)) {
 					if (thisMob.getX() + this.cellWidthHeight < thisTile.getX() + 5) {
 						thisMob.setXVel(0);
-						thisMob.setPostition(thisTile.getX() - this.cellWidthHeight, thisMob.getY());
+						thisMob.setPosition(thisTile.getX() - this.cellWidthHeight, thisMob.getY());
 					}
 					if (thisMob.getX() + 5 > thisTile.getX() + this.cellWidthHeight) {
 						thisMob.setXVel(0);
-						thisMob.setPostition(thisTile.getX() + this.cellWidthHeight, thisMob.getY());
+						thisMob.setPosition(thisTile.getX() + this.cellWidthHeight, thisMob.getY());
 				//check for collisions on top and bottom of tiles
 					}
 					if (thisMob.getY() + this.cellWidthHeight < thisTile.getY() + 5) {
 						thisMob.setYVel(0);
-						thisMob.setPostition(thisMob.getX(), thisTile.getY() - this.cellWidthHeight);
+						thisMob.setPosition(thisMob.getX(), thisTile.getY() - this.cellWidthHeight);
+					}
+					if (thisMob.getY() > thisTile.getY() + this.cellWidthHeight - 5) {
+						thisMob.setYVel(0);
+						thisMob.setPosition(thisMob.getX(), thisTile.getY() + this.cellWidthHeight);
 					}
 
 

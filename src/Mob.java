@@ -51,7 +51,7 @@ public abstract class Mob {
 	public double getTravelDistance() {
 		return this.yVel;
 	}
-	public void setPostition(int x, int y) {
+	public void setPosition(int x, int y) {
 		this.xPos = x;
 		this.yPos = y;
 	}
