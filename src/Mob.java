@@ -14,8 +14,8 @@ public abstract class Mob {
 	private int height;
 	public final int defaultMobHeight = 100;
 	public final int defaultMobWidth = 100;
-	private double maxXVel = 2;
-	private double maxYVel = 1.5;
+	private double maxXVel = 0.5;
+	private double maxYVel = 0.5;
 	
 	public Mob(int xPos, int yPos) {
 		this.height = defaultMobHeight;
@@ -45,12 +45,18 @@ public abstract class Mob {
 		this.velUpdate();
 		this.posUpdate();
 		
-	
 	}
 	
-	public double getTravelDistance() {
-		return this.yVel;
+	public void setXAccel(double xAccel) {
+		this.xAcceleration = xAccel;
 	}
+	
+	public void setYAccel(double yAccel) {
+		this.yAcceleration = yAccel;
+	}
+	
+	
+	
 	public void setPosition(int x, int y) {
 		this.xPos = x;
 		this.yPos = y;
@@ -96,17 +102,25 @@ public abstract class Mob {
 		if (this.xVel < 0) {
 			this.xVel += 0.01;
 		}
+		if (this.xVel + this.xAcceleration < this.maxXVel || this.maxXVel + this.xAcceleration > -this.maxXVel) {
 		this.xVel += this.xAcceleration;
-		if (this.getYVel() < 2) {
+		}
+		if (this.yVel < this.maxYVel || this.yVel > -this.maxYVel) {
 		this.yVel += this.yAcceleration;
 		}
 	}
+	public double getXAcceleration() {
+		return this.xAcceleration;
+	}
+	public double getYAcceleration() {
+		return this.yAcceleration;
+	}
 	
-	public void setXAcceleration(int accelerationX) {
+	public void setXAcceleration(double accelerationX) {
 		this.xAcceleration = accelerationX;
 	}
 	
-	public void setYAcceleration(int accelerationY) {
+	public void setYAcceleration(double accelerationY) {
 		this.yAcceleration = accelerationY;
 	}
 	

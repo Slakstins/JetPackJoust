@@ -12,7 +12,6 @@ public class ScreenComponent extends JComponent {
 	private boolean levelChange;
 
 	public ScreenComponent() {
-
 		this.levelNum = 1;
 		this.levelChange = true;
 	}

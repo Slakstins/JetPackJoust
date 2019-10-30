@@ -10,8 +10,9 @@ public class Hero extends Mob {
 	
 	private HashMap<String, Boolean> keyMap;
 	private double xMoveVel = 0.05;
-	private double thrust = 0.07;
+	private double thrust = 0.05;
 	private double maxThrustSpeed = 1.5;
+	private double xMoveAccel = 0.05;
 
 	public Hero(int xPos, int yPos) {
 		super(xPos, yPos);
@@ -39,14 +40,25 @@ public class Hero extends Mob {
 		this.keyMap = keyMap;
 	}
 	
-	
+	/**
+	 * 
+	 */
 	public void keyAcceleration() {
 		if (keyMap.get("left")) {
-			this.setXVel(this.getXVel() - this.xMoveVel);
+//			this.setXVel(this.getXVel() - this.xMoveVel);
+			this.setXAccel(-this.xMoveAccel);
 		}
 		if (keyMap.get("right")) {
-			this.setXVel(this.getXVel() + this.xMoveVel);
+//			this.setXVel(this.getXVel() + this.xMoveVel);
+			this.setXAccel(this.xMoveAccel);
 		}
+		if (!keyMap.get("right") && !keyMap.get("left")) {
+			this.setXAccel(0);
+		}
+			
+		
+		
+		
 	}
 	
 	
@@ -57,22 +69,29 @@ public class Hero extends Mob {
 		this.keyAcceleration();
 		
 		
+		
+		this.fly();
 		this.velUpdate();
 		this.posUpdate();
-		this.fly();
+		
 		
 	}
 	
-	
+	/**
+	 * increase the hero's upward velocity if up is true
+	 */
 	@Override
 	public void fly() {
 		// TODO Auto-generated method stub
-		if (this.keyMap.get("up") && this.getYVel() > -this.maxThrustSpeed) {
+		if (this.keyMap.get("up")) {
 			this.setImage("HeroFly.png");
-			this.setYVel(this.getYVel() - this.thrust);
+//			this.setYVel(this.getYVel() - this.thrust);
 //			this.setPostition(this.getX(), this.getY());
+			this.setYAccel(-this.thrust);
 		}
 		else {
+			this.setYAccel(this.gravity);
+			
 			this.setImage("Hero.png");
 		}
 		

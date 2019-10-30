@@ -129,32 +129,39 @@ public class Level extends Screen {
 					thisTile.getImage().getHeight(observer), observer);
 
 		}
+		
 		// draw mobs
 		for (int i = 0; i < this.mobsToDraw.size(); i++) {
 			ImageObserver observer = null; // is this a problem????
 			Mob thisMob = this.mobsToDraw.get(i);
+			double distanceMovedX = Math.abs(thisMob.getXVel());
+			double distanceMovedY = Math.abs(thisMob.getYVel());
 
 			for (int j = 0; j < this.solidTiles.size(); j++) {
 				Tile thisTile = solidTiles.get(j);
 				//check for collision on sides of tiles
 
 				if (collision(thisMob, thisTile)) {
-					if (thisMob.getX() + this.cellWidthHeight < thisTile.getX() + 5) {
-						thisMob.setXVel(0);
-						thisMob.setPosition(thisTile.getX() - this.cellWidthHeight, thisMob.getY());
-					}
-					if (thisMob.getX() + 5 > thisTile.getX() + this.cellWidthHeight) {
-						thisMob.setXVel(0);
-						thisMob.setPosition(thisTile.getX() + this.cellWidthHeight, thisMob.getY());
-				//check for collisions on top and bottom of tiles
-					}
-					if (thisMob.getY() + this.cellWidthHeight < thisTile.getY() + 5) {
+//					if (thisMob.getX() + this.cellWidthHeight < thisTile.getX() + distanceMovedX + 1) {
+//						thisMob.setXVel(0);
+//						
+//						thisMob.setPosition(thisTile.getX() - this.cellWidthHeight, thisMob.getY());
+//					}
+//					else if (thisMob.getX() + distanceMovedX + 1 > thisTile.getX() + this.cellWidthHeight) {
+//						thisMob.setXVel(0);
+//					
+//						thisMob.setPosition(thisTile.getX() + this.cellWidthHeight, thisMob.getY());
+//				//check for collisions on top and bottom of tiles
+//					}
+					if (thisMob.getY() + this.cellWidthHeight < thisTile.getY() + distanceMovedY + 1) {
+					
 						thisMob.setYVel(0);
 						thisMob.setPosition(thisMob.getX(), thisTile.getY() - this.cellWidthHeight);
-					}
-					if (thisMob.getY() > thisTile.getY() + this.cellWidthHeight - 5) {
-						thisMob.setYVel(0);
-						thisMob.setPosition(thisMob.getX(), thisTile.getY() + this.cellWidthHeight);
+//					}
+//					else if (thisMob.getY() > thisTile.getY() + this.cellWidthHeight - distanceMovedY - 1) {
+//					
+//						thisMob.setYVel(0);
+//						thisMob.setPosition(thisMob.getX(), thisTile.getY() + this.cellWidthHeight);
 					}
 
 
@@ -169,7 +176,6 @@ public class Level extends Screen {
 
 			// Will need to differnetiate between mob types for position update
 
-			// System.out.println("everything drawn!");
 
 		}
 		// MasterList SOMEWHERE! for letters
