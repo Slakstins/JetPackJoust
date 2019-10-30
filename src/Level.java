@@ -25,7 +25,6 @@ public class Level extends Screen {
 		tilesToDraw = new ArrayList<Tile>();
 		solidTiles = new ArrayList<Tile>();
 
-//		readLevelFile();
 	}
 
 	public int getLevelNum() {

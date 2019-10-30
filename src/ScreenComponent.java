@@ -10,6 +10,7 @@ public class ScreenComponent extends JComponent {
 	private Level level;
 	private int firstTry1;
 	private int firstTry2;
+	private Graphics2D g2;
 
 	public ScreenComponent() {
 		this.firstTry1 = 0;
@@ -35,7 +36,6 @@ public class ScreenComponent extends JComponent {
 		this.keyMap = keyMap;
 
 		if (this.keyMap.get("left") == false) {
-			System.out.println("KEY GOT");
 		}
 	}
 //	public HashMap<String, Boolean> setLevelKeyMap(Level level) {
@@ -46,6 +46,7 @@ public class ScreenComponent extends JComponent {
 		super.paintComponent(g);
 		// Get the 2D graphics object
 		Graphics2D g2 = (Graphics2D) g;
+//		this.setG2(g2);
 		// need a BETTER WAY to access level info for drawing in screen.
 		// is there a way to do this without putting level1 in Main and DrawComponent?
 
@@ -84,12 +85,16 @@ public class ScreenComponent extends JComponent {
 		
 		this.level.drawEverything(g2);
 		
-		repaint();
+
 	}
-	public void updateState(Graphics2D g2) {
-		this.level.drawEverything(g2);
+	
+	public void setG2(Graphics2D g2) {
+		this.g2 = g2; 
+	}
+	public void updateDraw() {
+
 		
-		repaint();
+		this.repaint();
 	}
 
 }

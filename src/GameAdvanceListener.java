@@ -17,13 +17,11 @@ public class GameAdvanceListener implements ActionListener {
 		
 	}
 	public void advanceOneTick() {
-		System.out.println("Current time " + System.currentTimeMillis());
 		// The component uses user actions from listeners
 		// to change the state of the game.
-
 		// update screen
-		this.screenComponent.updateState();
-		this.screenComponent.drawScreen();
+		this.screenComponent.updateDraw();
+
 	}
 
 }
