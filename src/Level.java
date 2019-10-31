@@ -161,7 +161,6 @@ public class Level extends Screen {
 				
 				if (thisMob.getYVel() > 0 && thisMob.getY() + this.cellWidthHeight > thisTile.getY() - 3 &&  thisMob.getY() + this.cellWidthHeight < thisTile.getY() + 3 &&thisMob.getX() + this.cellWidthHeight > thisTile.getX() && thisMob.getX() < thisTile.getX() + this.cellWidthHeight) {
 					grounded = true;
-					System.out.println("isgrounded set to true");
 
 				}
 //				if (thisMob.getY() + this.cellWidthHeight < thisTile.getY() - 3) {
@@ -200,11 +199,10 @@ public class Level extends Screen {
 					
 				
 			}
-			System.out.println(grounded);
 			thisMob.setIsGrounded(grounded);
 
-			g2.drawImage(thisMob.getImage(), thisMob.getX(), thisMob.getY(), thisMob.getX() + this.cellWidthHeight,
-					thisMob.getY() + this.cellWidthHeight, 0, 0, thisMob.getImage().getWidth(observer),
+			g2.drawImage(thisMob.getImage(), (int)thisMob.getX(), (int)thisMob.getY(), (int)thisMob.getX() + this.cellWidthHeight,
+					(int) (thisMob.getY() + this.cellWidthHeight), 0, 0, thisMob.getImage().getWidth(observer),
 					thisMob.getImage().getHeight(observer), observer);
 
 			thisMob.updateMovement();

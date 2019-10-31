@@ -6,23 +6,19 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 
 public class Hero extends Mob {
-	
-	
+
 	private HashMap<String, Boolean> keyMap;
 	private double xMoveVel = 0.05;
 	private double thrust = 0.05;
 	private double maxThrustSpeed = 1.5;
 	private double xMoveAccel = 0.05;
 	private double groundedMoveVel = 5;
-	
+	private int downWardDashVel = 3;
 
 	public Hero(int xPos, int yPos) {
 		super(xPos, yPos);
-		setImage("Hero.png"); 
-		
-		
-		
-		
+		setImage("Hero.png");
+
 		// TODO Auto-generated constructor stub
 	}
 
@@ -34,64 +30,61 @@ public class Hero extends Mob {
 			System.out.println("Image not found of hero!!");
 		}
 		this.setImage(image);
-		
-		
+
 	}
-	
+
 	public void setKeyMap(HashMap<String, Boolean> keyMap) {
 		this.keyMap = keyMap;
 	}
-	
+
 	/**
 	 * 
 	 */
 	public void keyAcceleration() {
-		if (keyMap.get("left")) {
-//			this.setXVel(this.getXVel() - this.xMoveVel);
-			if (this.getIsGrounded()){
+		if (this.getIsGrounded()) {
+			this.setXVel(0);
+			if (keyMap.get("left")) {
 				this.setXVel(-groundedMoveVel);
-				
-			}else {
-				this.setXAccel(-this.xMoveAccel);
 			}
-		
-		}
-		if (keyMap.get("right")) {
-//			this.setXVel(this.getXVel() + this.xMoveVel);
-			if (this.getIsGrounded()){
+			if (keyMap.get("right")) {
 				this.setXVel(groundedMoveVel);
-				
-			}else {
+			}
+		} else {
+			if (keyMap.get("right")) {
 				this.setXAccel(this.xMoveAccel);
 			}
-		
+			if (keyMap.get("left")) {
+				this.setXAccel(-this.xMoveAccel);
+			}
+
 		}
 		if (!keyMap.get("right") && !keyMap.get("left")) {
 			this.setXAccel(0);
 		}
-			
-		
-		
-		
+
+		if (keyMap.get("down")) {
+			this.downWardDash();
+		}
+
 	}
-	
-	
+
+	public void downWardDash() {
+		this.setPosition(this.getX(), this.getY() + this.downWardDashVel);
+		this.setYVel(3);
+	}
 
 	@Override
 	public void updateMovement() {
-		
+
 		this.keyAcceleration();
-		
-		
-		
+
 		this.fly();
 
 		this.velUpdate();
 		this.posUpdate();
 
-		
 	}
-	
+
 	/**
 	 * increase the hero's upward velocity if up is true
 	 */
@@ -103,13 +96,11 @@ public class Hero extends Mob {
 //			this.setYVel(this.getYVel() - this.thrust);
 //			this.setPostition(this.getX(), this.getY());
 			this.setYAccel(-this.thrust);
-		}
-		else {
+		} else {
 			this.setYAccel(this.gravity);
-			
+
 			this.setImage("Hero.png");
 		}
-		
 
 	}
 
@@ -130,7 +121,5 @@ public class Hero extends Mob {
 		// TODO Auto-generated method stub
 
 	}
-
-	
 
 }

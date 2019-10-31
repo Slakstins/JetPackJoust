@@ -2,20 +2,20 @@ import java.awt.Image;
 import java.awt.Rectangle;
 
 public abstract class Mob {
-	private int xPos;
-	private int yPos;
+	private double xPos;
+	private double yPos;
 	private double xVel;
 	private double yVel;
 	private double xAcceleration;
 	private double yAcceleration;
 	private Image image;
 	public final double gravity = 0.05;
-	private int width;
-	private int height;
+	private double width;
+	private double height;
 	public final int defaultMobHeight = 100;
 	public final int defaultMobWidth = 100;
-	private double maxXVel = 0.5;
-	private double maxYVel = 0.5;
+	private double maxXVel = 50;
+	private double maxYVel = 50;
 	private double friction = 0.01;
 	private final double FRAME_WIDTH = 1000;
 	private final double CELLWIDTHHEIGHT = 100;
@@ -35,7 +35,7 @@ public abstract class Mob {
 	}
 	
 	public Rectangle getBounds() {
-		return new Rectangle(this.getX(), this.getY(), this.defaultMobWidth, this.defaultMobHeight);
+		return new Rectangle((int)this.getX(), (int)this.getY(), this.defaultMobWidth, this.defaultMobHeight);
 	}
 	
 	
@@ -70,8 +70,8 @@ public abstract class Mob {
 	
 	
 	
-	public void setPosition(int x, int y) {
-		this.xPos = x;
+	public void setPosition(double d, double y) {
+		this.xPos = d;
 		this.yPos = y;
 	}
 	
@@ -116,18 +116,20 @@ public abstract class Mob {
 	 * call often to make smooth
 	 */
 	public void velUpdate() {
-		if (this.xVel > 0) {
-			this.xVel -= this.friction;
-		}
-		if (this.xVel < 0) {
-			this.xVel += this.friction;
-		}
-		if (this.xVel + this.xAcceleration < this.maxXVel || this.maxXVel + this.xAcceleration > -this.maxXVel) {
+		
+		if (this.xVel + this.xAcceleration < this.maxXVel && this.xVel + this.xAcceleration > -this.maxXVel) {
 		this.xVel += this.xAcceleration;
 		}
-		if (this.yVel < this.maxYVel || this.yVel > -this.maxYVel) {
+		if (this.yVel < this.maxYVel && this.yVel > -this.maxYVel) {
 		this.yVel += this.yAcceleration;
 		}
+		if (this.xVel > 0) {
+			this.xVel = this.xVel - this.friction;
+		}
+		if (this.xVel < 0) {
+			this.xVel = this.xVel + this.friction;
+		}
+		// getting rid of friction for some reaseon fixes the issue of going faster to the left
 	}
 	public double getXAcceleration() {
 		return this.xAcceleration;
@@ -144,10 +146,10 @@ public abstract class Mob {
 		this.yAcceleration = accelerationY;
 	}
 	
-	public int getX() {
+	public double getX() {
 		return this.xPos;
 	}
-	public int getY() {
+	public double getY() {
 		return this.yPos;
 	}
 	
