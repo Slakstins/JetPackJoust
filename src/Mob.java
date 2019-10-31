@@ -16,6 +16,7 @@ public abstract class Mob {
 	public final int defaultMobWidth = 100;
 	private double maxXVel = 0.5;
 	private double maxYVel = 0.5;
+	private double friction = 0.01;
 	private final double FRAME_WIDTH = 1000;
 	private final double CELLWIDTHHEIGHT = 100;
 	
@@ -29,7 +30,6 @@ public abstract class Mob {
 		this.xAcceleration = 0;
 		this.yAcceleration = gravity;
 		this.image = null;
-		System.out.println("Position updated!");
 	}
 	
 	public Rectangle getBounds() {
@@ -65,9 +65,8 @@ public abstract class Mob {
 	}
 	
 	public void setYVel(double d) {
-		if (this.yVel > -1.5) {
 		this.yVel = d;
-		}
+		
 	}
 	public double getYVel() {
 		
@@ -91,10 +90,17 @@ public abstract class Mob {
 	 * values will have to be reduced if calling more often for smoothness
 	 */
 	public void posUpdate() {
+		System.out.println(this.yVel);
 		if (this.xPos + this.xVel > this.FRAME_WIDTH - this.CELLWIDTHHEIGHT || this.xPos + this.xVel < 0) {
 		
 			this.setXVel(0);
+		} // WHY NO WORK
+		if (this.yPos + this.yVel < 0) {
+			this.setYVel(0);
+
+			
 		}
+		
 		this.xPos += this.xVel;
 		
 		this.yPos += this.yVel;
@@ -104,10 +110,10 @@ public abstract class Mob {
 	 */
 	public void velUpdate() {
 		if (this.xVel > 0) {
-			this.xVel -= 0.01;
+			this.xVel -= this.friction;
 		}
 		if (this.xVel < 0) {
-			this.xVel += 0.01;
+			this.xVel += this.friction;
 		}
 		if (this.xVel + this.xAcceleration < this.maxXVel || this.maxXVel + this.xAcceleration > -this.maxXVel) {
 		this.xVel += this.xAcceleration;

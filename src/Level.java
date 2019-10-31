@@ -42,7 +42,6 @@ public class Level extends Screen {
 		Scanner scanner;
 		try {
 			scanner = new Scanner(new File("level" + levelNum + ".txt"));
-			System.out.println("txt load successful");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;

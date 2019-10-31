@@ -23,7 +23,6 @@ public class Diver extends Mob {
 		} catch (IOException e) {
 			System.out.println("Image not found of Mob!!");
 		}
-		System.out.println("Image diver set");
 		this.setImage(image);
 		
 	}
@@ -31,9 +30,18 @@ public class Diver extends Mob {
 		this.hero = hero;
 	}
 	
+	@Override
+	public void updateMovement() {
+		this.updateDirection();
+		this.posUpdate();
+		
+		
+	}
+	
 	public void updateDirection() {
-		this.setXVel((this.hero.getX() - this.getX()) / 100);
-		this.setYVel((this.hero.getY() - this.getY()) / 100);
+		System.out.println(hero.getYVel());
+		this.setXVel((this.hero.getX() + 100 - this.getX()) / 100);
+		this.setYVel((this.hero.getY() + 100 - this.getY()) / 100);
 	}
 
 	@Override

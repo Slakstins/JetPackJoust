@@ -71,9 +71,10 @@ public class Hero extends Mob {
 		
 		
 		this.fly();
+
 		this.velUpdate();
 		this.posUpdate();
-		
+
 		
 	}
 	
