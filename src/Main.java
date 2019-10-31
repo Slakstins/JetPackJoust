@@ -20,7 +20,7 @@ import javax.swing.JFrame;
  *
  */
 public class Main {
-	private final static int REFRESHES = 5;
+	private final static int REFRESHES = 10;
 	private final static int FRAME_HEIGHT = 1000;
 	private final static int FRAME_WIDTH = 1000;
 
@@ -65,7 +65,6 @@ public class Main {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocation(0, 0);
 		
-//		frame.setFocusable(true);
 		frame.setVisible(true);
 	}
 	

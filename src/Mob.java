@@ -16,6 +16,8 @@ public abstract class Mob {
 	public final int defaultMobWidth = 100;
 	private double maxXVel = 0.5;
 	private double maxYVel = 0.5;
+	private final double FRAME_WIDTH = 1000;
+	private final double CELLWIDTHHEIGHT = 100;
 	
 	public Mob(int xPos, int yPos) {
 		this.height = defaultMobHeight;
@@ -89,7 +91,12 @@ public abstract class Mob {
 	 * values will have to be reduced if calling more often for smoothness
 	 */
 	public void posUpdate() {
+		if (this.xPos + this.xVel > this.FRAME_WIDTH - this.CELLWIDTHHEIGHT || this.xPos + this.xVel < 0) {
+		
+			this.setXVel(0);
+		}
 		this.xPos += this.xVel;
+		
 		this.yPos += this.yVel;
 	}
 	/**
