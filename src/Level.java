@@ -151,14 +151,29 @@ public class Level extends Screen {
 		for (int i = 0; i < this.mobsToDraw.size(); i++) {
 			ImageObserver observer = null; // is this a problem????
 			Mob thisMob = this.mobsToDraw.get(i);
-			double distanceMovedX = Math.abs(thisMob.getXVel());
-			double distanceMovedY = Math.abs(thisMob.getYVel());
+//			double distanceMovedX = Math.abs(thisMob.getXVel());
+			double distanceMovedY = (thisMob.getYVel());
+			boolean grounded = false;
 
 			for (int j = 0; j < this.solidTiles.size(); j++) {
 				Tile thisTile = solidTiles.get(j);
 				// check for collision on sides of tiles
+				
+				if (thisMob.getYVel() > 0 && thisMob.getY() + this.cellWidthHeight > thisTile.getY() - 3 &&  thisMob.getY() + this.cellWidthHeight < thisTile.getY() + 3 &&thisMob.getX() + this.cellWidthHeight > thisTile.getX() && thisMob.getX() < thisTile.getX() + this.cellWidthHeight) {
+					grounded = true;
+					System.out.println("isgrounded set to true");
+
+				}
+//				if (thisMob.getY() + this.cellWidthHeight < thisTile.getY() - 3) {
+//					thisMob.setIsGrounded(false);
+//					System.out.println("isgrounded set to false");
+//
+//				}
 
 				if (collision(thisMob, thisTile)) {
+									
+					
+					
 //					if (thisMob.getX() + this.cellWidthHeight < thisTile.getX() + distanceMovedX + 1) {
 //						thisMob.setXVel(0);
 //						
@@ -181,8 +196,12 @@ public class Level extends Screen {
 //						thisMob.setPosition(thisMob.getX(), thisTile.getY() + this.cellWidthHeight);
 					}
 
-				}
+				} 
+					
+				
 			}
+			System.out.println(grounded);
+			thisMob.setIsGrounded(grounded);
 
 			g2.drawImage(thisMob.getImage(), thisMob.getX(), thisMob.getY(), thisMob.getX() + this.cellWidthHeight,
 					thisMob.getY() + this.cellWidthHeight, 0, 0, thisMob.getImage().getWidth(observer),

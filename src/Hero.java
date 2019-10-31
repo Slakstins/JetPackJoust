@@ -13,6 +13,8 @@ public class Hero extends Mob {
 	private double thrust = 0.05;
 	private double maxThrustSpeed = 1.5;
 	private double xMoveAccel = 0.05;
+	private double groundedMoveVel = 5;
+	
 
 	public Hero(int xPos, int yPos) {
 		super(xPos, yPos);
@@ -46,11 +48,23 @@ public class Hero extends Mob {
 	public void keyAcceleration() {
 		if (keyMap.get("left")) {
 //			this.setXVel(this.getXVel() - this.xMoveVel);
-			this.setXAccel(-this.xMoveAccel);
+			if (this.getIsGrounded()){
+				this.setXVel(-groundedMoveVel);
+				
+			}else {
+				this.setXAccel(-this.xMoveAccel);
+			}
+		
 		}
 		if (keyMap.get("right")) {
 //			this.setXVel(this.getXVel() + this.xMoveVel);
-			this.setXAccel(this.xMoveAccel);
+			if (this.getIsGrounded()){
+				this.setXVel(groundedMoveVel);
+				
+			}else {
+				this.setXAccel(this.xMoveAccel);
+			}
+		
 		}
 		if (!keyMap.get("right") && !keyMap.get("left")) {
 			this.setXAccel(0);

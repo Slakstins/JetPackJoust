@@ -19,13 +19,13 @@ public class LevelGenerator {
 		}
 		
 
-		pw.append("EEEEEEEEDE\n");
+		pw.append("EEEEEEEEEE\n");
 		pw.append("EHEEEEEEEE\n");
 		pw.append("EEEEEEEEE\n");
-		pw.append("EEEEEEEDEE\n");
 		pw.append("EEEEEEEEEE\n");
 		pw.append("EEEEEEEEEE\n");
-		pw.append("EEEDETTEEE\n");
+		pw.append("EEEEEEEEEE\n");
+		pw.append("EEEEETTEEE\n");
 		pw.append("EEEEEEEEEE\n");
 		pw.append("EEEEEEEEEE\n");
 		pw.append("TTTTTTTTTT\n");

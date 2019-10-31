@@ -19,6 +19,7 @@ public abstract class Mob {
 	private double friction = 0.01;
 	private final double FRAME_WIDTH = 1000;
 	private final double CELLWIDTHHEIGHT = 100;
+	private boolean isGrounded;
 	
 	public Mob(int xPos, int yPos) {
 		this.height = defaultMobHeight;
@@ -30,11 +31,14 @@ public abstract class Mob {
 		this.xAcceleration = 0;
 		this.yAcceleration = gravity;
 		this.image = null;
+		this.isGrounded = false;
 	}
 	
 	public Rectangle getBounds() {
 		return new Rectangle(this.getX(), this.getY(), this.defaultMobWidth, this.defaultMobHeight);
 	}
+	
+	
 	
 	
 
@@ -47,6 +51,13 @@ public abstract class Mob {
 		this.velUpdate();
 		this.posUpdate();
 		
+	}
+	
+	public void setIsGrounded(boolean grounded ) {
+		this.isGrounded = grounded;
+	}
+	public boolean getIsGrounded() {
+		return this.isGrounded;
 	}
 	
 	public void setXAccel(double xAccel) {
@@ -77,9 +88,6 @@ public abstract class Mob {
 	}
 	
 	public void setXVel(double vel) {
-//		if (vel > -this.maxXVel && vel < this.maxXVel) {
-//			
-//		}
 		this.xVel = vel;
 	}
 	
@@ -90,7 +98,6 @@ public abstract class Mob {
 	 * values will have to be reduced if calling more often for smoothness
 	 */
 	public void posUpdate() {
-		System.out.println(this.yVel);
 		if (this.xPos + this.xVel > this.FRAME_WIDTH - this.CELLWIDTHHEIGHT || this.xPos + this.xVel < 0) {
 		
 			this.setXVel(0);

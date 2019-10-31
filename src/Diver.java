@@ -39,8 +39,7 @@ public class Diver extends Mob {
 	}
 	
 	public void updateDirection() {
-		System.out.println(hero.getYVel());
-		this.setXVel((this.hero.getX() + 100 - this.getX()) / 100);
+		this.setXVel((this.hero.getX() - 100 - this.getX()) / 100);
 		this.setYVel((this.hero.getY() + 100 - this.getY()) / 100);
 	}
 
