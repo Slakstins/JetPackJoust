@@ -16,7 +16,9 @@ public class Level extends Screen {
 	public final int cellWidthHeight = 100;
 	public final int xCells = 10;
 	public final int yCells = 10;
+	private Hero hero;
 	private HashMap<String, Boolean> keyMap;
+	private ArrayList<Diver> divers;
 
 	public Level(String title, int levelNum) {
 		super(title);
@@ -24,6 +26,7 @@ public class Level extends Screen {
 		mobsToDraw = new ArrayList<Mob>();
 		tilesToDraw = new ArrayList<Tile>();
 		solidTiles = new ArrayList<Tile>();
+		divers = new ArrayList<Diver>();
 
 	}
 
@@ -61,13 +64,21 @@ public class Level extends Screen {
 			String line = scanner.nextLine();
 			for (int i = 0; i < line.length(); i++) {
 				char toBuild = line.charAt(i);
-				if (toBuild == 'H' || toBuild == 'M') {
+				if (toBuild == 'H' || toBuild == 'D') {
 
 					if (toBuild == 'H') {
 
 						Hero newMob = new Hero(i * this.cellWidthHeight, posY * this.cellWidthHeight);
 						newMob.setKeyMap(this.keyMap);
+						this.hero = newMob;
 						mobsToDraw.add(newMob);
+
+					}
+					if (toBuild == 'D') { // MAY NOT HAVE ACCESS TO HERO YET BECAUSE ITS SET AFTER
+
+						Diver newMob = new Diver(i * this.cellWidthHeight, posY * this.cellWidthHeight);
+						mobsToDraw.add(newMob);
+						divers.add(newMob);
 
 					}
 
@@ -112,12 +123,19 @@ public class Level extends Screen {
 	 * @param tile
 	 * @return
 	 */
+	private void setDiversHero() {
+		for (int i = 0; i < this.divers.size(); i++) {
+			this.divers.get(i).setHero(this.hero);
+		}
+		
+	}
 
 	private boolean collision(Mob mob, Tile tile) {
 		return mob.getBounds().intersects(tile.getBounds());
 	}
 
 	public void drawEverything(Graphics2D g2) {
+		this.setDiversHero();
 
 		// draw background and solids
 		for (int i = 0; i < this.tilesToDraw.size(); i++) {
@@ -129,7 +147,7 @@ public class Level extends Screen {
 					thisTile.getImage().getHeight(observer), observer);
 
 		}
-		
+
 		// draw mobs
 		for (int i = 0; i < this.mobsToDraw.size(); i++) {
 			ImageObserver observer = null; // is this a problem????
@@ -139,7 +157,7 @@ public class Level extends Screen {
 
 			for (int j = 0; j < this.solidTiles.size(); j++) {
 				Tile thisTile = solidTiles.get(j);
-				//check for collision on sides of tiles
+				// check for collision on sides of tiles
 
 				if (collision(thisMob, thisTile)) {
 //					if (thisMob.getX() + this.cellWidthHeight < thisTile.getX() + distanceMovedX + 1) {
@@ -154,7 +172,7 @@ public class Level extends Screen {
 //				//check for collisions on top and bottom of tiles
 //					}
 					if (thisMob.getY() + this.cellWidthHeight < thisTile.getY() + distanceMovedY + 1) {
-					
+
 						thisMob.setYVel(0);
 						thisMob.setPosition(thisMob.getX(), thisTile.getY() - this.cellWidthHeight);
 //					}
@@ -163,7 +181,6 @@ public class Level extends Screen {
 //						thisMob.setYVel(0);
 //						thisMob.setPosition(thisMob.getX(), thisTile.getY() + this.cellWidthHeight);
 					}
-
 
 				}
 			}
@@ -175,7 +192,6 @@ public class Level extends Screen {
 			thisMob.updateMovement();
 
 			// Will need to differnetiate between mob types for position update
-
 
 		}
 		// MasterList SOMEWHERE! for letters

@@ -25,7 +25,7 @@ public class LevelGenerator {
 		pw.append("EEEEEEEEEE\n");
 		pw.append("EEEEEEEEEE\n");
 		pw.append("EEEEEEEEEE\n");
-		pw.append("EEEEEEEEEE\n");
+		pw.append("EEEDEEDEEE\n");
 		pw.append("EEEEETTEEE\n");
 		pw.append("EEEEEEEEEE\n");
 		pw.append("TTTTTTTTTT\n");
@@ -49,8 +49,8 @@ public class LevelGenerator {
 		pw.append("EEEEEEEETE\n");
 		pw.append("EEEEHEEEEE\n");
 		pw.append("EEEEEEEEEE\n");
-		pw.append("EEEEEEEEEE\n");
-		pw.append("EEEEETEEEE\n");
+		pw.append("EEEEEEEDEE\n");
+		pw.append("EEEEDTEEEE\n");
 		pw.append("EEEEEEEEEE\n");
 		pw.append("EEEEEEEEEE\n");
 		pw.append("TTTTTTTTTT\n");
