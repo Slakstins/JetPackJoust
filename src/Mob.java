@@ -1,7 +1,12 @@
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public abstract class Mob {
+	private Hero hero;
 	private double xPos;
 	private double yPos;
 	private double xVel;
@@ -32,6 +37,7 @@ public abstract class Mob {
 		this.yAcceleration = gravity;
 		this.image = null;
 		this.isGrounded = false;
+		this.hero = null;
 	}
 	
 	public Rectangle getBounds() {
@@ -51,6 +57,24 @@ public abstract class Mob {
 		this.velUpdate();
 		this.posUpdate();
 		
+	}
+	public void setHero(Hero hero) {
+		this.hero = hero;
+	}
+	
+	public Hero getHero() {
+		return this.hero;
+	}
+	
+	public void setImage(String filename) {
+		Image image = null;
+		try {
+			image = ImageIO.read(new File(filename));
+		} catch (IOException e) {
+			System.out.println("Image not found of hero!!");
+		}
+		this.setImage(image);
+
 	}
 	
 	public void setIsGrounded(boolean grounded ) {

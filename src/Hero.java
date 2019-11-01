@@ -17,21 +17,13 @@ public class Hero extends Mob {
 
 	public Hero(int xPos, int yPos) {
 		super(xPos, yPos);
+		
 		setImage("Hero.png");
 
 		// TODO Auto-generated constructor stub
 	}
 
-	public void setImage(String filename) {
-		Image image = null;
-		try {
-			image = ImageIO.read(new File(filename));
-		} catch (IOException e) {
-			System.out.println("Image not found of hero!!");
-		}
-		this.setImage(image);
 
-	}
 
 	public void setKeyMap(HashMap<String, Boolean> keyMap) {
 		this.keyMap = keyMap;

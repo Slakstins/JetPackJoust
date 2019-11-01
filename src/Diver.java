@@ -5,32 +5,17 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Diver extends Mob {
-	private Hero hero;
 	private double totalVel;
 
 	public Diver(int xPos, int yPos) {
 		super(xPos, yPos);
-		this.totalVel = 1;
-		this.hero = hero;
+		this.totalVel = 3;
 		this.setImage("Diver.png");
 		this.setYAccel(0);
 		// TODO Auto-generated constructor stub
 	}
 
-	public void setImage(String filename) {
-		Image image = null;
-		try {
-			image = ImageIO.read(new File(filename));
-		} catch (IOException e) {
-			System.out.println("Image not found of Mob!!");
-		}
-		this.setImage(image);
-
-	}
-
-	public void setHero(Hero hero) {
-		this.hero = hero;
-	}
+	
 
 	@Override
 	public void updateMovement() {
@@ -40,31 +25,37 @@ public class Diver extends Mob {
 	}
 
 	public void updateDirection() {
+		
 		double newXVel;
 		double newYVel;
-		if (this.hero.getX() - this.getX() == 0) {
+		if (this.getHero().getX() - this.getX() == 0) {
 			newXVel = 0;
 			newYVel = this.totalVel;
 		} else {
 
-			double angle = Math.atan((this.hero.getY() - this.getY()) / (this.hero.getX() - this.getX()));
+			double angle = Math.atan((this.getHero().getY() - this.getY()) / (this.getHero().getX() - this.getX()));
 //			angle = Math.atan(0.8);
-			System.out.println(angle*(180)/Math.PI);
 			
 			newXVel = this.totalVel * Math.cos(angle);
 			newYVel = this.totalVel * Math.sin(angle);
-//			if(this.hero.getX() < this.getX()) {
-//				newXVel;
-//			}
-			System.out.println(Math.atan(4/5));
-			if (this.hero.getY() < this.getY()) {
+			if(this.getHero().getX() < this.getX()) {
+				newXVel *= -1;
+			}
+			if (this.getHero().getX() < this.getX() && this.getHero().getY() > this.getY()) {
+				newYVel *= -1;
+			}
+		
+			if (this.getHero().getY() < this.getY()) {
+				newYVel *= -1;
+			}
+			if (this.getHero().getY() < this.getY() && this.getHero().getX() > this.getX()) {
 				newYVel *= -1;
 			}
 
 			
 		}
-//		this.setXVel(newXVel);
-//		this.setYVel(newYVel);
+		this.setXVel(newXVel);
+		this.setYVel(newYVel);
 	}
 
 	@Override

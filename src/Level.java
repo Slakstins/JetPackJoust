@@ -26,7 +26,6 @@ public class Level extends Screen {
 		mobsToDraw = new ArrayList<Mob>();
 		tilesToDraw = new ArrayList<Tile>();
 		solidTiles = new ArrayList<Tile>();
-		divers = new ArrayList<Diver>();
 
 	}
 
@@ -63,7 +62,7 @@ public class Level extends Screen {
 			String line = scanner.nextLine();
 			for (int i = 0; i < line.length(); i++) {
 				char toBuild = line.charAt(i);
-				if (toBuild == 'H' || toBuild == 'D') {
+				if (toBuild == 'H' || toBuild == 'D' || toBuild == 'R') {
 
 					if (toBuild == 'H') {
 
@@ -77,8 +76,12 @@ public class Level extends Screen {
 
 						Diver newMob = new Diver(i * this.cellWidthHeight, posY * this.cellWidthHeight);
 						mobsToDraw.add(newMob);
-						divers.add(newMob);
 
+					}
+					
+					if (toBuild == 'R') {
+						Ranger newMob = new Ranger(i * this.cellWidthHeight, posY * this.cellWidthHeight);
+						mobsToDraw.add(newMob);
 					}
 
 				}
@@ -122,9 +125,9 @@ public class Level extends Screen {
 	 * @param tile
 	 * @return
 	 */
-	private void setDiversHero() {
-		for (int i = 0; i < this.divers.size(); i++) {
-			this.divers.get(i).setHero(this.hero);
+	private void setMobsHero() {
+		for (int i = 0; i < this.mobsToDraw.size(); i++) {
+			this.mobsToDraw.get(i).setHero(this.hero);
 		}
 		
 	}
@@ -134,7 +137,7 @@ public class Level extends Screen {
 	}
 
 	public void drawEverything(Graphics2D g2) {
-		this.setDiversHero();
+		this.setMobsHero();
 
 		// draw background and solids
 		for (int i = 0; i < this.tilesToDraw.size(); i++) {
