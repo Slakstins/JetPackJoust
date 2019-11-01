@@ -19,16 +19,16 @@ public class LevelGenerator {
 		}
 		
 
-		pw.append("EEEEEEEEEE\n");
-		pw.append("EHEEEEEEEE\n");
-		pw.append("EEEEEREEE\n");
-		pw.append("EEEEEEEEEE\n");
-		pw.append("EEDEEEEEEE\n");
-		pw.append("EEEEEEEEEE\n");
-		pw.append("EEEEETTEEE\n");
-		pw.append("EEEEEEEEEE\n");
-		pw.append("EEEEEEEEEE\n");
-		pw.append("TTTTTTTTTT\n");
+		pw.append("EEEEEEEEEEEEEEEEEEE\n");
+		pw.append("EEEEEEEEEEEEEEEEEEE\n");
+		pw.append("EEEEEDEEEEEEEEEEEEE\n");
+		pw.append("EEEEEEEEHEEEEEEEEEE\n");
+		pw.append("EEEEEEEEEEEEETEEEEE\n");
+		pw.append("EEEETEEEEEEEEREEEEE\n");
+		pw.append("EEEEEEEEEEETTTEEEEE\n");
+		pw.append("EEEEEEEEEEEEEEEEEEE\n");
+		pw.append("EEREEEEEEEEEEEEEEEE\n");
+		pw.append("TTTTTTTTTTTTTTTTTTT\n");
 
 		pw.close();
 	}
@@ -44,16 +44,16 @@ public class LevelGenerator {
 		}
 		
 
-		pw.append("EEEEEEEEET\n");
-		pw.append("EEEEEEEEEE\n");
-		pw.append("EEEEEEEETE\n");
-		pw.append("EEEEHEEEEE\n");
-		pw.append("EEEEEEEEEE\n");
-		pw.append("EEEEEEEDEE\n");
-		pw.append("EEEEDTEEEE\n");
-		pw.append("EEEEEEEEEE\n");
-		pw.append("EEEEEEEEEE\n");
-		pw.append("TTTTTTTTTT\n");
+		pw.append("EREEEEEEEEEEEEEEEEE\n");
+		pw.append("EEEEEEEEEDEEEEEEEEE\n");
+		pw.append("EEEEEDEEEEEEEEEREEE\n");
+		pw.append("EEEEEEEEHEEEEEEEEEE\n");
+		pw.append("EEEEEEEEEEEEETEEEEE\n");
+		pw.append("EEEETTTTEEEEEEEEEEE\n");
+		pw.append("EEEEEEEEEEETTTEEEEE\n");
+		pw.append("EEEEEEEEEEEEEEEEEEE\n");
+		pw.append("EEREEEEEEEEEEEEEEEE\n");
+		pw.append("TTTTTTTTTTTTTTTTTTT\n");
 
 		pw.close();
 	}

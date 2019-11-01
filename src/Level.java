@@ -14,7 +14,7 @@ public class Level extends Screen {
 	ArrayList<Tile> solidTiles;
 	private int levelNum;
 	public final int cellWidthHeight = 100;
-	public final int xCells = 10;
+	public final int xCells = 19;
 	public final int yCells = 10;
 	private Hero hero;
 	private HashMap<String, Boolean> keyMap;

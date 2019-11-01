@@ -22,7 +22,7 @@ import javax.swing.JFrame;
 public class Main {
 	private final static int REFRESHES = 10; // should be 10
 	private final static int FRAME_HEIGHT = 1000;
-	private final static int FRAME_WIDTH = 1000;
+	private final static int FRAME_WIDTH = 1900;
 
 	public Main() {
 		

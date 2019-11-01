@@ -22,7 +22,9 @@ public abstract class Mob {
 	private double maxXVel = 50;
 	private double maxYVel = 50;
 	private double friction = 0.01;
-	protected final double FRAME_WIDTH = 1000;
+	protected final double FRAME_WIDTH = 1900;
+	protected final double FRAME_HEIGHT = 1000;
+
 	protected final double CELLWIDTHHEIGHT = 100;
 	private boolean isGrounded;
 	protected int shootCooldown;
