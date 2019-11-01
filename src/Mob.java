@@ -54,6 +54,7 @@ public abstract class Mob {
 	public abstract void kill();
 	public abstract void spawn();
 	public abstract void shoot();
+	public abstract double[] shootDirection();
 	
 	public void updateMovement() {
 		this.velUpdate();

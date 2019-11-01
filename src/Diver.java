@@ -82,4 +82,15 @@ public class Diver extends Mob {
 
 	}
 
+
+
+	@Override
+	public double[] shootDirection() {
+		double[] var = new double[2];
+		var[0] = 1;
+		var[1] = 1;
+		return var;
+		
+	}
+
 }

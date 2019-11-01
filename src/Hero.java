@@ -113,6 +113,7 @@ public class Hero extends Mob {
 	@Override
 	public void shoot() {
 		// giving hero shoot functionality for testing purposes
+		/*
 		if(this.keyMap.get("space") && this.shootCooldown <= 0) {
 			this.shootCooldown = 100;
 			this.shooting = true;
@@ -120,6 +121,15 @@ public class Hero extends Mob {
 			this.shootCooldown--;
 			this.shooting = false;
 		}
+		*/
+	}
+
+
+
+	@Override
+	public double[] shootDirection() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

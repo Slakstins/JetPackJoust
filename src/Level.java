@@ -232,7 +232,8 @@ public class Level extends Screen {
 	public void spawnBullets(Mob thisMob) {
 		if (thisMob.getShooting()) {
 			System.out.println("spawning bullet");
-			Bullet bullet = new Bullet( (int)thisMob.getX(), (int) thisMob.getY(), this.hero);
+			double[] dir = thisMob.shootDirection();
+			Bullet bullet = new Bullet( (int)thisMob.getX(), (int) thisMob.getY(), dir[0], dir[1], this.hero);
 			mobsToDraw.add(bullet);
 			bullets.add(bullet);
 			

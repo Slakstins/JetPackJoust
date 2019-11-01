@@ -75,4 +75,39 @@ public class Ranger extends Mob {
 	public boolean getShooting() {
 		return isShooting;
 	}
+	
+	public double[] shootDirection() {
+		
+		double newXVel;
+		double newYVel;
+		if (this.getHero().getX() - this.getX() == 0) {
+			newXVel = 0;
+			newYVel = 1;
+		} else {
+
+			double angle = Math.atan((this.getHero().getY() - this.getY()) / (this.getHero().getX() - this.getX()));
+			
+			newXVel = Math.cos(angle);
+			newYVel = Math.sin(angle);
+			if(this.getHero().getX() < this.getX()) {
+				newXVel *= -1;
+			}
+			if (this.getHero().getX() < this.getX() && this.getHero().getY() > this.getY()) {
+				newYVel *= -1;
+			}
+		
+			if (this.getHero().getY() < this.getY()) {
+				newYVel *= -1;
+			}
+			if (this.getHero().getY() < this.getY() && this.getHero().getX() > this.getX()) {
+				newYVel *= -1;
+			}
+
+			
+		}
+		double[] dir = new double[2];
+		dir[0]= newXVel;
+		dir[1] = newYVel;
+		return dir;
+	}
 }
