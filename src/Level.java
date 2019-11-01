@@ -19,6 +19,7 @@ public class Level extends Screen {
 	private Hero hero;
 	private HashMap<String, Boolean> keyMap;
 	private ArrayList<Diver> divers;
+	private ArrayList<Bullet> bullets;
 
 	public Level(String title, int levelNum) {
 		super(title);
@@ -157,10 +158,14 @@ public class Level extends Screen {
 //			double distanceMovedX = Math.abs(thisMob.getXVel());
 			double distanceMovedY = (thisMob.getYVel());
 			boolean grounded = false;
+			
+			// create bullets as needed
+			this.spawnBullets(thisMob);
 
 			for (int j = 0; j < this.solidTiles.size(); j++) {
 				Tile thisTile = solidTiles.get(j);
 				// check for collision on sides of tiles
+
 				
 				if (thisMob.getYVel() > 0 && thisMob.getY() + this.cellWidthHeight > thisTile.getY() - 3 &&  thisMob.getY() + this.cellWidthHeight < thisTile.getY() + 3 &&thisMob.getX() + this.cellWidthHeight > thisTile.getX() && thisMob.getX() < thisTile.getX() + this.cellWidthHeight) {
 					grounded = true;
@@ -217,4 +222,19 @@ public class Level extends Screen {
 		// H is = Hero
 
 	}
+	
+	/*
+	 * checks if a given mob is shooting, then spawns bullets as appropriate
+	 */
+	public void spawnBullets(Mob thisMob) {
+		if (thisMob.getShooting()) {
+			System.out.println("spawning bullet");
+			Bullet bullet = new Bullet( (int)thisMob.getX(), (int) thisMob.getY());
+			mobsToDraw.add(bullet);
+
+		}
+			
+	}
+	
+
 }

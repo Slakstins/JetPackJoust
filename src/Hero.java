@@ -14,6 +14,7 @@ public class Hero extends Mob {
 	private double xMoveAccel = 0.05;
 	private double groundedMoveVel = 5;
 	private int downWardDashVel = 3;
+	
 
 	public Hero(int xPos, int yPos) {
 		super(xPos, yPos);
@@ -75,6 +76,7 @@ public class Hero extends Mob {
 		this.velUpdate();
 		this.posUpdate();
 
+		this.shoot();
 	}
 
 	/**
@@ -110,8 +112,15 @@ public class Hero extends Mob {
 
 	@Override
 	public void shoot() {
-		// TODO Auto-generated method stub
-
+		// giving hero shoot functionality for testing purposes
+		if(this.keyMap.get("space") && this.shootCooldown <= 0) {
+			System.out.println("Hero shooting!");
+			this.shootCooldown = 100;
+			this.shooting = true;
+		} else if (this.shootCooldown > 0) {
+			this.shootCooldown--;
+			this.shooting = false;
+		}
 	}
 
 }

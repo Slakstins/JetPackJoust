@@ -15,16 +15,18 @@ public abstract class Mob {
 	private double yAcceleration;
 	private Image image;
 	public final double gravity = 0.05;
-	private double width;
-	private double height;
+	protected double width;
+	protected double height;
 	public final int defaultMobHeight = 100;
 	public final int defaultMobWidth = 100;
 	private double maxXVel = 50;
 	private double maxYVel = 50;
 	private double friction = 0.01;
-	private final double FRAME_WIDTH = 1000;
-	private final double CELLWIDTHHEIGHT = 100;
+	protected final double FRAME_WIDTH = 1000;
+	protected final double CELLWIDTHHEIGHT = 100;
 	private boolean isGrounded;
+	protected int shootCooldown;
+	protected boolean shooting;
 	
 	public Mob(int xPos, int yPos) {
 		this.height = defaultMobHeight;
@@ -187,6 +189,9 @@ public abstract class Mob {
 		return this.image;
 	}
 	
+	public boolean getShooting() {
+		return this.shooting;
+	}
 
 	
 	
