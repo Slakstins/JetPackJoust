@@ -114,7 +114,6 @@ public class Hero extends Mob {
 	public void shoot() {
 		// giving hero shoot functionality for testing purposes
 		if(this.keyMap.get("space") && this.shootCooldown <= 0) {
-			System.out.println("Hero shooting!");
 			this.shootCooldown = 100;
 			this.shooting = true;
 		} else if (this.shootCooldown > 0) {

@@ -232,9 +232,10 @@ public class Level extends Screen {
 	public void spawnBullets(Mob thisMob) {
 		if (thisMob.getShooting()) {
 			System.out.println("spawning bullet");
-			Bullet bullet = new Bullet( (int)thisMob.getX(), (int) thisMob.getY());
+			Bullet bullet = new Bullet( (int)thisMob.getX(), (int) thisMob.getY(), this.hero);
 			mobsToDraw.add(bullet);
 			bullets.add(bullet);
+			
 
 		}
 			

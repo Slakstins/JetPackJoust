@@ -4,6 +4,7 @@ public class Ranger extends Mob {
 	private long time;
 	private final int timeToMove = 150;
 	private final double speed = 1;
+	private boolean isShooting;
 
 	public Ranger(int xPos, int yPos) {
 		super(xPos, yPos);
@@ -25,8 +26,10 @@ public class Ranger extends Mob {
 		this.time += 1;
 		Random random = new Random();
 		int direction = 0;
+		this.isShooting = false;
 		if (this.time % (this.timeToMove*2) == 0) {
 			this.setXVel(0);
+			this.shoot();
 		}
 		
 		else if (this.time % this.timeToMove == 0) {
@@ -65,8 +68,11 @@ public class Ranger extends Mob {
 
 	@Override
 	public void shoot() {
-		// TODO Auto-generated method stub
-
+		this.isShooting = true;
+		System.out.println("Ranger shooting!");
 	}
 
+	public boolean getShooting() {
+		return isShooting;
+	}
 }
