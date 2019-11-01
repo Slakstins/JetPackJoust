@@ -27,6 +27,7 @@ public class Level extends Screen {
 		mobsToDraw = new ArrayList<Mob>();
 		tilesToDraw = new ArrayList<Tile>();
 		solidTiles = new ArrayList<Tile>();
+		bullets = new ArrayList<Bullet>();
 
 	}
 
@@ -176,7 +177,9 @@ public class Level extends Screen {
 //					System.out.println("isgrounded set to false");
 //
 //				}
-
+				if (collision(thisMob, thisTile) && bullets.contains(thisMob)) {
+					this.killBullets(thisMob);
+				}
 				if (collision(thisMob, thisTile)) {
 									
 					
@@ -231,10 +234,14 @@ public class Level extends Screen {
 			System.out.println("spawning bullet");
 			Bullet bullet = new Bullet( (int)thisMob.getX(), (int) thisMob.getY());
 			mobsToDraw.add(bullet);
+			bullets.add(bullet);
 
 		}
 			
 	}
 	
-
+	public void killBullets(Mob thisMob) {
+		this.bullets.remove(thisMob);
+		this.mobsToDraw.remove(thisMob);
+	}
 }

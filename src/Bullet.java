@@ -17,7 +17,9 @@ public class Bullet extends Mob {
 		
 		
 	}
-
+/*
+ * creates bounding box based on bullet size, not default mob size
+ */
 	@Override
 	public Rectangle getBounds() {
 		return new Rectangle((int)this.getX(), (int)this.getY(), (int)this.width, (int)this.height);
