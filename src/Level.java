@@ -144,6 +144,7 @@ public class Level extends Screen {
 
 	public void drawEverything(Graphics2D g2) {
 		this.setMobsHero();
+		this.checkKillMobCollision();
 
 		// draw background and solids
 		for (int i = 0; i < this.tilesToDraw.size(); i++) {
@@ -226,7 +227,7 @@ public class Level extends Screen {
 
 		}
 		this.checkKillBulletBounds();
-		this.checkKillMobCollision();
+		
 		// MasterList SOMEWHERE! for letters
 		// H is = Hero
 
@@ -256,12 +257,19 @@ public class Level extends Screen {
 			Mob thisMob = this.mobsToDraw.get(i);
 			if (this.mobCollision(thisMob, this.hero) && !thisMob.equals(hero)) {
 				mobsToDelete.add(thisMob);
+				
 			}
 		}
 		for (int i = 0; i < mobsToDelete.size(); i++) {
 			for (int j = 0; j < this.mobsToDraw.size(); j++) {
+				if (this.bullets.contains(mobsToDelete.get(i)) && this.mobsToDraw.contains(mobsToDelete.get(i)))
+						{
+					mobsToDelete.get(i).kill();
+					System.out.println("Bullet removed");
+						}
 				if (mobsToDelete.get(i).equals(mobsToDraw.get(j))){
 					this.mobsToDraw.remove(j);
+					System.out.println("Mob deleted");
 					
 					
 				}

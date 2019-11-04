@@ -5,8 +5,8 @@ public class Bullet extends Mob {
 
 	public Bullet(int xPos, int yPos, double xVel, double yVel, Hero hero) {
 		super(xPos, yPos);
-		this.height = 10;
-		this.width = 10;
+		this.height = 100;
+		this.width = 50;
 		this.setYAccel(0);
 		this.setXAccel(0);
 		this.setXVel(xVel * TOTAL_VELOCITY);
