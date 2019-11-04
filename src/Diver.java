@@ -34,7 +34,6 @@ public class Diver extends Mob {
 		} else {
 
 			double angle = Math.atan((this.getHero().getY() - this.getY()) / (this.getHero().getX() - this.getX()));
-//			angle = Math.atan(0.8);
 			
 			newXVel = this.totalVel * Math.cos(angle);
 			newYVel = this.totalVel * Math.sin(angle);

@@ -16,6 +16,7 @@ public class Level extends Screen {
 	public final int cellWidthHeight = 100;
 	public final int xCells = 19;
 	public final int yCells = 10;
+	private final int bulletBoundKill = 10;
 	private Hero hero;
 	private HashMap<String, Boolean> keyMap;
 	private ArrayList<Diver> divers;
@@ -221,6 +222,7 @@ public class Level extends Screen {
 			// Will need to differnetiate between mob types for position update
 
 		}
+		this.checkKillBulletBounds();
 		// MasterList SOMEWHERE! for letters
 		// H is = Hero
 
@@ -231,7 +233,6 @@ public class Level extends Screen {
 	 */
 	public void spawnBullets(Mob thisMob) {
 		if (thisMob.getShooting()) {
-			System.out.println("spawning bullet");
 			double[] dir = thisMob.shootDirection();
 			Bullet bullet = new Bullet( (int)thisMob.getX(), (int) thisMob.getY(), dir[0], dir[1], this.hero);
 			mobsToDraw.add(bullet);
@@ -241,7 +242,22 @@ public class Level extends Screen {
 		}
 			
 	}
-	
+	/**
+	 * Kill bullets that are too close to the sides or top bottoms of the screen
+	 */
+	public void checkKillBulletBounds() {
+		for (int i = 0; i < this.bullets.size(); i++) {
+			Bullet thisBullet = bullets.get(i);
+			if ((thisBullet.getX() + this.cellWidthHeight > (this.xCells*this.cellWidthHeight - this.bulletBoundKill)) ||( thisBullet.getX() < 0 + this.bulletBoundKill )|| 
+			(thisBullet.getY() + this.cellWidthHeight > this.yCells * this.cellWidthHeight - this.bulletBoundKill) || (thisBullet.getY() < 0 + this.bulletBoundKill))  {
+				this.killBullets(thisBullet);
+			}
+		}
+	}
+	/**
+	 * Remove the specified bullet from existence
+	 * @param thisMob
+	 */
 	public void killBullets(Mob thisMob) {
 		this.bullets.remove(thisMob);
 		this.mobsToDraw.remove(thisMob);
