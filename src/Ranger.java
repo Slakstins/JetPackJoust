@@ -69,7 +69,6 @@ public class Ranger extends Mob {
 	@Override
 	public void shoot() {
 		this.isShooting = true;
-		System.out.println("Ranger shooting!");
 	}
 
 	public boolean getShooting() {

@@ -16,7 +16,6 @@ public class Bullet extends Mob {
 		
 		this.setImage("bullet.png");
 		
-		System.out.println("BULLET");
 		
 		
 	}

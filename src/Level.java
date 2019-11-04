@@ -138,6 +138,9 @@ public class Level extends Screen {
 	private boolean collision(Mob mob, Tile tile) {
 		return mob.getBounds().intersects(tile.getBounds());
 	}
+	private boolean mobCollision(Mob mob1, Mob mob2) {
+		return mob1.getBounds().intersects(mob2.getBounds()); 
+	}
 
 	public void drawEverything(Graphics2D g2) {
 		this.setMobsHero();
@@ -223,6 +226,7 @@ public class Level extends Screen {
 
 		}
 		this.checkKillBulletBounds();
+		this.checkKillMobCollision();
 		// MasterList SOMEWHERE! for letters
 		// H is = Hero
 
@@ -242,6 +246,32 @@ public class Level extends Screen {
 		}
 			
 	}
+	/**
+	 * check to see which mobs are touching to see if they die
+	 * Why is there a delay in deleting Mobs?
+	 */
+	public void checkKillMobCollision(){
+		ArrayList<Mob> mobsToDelete = new ArrayList<Mob>();
+		for (int i = 0; i < this.mobsToDraw.size(); i++) {
+			Mob thisMob = this.mobsToDraw.get(i);
+			if (this.mobCollision(thisMob, this.hero) && !thisMob.equals(hero)) {
+				mobsToDelete.add(thisMob);
+			}
+		}
+		for (int i = 0; i < mobsToDelete.size(); i++) {
+			for (int j = 0; j < this.mobsToDraw.size(); j++) {
+				if (mobsToDelete.get(i).equals(mobsToDraw.get(j))){
+					this.mobsToDraw.remove(j);
+					
+					
+				}
+			}
+		}
+		
+		
+	}
+	
+	
 	/**
 	 * Kill bullets that are too close to the sides or top bottoms of the screen
 	 */
