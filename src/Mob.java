@@ -29,6 +29,8 @@ public abstract class Mob {
 	private boolean isGrounded;
 	protected int shootCooldown;
 	protected boolean shooting;
+	protected int tick;
+	protected int aniTick;
 	
 	public Mob(int xPos, int yPos) {
 		this.height = defaultMobHeight;

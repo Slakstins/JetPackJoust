@@ -16,21 +16,17 @@ public class Hero extends Mob {
 	private double groundedMoveVel = 5;
 	private int downWardDashVel = 3;
 	private ArrayList<String> walkImages = new ArrayList<String>();
-	private int tick;
-	private int aniTick;
 	
 
 	public Hero(int xPos, int yPos) {
 		super(xPos, yPos);
 		this.tick = 0;
-		
-		setImage("Hero.png");
+
+		setImage("HeroIdle.png");
 		this.setWalkImages();
 
 		// TODO Auto-generated constructor stub
 	}
-
-
 
 	public void setKeyMap(HashMap<String, Boolean> keyMap) {
 		this.keyMap = keyMap;
@@ -51,7 +47,7 @@ public class Hero extends Mob {
 		} else {
 			if (keyMap.get("right")) {
 				this.setXAccel(this.xMoveAccel);
-				//this.updateWalk();
+				// this.updateWalk();
 			}
 			if (keyMap.get("left")) {
 				this.setXAccel(-this.xMoveAccel);
@@ -79,14 +75,14 @@ public class Hero extends Mob {
 		this.keyAcceleration();
 
 		this.fly();
-	
+
 		this.updateWalk();
-		
+
 		this.velUpdate();
 		this.posUpdate();
 
 		this.shoot();
-		
+
 		this.tick++;
 		this.updateAniTick();
 	}
@@ -104,7 +100,7 @@ public class Hero extends Mob {
 		} else {
 			this.setYAccel(this.gravity);
 
-			this.setImage("Hero.png");
+			this.setImage("HeroIdle.png");
 		}
 
 	}
@@ -125,32 +121,26 @@ public class Hero extends Mob {
 	public void shoot() {
 		// giving hero shoot functionality for testing purposes
 		/*
-		if(this.keyMap.get("space") && this.shootCooldown <= 0) {
-			this.shootCooldown = 100;
-			this.shooting = true;
-		} else if (this.shootCooldown > 0) {
-			this.shootCooldown--;
-			this.shooting = false;
-		}
-		*/
+		 * if(this.keyMap.get("space") && this.shootCooldown <= 0) { this.shootCooldown
+		 * = 100; this.shooting = true; } else if (this.shootCooldown > 0) {
+		 * this.shootCooldown--; this.shooting = false; }
+		 */
 	}
-
-
 
 	@Override
 	public double[] shootDirection() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	private void setWalkImages() {
-		for (int i=0; i <= 4; i++) {
-			String filename = "HeroWalk000" + Integer.toString(i) +".png";
+		for (int i = 0; i <= 3; i++) {
+			String filename = "HeroWalk000" + Integer.toString(i) + ".png";
 			this.walkImages.add(filename);
-			
+
 		}
 	}
-	
+
 	private void updateWalk() {
 		if (keyMap.get("right")) {
 			if (this.aniTick >= this.walkImages.size())
@@ -158,10 +148,9 @@ public class Hero extends Mob {
 			this.setImage(this.walkImages.get(aniTick));
 			System.out.println("walk image " + Integer.toString(aniTick));
 		}
-		
 
 	}
-	
+
 	private void updateAniTick() {
 		if (tick % 10 == 0) {
 			aniTick++;
