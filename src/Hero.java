@@ -15,15 +15,15 @@ public class Hero extends Mob {
 	private double xMoveAccel = 0.05;
 	private double groundedMoveVel = 5;
 	private int downWardDashVel = 3;
-	private ArrayList<String> walkImages = new ArrayList<String>();
-	
+	private ArrayList<String> walkImagesR = new ArrayList<String>();
+	private ArrayList<String> walkImagesL = new ArrayList<String>();
 
 	public Hero(int xPos, int yPos) {
 		super(xPos, yPos);
 		this.tick = 0;
 
-		setImage("HeroIdle.png");
-		this.setWalkImages();
+		
+		this.setImages();
 
 		// TODO Auto-generated constructor stub
 	}
@@ -55,7 +55,7 @@ public class Hero extends Mob {
 
 		}
 		if (!keyMap.get("right") && !keyMap.get("left")) {
-			this.setXAccel(0);
+			this.setXVel(0);
 		}
 
 		if (keyMap.get("down")) {
@@ -133,26 +133,40 @@ public class Hero extends Mob {
 		return null;
 	}
 
-	private void setWalkImages() {
+	private void setImages() {
+		// set idle image
+		setImage("HeroIdle.png");
+		
+		//set walk right images
 		for (int i = 0; i <= 3; i++) {
-			String filename = "HeroWalk000" + Integer.toString(i) + ".png";
-			this.walkImages.add(filename);
-
+			String filename = "HeroWalkR000" + Integer.toString(i) + ".png";
+			this.walkImagesR.add(filename);
+		}
+		
+		// set walk left images
+		for (int i = 0; i <= 3; i++) {
+			String filename = "HeroWalkL000" + Integer.toString(i) + ".png";
+			this.walkImagesL.add(filename);
 		}
 	}
 
 	private void updateWalk() {
 		if (keyMap.get("right")) {
-			if (this.aniTick >= this.walkImages.size())
+			if (this.aniTick >= this.walkImagesR.size())
 				this.aniTick = 0;
-			this.setImage(this.walkImages.get(aniTick));
-			System.out.println("walk image " + Integer.toString(aniTick));
+			this.setImage(this.walkImagesR.get(aniTick));
+		}
+
+		if (keyMap.get("left")) {
+			if (this.aniTick >= this.walkImagesL.size())
+				this.aniTick = 0;
+			this.setImage(this.walkImagesL.get(aniTick));
 		}
 
 	}
 
 	private void updateAniTick() {
-		if (tick % 10 == 0) {
+		if (tick % 15 == 0) {
 			aniTick++;
 		}
 	}

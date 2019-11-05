@@ -38,7 +38,6 @@ public class KeyInput extends KeyAdapter {
 		if (keyCode == event.VK_LEFT) {
 			this.keyMap.put("left", true);
 			// System.out.println("leftpressed!");
-			this.updatePaint();
 
 		}
 		if (keyCode == event.VK_RIGHT) {
