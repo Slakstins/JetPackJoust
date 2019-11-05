@@ -1,6 +1,7 @@
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
@@ -14,12 +15,17 @@ public class Hero extends Mob {
 	private double xMoveAccel = 0.05;
 	private double groundedMoveVel = 5;
 	private int downWardDashVel = 3;
+	private ArrayList<String> walkImages = new ArrayList<String>();
+	private int tick;
+	private int aniTick;
 	
 
 	public Hero(int xPos, int yPos) {
 		super(xPos, yPos);
+		this.tick = 0;
 		
 		setImage("Hero.png");
+		this.setWalkImages();
 
 		// TODO Auto-generated constructor stub
 	}
@@ -45,6 +51,7 @@ public class Hero extends Mob {
 		} else {
 			if (keyMap.get("right")) {
 				this.setXAccel(this.xMoveAccel);
+				//this.updateWalk();
 			}
 			if (keyMap.get("left")) {
 				this.setXAccel(-this.xMoveAccel);
@@ -72,11 +79,16 @@ public class Hero extends Mob {
 		this.keyAcceleration();
 
 		this.fly();
-
+	
+		this.updateWalk();
+		
 		this.velUpdate();
 		this.posUpdate();
 
 		this.shoot();
+		
+		this.tick++;
+		this.updateAniTick();
 	}
 
 	/**
@@ -84,7 +96,6 @@ public class Hero extends Mob {
 	 */
 	@Override
 	public void fly() {
-		// TODO Auto-generated method stub
 		if (this.keyMap.get("up")) {
 			this.setImage("HeroFly.png");
 //			this.setYVel(this.getYVel() - this.thrust);
@@ -130,6 +141,31 @@ public class Hero extends Mob {
 	public double[] shootDirection() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	private void setWalkImages() {
+		for (int i=0; i <= 4; i++) {
+			String filename = "HeroWalk000" + Integer.toString(i) +".png";
+			this.walkImages.add(filename);
+			
+		}
+	}
+	
+	private void updateWalk() {
+		if (keyMap.get("right")) {
+			if (this.aniTick >= this.walkImages.size())
+				this.aniTick = 0;
+			this.setImage(this.walkImages.get(aniTick));
+			System.out.println("walk image " + Integer.toString(aniTick));
+		}
+		
+
+	}
+	
+	private void updateAniTick() {
+		if (tick % 10 == 0) {
+			aniTick++;
+		}
 	}
 
 }
