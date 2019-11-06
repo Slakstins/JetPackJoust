@@ -56,6 +56,7 @@ public class Bullet extends Mob {
 	}
 	@Override
 	public void collidedWithHero() {
+		this.setKilled(true);
 		// TODO Auto-generated method stub
 		
 	}
