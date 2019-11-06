@@ -18,12 +18,11 @@ public class Hero extends Mob {
 	private ArrayList<String> walkImagesR = new ArrayList<String>();
 	private ArrayList<String> walkImagesL = new ArrayList<String>();
 	private ArrayList<String> idleImages = new ArrayList<String>();
-	
+
 	public Hero(int xPos, int yPos) {
 		super(xPos, yPos);
 		this.tick = 0;
 
-		
 		this.setImages();
 		this.setImage(this.idleImages.get(0));
 
@@ -96,14 +95,13 @@ public class Hero extends Mob {
 	@Override
 	public void fly() {
 		if (this.keyMap.get("up")) {
-			this.setImage("HeroFly.png");
 //			this.setYVel(this.getYVel() - this.thrust);
 //			this.setPostition(this.getX(), this.getY());
 			this.setYAccel(-this.thrust);
 		} else {
 			this.setYAccel(this.gravity);
 
-			//this.setImage("HeroIdle.png");
+			// this.setImage("HeroIdle.png");
 		}
 
 	}
@@ -142,13 +140,13 @@ public class Hero extends Mob {
 			String filename = "HeroIdle000" + Integer.toString(i) + ".png";
 			this.idleImages.add(filename);
 		}
-		
-		//set walk right images
+
+		// set walk right images
 		for (int i = 0; i <= 3; i++) {
 			String filename = "HeroWalkR000" + Integer.toString(i) + ".png";
 			this.walkImagesR.add(filename);
 		}
-		
+
 		// set walk left images
 		for (int i = 0; i <= 3; i++) {
 			String filename = "HeroWalkL000" + Integer.toString(i) + ".png";
@@ -157,7 +155,9 @@ public class Hero extends Mob {
 	}
 
 	private void updateImages() {
-		if (keyMap.get("right")) {
+		if (this.keyMap.get("up")) {
+			this.setImage("HeroFly.png");
+		} else if (keyMap.get("right")) {
 			if (this.aniTick >= this.walkImagesR.size())
 				this.aniTick = 0;
 			this.setImage(this.walkImagesR.get(aniTick));
@@ -170,7 +170,6 @@ public class Hero extends Mob {
 				this.aniTick = 0;
 			this.setImage(this.idleImages.get(aniTick));
 		}
-		
 
 	}
 
@@ -183,7 +182,7 @@ public class Hero extends Mob {
 	@Override
 	public void collidedWithHero() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
