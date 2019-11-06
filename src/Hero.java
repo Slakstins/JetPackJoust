@@ -56,7 +56,9 @@ public class Hero extends Mob {
 
 		}
 		if (!keyMap.get("right") && !keyMap.get("left")) {
-			this.setXAcceleration(0);
+
+			this.setXAccel(0);
+
 		}
 
 		if (keyMap.get("down")) {
@@ -176,6 +178,12 @@ public class Hero extends Mob {
 		if (tick % 15 == 0) {
 			aniTick++;
 		}
+	}
+
+	@Override
+	public void collidedWithHero() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

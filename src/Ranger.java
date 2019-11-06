@@ -109,4 +109,10 @@ public class Ranger extends Mob {
 		dir[1] = newYVel;
 		return dir;
 	}
+
+	@Override
+	public void collidedWithHero() {
+		// TODO Auto-generated method stub
+		
+	}
 }

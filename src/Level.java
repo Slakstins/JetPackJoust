@@ -98,13 +98,6 @@ public class Level extends Screen {
 						this.tilesToDraw.add(newTile);
 						this.solidTiles.add(newTile);
 					}
-					if (toBuild == 'E') {
-//						newTile = new Air(i * this.cellWidthHeight, posY * this.cellWidthHeight, this.cellWidthHeight,
-//								this.cellWidthHeight);
-//						
-//						this.tilesToDraw.add(newTile);
-						// need to put air behind all other tiles -- put in draw everything
-					}
 
 				}
 
@@ -114,12 +107,11 @@ public class Level extends Screen {
 
 			posY++;
 
-			// PUT METHOD HERE THAT BUILDS CHARACTERS AND BLOCKS FROM CHAR USING DRAW
-
 		}
 		scanner.close();
 
 	}
+	
 
 	/**
 	 * checks for collisions between a mob and a tile
@@ -149,81 +141,36 @@ public class Level extends Screen {
 		// draw background and solids
 		for (int i = 0; i < this.tilesToDraw.size(); i++) {
 			ImageObserver observer = null; // is this a problem????
-
 			Tile thisTile = this.tilesToDraw.get(i);
 			g2.drawImage(thisTile.getImage(), thisTile.getX(), thisTile.getY(), thisTile.getX() + this.cellWidthHeight,
 					thisTile.getY() + this.cellWidthHeight, 0, 0, thisTile.getImage().getWidth(observer),
 					thisTile.getImage().getHeight(observer), observer);
-
 		}
-
 		// draw mobs
 		for (int i = 0; i < this.mobsToDraw.size(); i++) {
 			ImageObserver observer = null; // is this a problem????
 			Mob thisMob = this.mobsToDraw.get(i);
-//			double distanceMovedX = Math.abs(thisMob.getXVel());
-			double distanceMovedY = (thisMob.getYVel());
-			boolean grounded = false;
+			thisMob.updateGrounded(solidTiles);
 			
-			// create bullets as needed
+			// create a bullet if the mob var isShooting is true
 			this.spawnBullets(thisMob);
 
 			for (int j = 0; j < this.solidTiles.size(); j++) {
 				Tile thisTile = solidTiles.get(j);
-				// check for collision on sides of tiles
-
-				
-				if (thisMob.getYVel() > 0 && thisMob.getY() + this.cellWidthHeight > thisTile.getY() - 3 &&  thisMob.getY() + this.cellWidthHeight < thisTile.getY() + 3 &&thisMob.getX() + this.cellWidthHeight > thisTile.getX() && thisMob.getX() < thisTile.getX() + this.cellWidthHeight) {
-					grounded = true;
-
-				}
-//				if (thisMob.getY() + this.cellWidthHeight < thisTile.getY() - 3) {
-//					thisMob.setIsGrounded(false);
-//					System.out.println("isgrounded set to false");
-//
-//				}
 				if (collision(thisMob, thisTile) && bullets.contains(thisMob)) {
 					this.killBullets(thisMob);
 				}
 				if (collision(thisMob, thisTile)) {
-									
-					
-					
-//					if (thisMob.getX() + this.cellWidthHeight < thisTile.getX() + distanceMovedX + 1) {
-//						thisMob.setXVel(0);
-//						
-//						thisMob.setPosition(thisTile.getX() - this.cellWidthHeight, thisMob.getY());
-//					}
-//					else if (thisMob.getX() + distanceMovedX + 1 > thisTile.getX() + this.cellWidthHeight) {
-//						thisMob.setXVel(0);
-//					
-//						thisMob.setPosition(thisTile.getX() + this.cellWidthHeight, thisMob.getY());
-//				//check for collisions on top and bottom of tiles
-//					}
-					if (thisMob.getY() + this.cellWidthHeight < thisTile.getY() + distanceMovedY + 1) {
+					thisMob.tileCollision(thisTile);
 
-						thisMob.setYVel(0);
-						thisMob.setPosition(thisMob.getX(), thisTile.getY() - this.cellWidthHeight);
-//					}
-//					else if (thisMob.getY() > thisTile.getY() + this.cellWidthHeight - distanceMovedY - 1) {
-//					
-//						thisMob.setYVel(0);
-//						thisMob.setPosition(thisMob.getX(), thisTile.getY() + this.cellWidthHeight);
-					}
-
-				} 
-					
-				
+				} 	
 			}
-			thisMob.setIsGrounded(grounded);
 
 			g2.drawImage(thisMob.getImage(), (int)thisMob.getX(), (int)thisMob.getY(), (int)thisMob.getX() + this.cellWidthHeight,
 					(int) (thisMob.getY() + this.cellWidthHeight), 0, 0, thisMob.getImage().getWidth(observer),
 					thisMob.getImage().getHeight(observer), observer);
 
 			thisMob.updateMovement();
-
-			// Will need to differnetiate between mob types for position update
 
 		}
 		this.checkKillBulletBounds();
@@ -257,6 +204,7 @@ public class Level extends Screen {
 			Mob thisMob = this.mobsToDraw.get(i);
 			if (this.mobCollision(thisMob, this.hero) && !thisMob.equals(hero)) {
 				mobsToDelete.add(thisMob);
+				thisMob.collidedWithHero();
 				
 			}
 		}
@@ -293,7 +241,7 @@ public class Level extends Screen {
 		}
 	}
 	/**
-	 * Remove the specified bullet from existence
+	 * Remove the specified bullet from existence since it exists in bullets as well as mobsToDraw
 	 * @param thisMob
 	 */
 	public void killBullets(Mob thisMob) {

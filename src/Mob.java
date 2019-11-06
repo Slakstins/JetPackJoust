@@ -2,6 +2,7 @@ import java.awt.Image;
 import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -197,6 +198,46 @@ public abstract class Mob {
 	public boolean getShooting() {
 		return this.shooting;
 	}
+	/**
+	 * check to see if the mob is standing on a tile
+	 * @param tiles
+	 */
+	public void updateGrounded(ArrayList<Tile> tiles) {
+		for (int j = 0; j < tiles.size(); j++) {
+			Tile thisTile = tiles.get(j);
+			// check for collision on sides of tiles
+
+			if (this.getYVel() > 0 && this.getY() + this.CELLWIDTHHEIGHT > thisTile.getY() - 3
+					&& this.getY() + this.CELLWIDTHHEIGHT < thisTile.getY() + 3
+					&& this.getX() + this.CELLWIDTHHEIGHT > thisTile.getX()
+					&& this.getX() < thisTile.getX() + this.CELLWIDTHHEIGHT
+					&& (!(this.getY() + this.CELLWIDTHHEIGHT < thisTile.getY() - 3))) {
+				this.isGrounded = true;
+				return;
+				
+			}
+
+		}
+		this.isGrounded = false;
+	}
+
+	public void tileCollision(Tile thisTile) {
+		double distanceMovedY = (this.getYVel());
+		if (this.getY() + this.CELLWIDTHHEIGHT < thisTile.getY() + distanceMovedY + 1) {
+
+			this.setYVel(0);
+			this.setPosition(this.getX(), thisTile.getY() - this.CELLWIDTHHEIGHT);
+		}
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void wasKilled() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public abstract void collidedWithHero();
 
 	
 	

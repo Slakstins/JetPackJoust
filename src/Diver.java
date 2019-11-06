@@ -92,4 +92,12 @@ public class Diver extends Mob {
 		
 	}
 
+
+
+	@Override
+	public void collidedWithHero() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
