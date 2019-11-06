@@ -55,7 +55,7 @@ public class Hero extends Mob {
 
 		}
 		if (!keyMap.get("right") && !keyMap.get("left")) {
-			this.setXVel(0);
+			this.setXAccel(0);
 		}
 
 		if (keyMap.get("down")) {
