@@ -17,13 +17,15 @@ public class Hero extends Mob {
 	private int downWardDashVel = 3;
 	private ArrayList<String> walkImagesR = new ArrayList<String>();
 	private ArrayList<String> walkImagesL = new ArrayList<String>();
-
+	private ArrayList<String> idleImages = new ArrayList<String>();
+	
 	public Hero(int xPos, int yPos) {
 		super(xPos, yPos);
 		this.tick = 0;
 
 		
 		this.setImages();
+		this.setImage(this.idleImages.get(0));
 
 		// TODO Auto-generated constructor stub
 	}
@@ -47,7 +49,6 @@ public class Hero extends Mob {
 		} else {
 			if (keyMap.get("right")) {
 				this.setXAccel(this.xMoveAccel);
-				// this.updateWalk();
 			}
 			if (keyMap.get("left")) {
 				this.setXAccel(-this.xMoveAccel);
@@ -55,7 +56,9 @@ public class Hero extends Mob {
 
 		}
 		if (!keyMap.get("right") && !keyMap.get("left")) {
+
 			this.setXAccel(0);
+
 		}
 
 		if (keyMap.get("down")) {
@@ -76,7 +79,7 @@ public class Hero extends Mob {
 
 		this.fly();
 
-		this.updateWalk();
+		this.updateImages();
 
 		this.velUpdate();
 		this.posUpdate();
@@ -100,7 +103,7 @@ public class Hero extends Mob {
 		} else {
 			this.setYAccel(this.gravity);
 
-			this.setImage("HeroIdle.png");
+			//this.setImage("HeroIdle.png");
 		}
 
 	}
@@ -134,8 +137,11 @@ public class Hero extends Mob {
 	}
 
 	private void setImages() {
-		// set idle image
-		setImage("HeroIdle.png");
+		// set idle images
+		for (int i = 0; i <= 1; i++) {
+			String filename = "HeroIdle000" + Integer.toString(i) + ".png";
+			this.idleImages.add(filename);
+		}
 		
 		//set walk right images
 		for (int i = 0; i <= 3; i++) {
@@ -150,18 +156,21 @@ public class Hero extends Mob {
 		}
 	}
 
-	private void updateWalk() {
+	private void updateImages() {
 		if (keyMap.get("right")) {
 			if (this.aniTick >= this.walkImagesR.size())
 				this.aniTick = 0;
 			this.setImage(this.walkImagesR.get(aniTick));
-		}
-
-		if (keyMap.get("left")) {
+		} else if (keyMap.get("left")) {
 			if (this.aniTick >= this.walkImagesL.size())
 				this.aniTick = 0;
 			this.setImage(this.walkImagesL.get(aniTick));
+		} else {
+			if (this.aniTick >= this.idleImages.size())
+				this.aniTick = 0;
+			this.setImage(this.idleImages.get(aniTick));
 		}
+		
 
 	}
 
@@ -176,7 +185,6 @@ public class Hero extends Mob {
 		// TODO Auto-generated method stub
 		
 	}
-
 
 
 }
