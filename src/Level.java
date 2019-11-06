@@ -120,6 +120,9 @@ public class Level extends Screen {
 		scanner.close();
 
 	}
+	
+	
+	
 
 	/**
 	 * checks for collisions between a mob and a tile
@@ -161,9 +164,8 @@ public class Level extends Screen {
 		for (int i = 0; i < this.mobsToDraw.size(); i++) {
 			ImageObserver observer = null; // is this a problem????
 			Mob thisMob = this.mobsToDraw.get(i);
-//			double distanceMovedX = Math.abs(thisMob.getXVel());
 			double distanceMovedY = (thisMob.getYVel());
-			boolean grounded = false;
+			thisMob.updateGrounded(solidTiles);
 			
 			// create bullets as needed
 			this.spawnBullets(thisMob);
@@ -173,10 +175,10 @@ public class Level extends Screen {
 				// check for collision on sides of tiles
 
 				
-				if (thisMob.getYVel() > 0 && thisMob.getY() + this.cellWidthHeight > thisTile.getY() - 3 &&  thisMob.getY() + this.cellWidthHeight < thisTile.getY() + 3 &&thisMob.getX() + this.cellWidthHeight > thisTile.getX() && thisMob.getX() < thisTile.getX() + this.cellWidthHeight) {
-					grounded = true;
-
-				}
+//				if (thisMob.getYVel() > 0 && thisMob.getY() + this.cellWidthHeight > thisTile.getY() - 3 &&  thisMob.getY() + this.cellWidthHeight < thisTile.getY() + 3 &&thisMob.getX() + this.cellWidthHeight > thisTile.getX() && thisMob.getX() < thisTile.getX() + this.cellWidthHeight) {
+//					grounded = true;
+//
+//				}
 //				if (thisMob.getY() + this.cellWidthHeight < thisTile.getY() - 3) {
 //					thisMob.setIsGrounded(false);
 //					System.out.println("isgrounded set to false");
@@ -215,7 +217,7 @@ public class Level extends Screen {
 					
 				
 			}
-			thisMob.setIsGrounded(grounded);
+//			thisMob.setIsGrounded(grounded);
 
 			g2.drawImage(thisMob.getImage(), (int)thisMob.getX(), (int)thisMob.getY(), (int)thisMob.getX() + this.cellWidthHeight,
 					(int) (thisMob.getY() + this.cellWidthHeight), 0, 0, thisMob.getImage().getWidth(observer),
