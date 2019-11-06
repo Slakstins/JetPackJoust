@@ -232,6 +232,13 @@ public abstract class Mob {
 		
 	}
 
+	public void wasKilled() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public abstract void collidedWithHero();
+
 	
 	
 	
