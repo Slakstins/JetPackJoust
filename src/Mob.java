@@ -32,6 +32,7 @@ public abstract class Mob {
 	protected boolean shooting;
 	protected int tick;
 	protected int aniTick;
+	private boolean hasDied;
 	
 	public Mob(int xPos, int yPos) {
 		this.height = defaultMobHeight;
@@ -232,9 +233,9 @@ public abstract class Mob {
 		
 	}
 
-	public void wasKilled() {
+	public void setKilled(boolean hasDied) {
 		// TODO Auto-generated method stub
-		
+		this.hasDied = hasDied;
 	}
 
 	public abstract void collidedWithHero();

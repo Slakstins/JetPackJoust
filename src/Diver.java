@@ -94,8 +94,27 @@ public class Diver extends Mob {
 
 
 
+	/**
+	 * Kill hero if not attacking
+	 * if attacking and above diver, kill diver
+	 */
 	@Override
 	public void collidedWithHero() {
+		if(this.getHero().getIsAttacking() == false) {
+			this.getHero().setKilled(true);
+			return;
+		}
+		if(this.getY() <= this.getHero().getY()) {
+			this.getHero().setKilled(true);
+			return;
+			
+		} 
+		
+		if (this.getY() > this.getHero().getY() && this.getHero().getIsAttacking()) {
+			this.setKilled(true);
+			return;
+		}
+		
 		// TODO Auto-generated method stub
 		
 	}

@@ -15,6 +15,7 @@ public class Hero extends Mob {
 	private double xMoveAccel = 0.05;
 	private double groundedMoveVel = 5;
 	private int downWardDashVel = 3;
+	private boolean isAttacking = false;
 	private ArrayList<String> walkImagesR = new ArrayList<String>();
 	private ArrayList<String> walkImagesL = new ArrayList<String>();
 	private ArrayList<String> idleImages = new ArrayList<String>();
@@ -63,6 +64,9 @@ public class Hero extends Mob {
 
 		if (keyMap.get("down")) {
 			this.downWardDash();
+			this.isAttacking = true;
+		} else {
+			this.isAttacking = false;
 		}
 
 	}
@@ -172,6 +176,9 @@ public class Hero extends Mob {
 		}
 		
 
+	}
+	public boolean getIsAttacking() {
+		return this.isAttacking;
 	}
 
 	private void updateAniTick() {
