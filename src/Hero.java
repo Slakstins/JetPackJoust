@@ -171,4 +171,12 @@ public class Hero extends Mob {
 		}
 	}
 
+	@Override
+	public void collidedWithHero() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 }

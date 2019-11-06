@@ -54,6 +54,11 @@ public class Bullet extends Mob {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public void collidedWithHero() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 
