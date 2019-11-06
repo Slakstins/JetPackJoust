@@ -221,6 +221,17 @@ public abstract class Mob {
 		this.isGrounded = false;
 	}
 
+	public void tileCollision(Tile thisTile) {
+		double distanceMovedY = (this.getYVel());
+		if (this.getY() + this.CELLWIDTHHEIGHT < thisTile.getY() + distanceMovedY + 1) {
+
+			this.setYVel(0);
+			this.setPosition(this.getX(), thisTile.getY() - this.CELLWIDTHHEIGHT);
+		}
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 	
