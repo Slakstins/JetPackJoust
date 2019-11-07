@@ -14,7 +14,7 @@ public class Hero extends Mob {
 	private double maxThrustSpeed = 1.5;
 	private double xMoveAccel = 0.05;
 	private double groundedMoveVel = 5;
-	private int downWardDashVel = 3;
+	private double downWardDashVel = 3;
 	private boolean isAttacking = false;
 	private ArrayList<String> walkImagesR = new ArrayList<String>();
 	private ArrayList<String> walkImagesL = new ArrayList<String>();
@@ -39,6 +39,8 @@ public class Hero extends Mob {
 	 * 
 	 */
 	public void keyAcceleration() {
+		System.out.println(this.getIsGrounded());
+		System.out.println(this.getYVel());
 		if (this.getIsGrounded()) {
 			this.setXVel(0);
 			if (keyMap.get("left")) {

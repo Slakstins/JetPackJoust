@@ -112,7 +112,20 @@ public class Ranger extends Mob {
 
 	@Override
 	public void collidedWithHero() {
-		// TODO Auto-generated method stub
+		if(this.getHero().getIsAttacking() == false) {
+			this.getHero().setKilled(true);
+			return;
+		}
+		if(this.getY() <= this.getHero().getY()) {
+			this.getHero().setKilled(true);
+			return;
+			
+		} 
 		
+		if (this.getY() > this.getHero().getY() && this.getHero().getIsAttacking()) {
+			this.setKilled(true);
+			return;
+		}
+
 	}
 }

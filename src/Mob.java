@@ -237,6 +237,10 @@ public abstract class Mob {
 		// TODO Auto-generated method stub
 		this.hasDied = hasDied;
 	}
+	
+	public boolean getHasDied() {
+		return this.hasDied;
+	}
 
 	public abstract void collidedWithHero();
 
