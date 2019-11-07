@@ -81,7 +81,7 @@ public class Level extends Screen {
 						mobsToDraw.add(newMob);
 
 					}
-					
+
 					if (toBuild == 'R') {
 						Ranger newMob = new Ranger(i * this.cellWidthHeight, posY * this.cellWidthHeight);
 						mobsToDraw.add(newMob);
@@ -111,7 +111,6 @@ public class Level extends Screen {
 		scanner.close();
 
 	}
-	
 
 	/**
 	 * checks for collisions between a mob and a tile
@@ -124,14 +123,29 @@ public class Level extends Screen {
 		for (int i = 0; i < this.mobsToDraw.size(); i++) {
 			this.mobsToDraw.get(i).setHero(this.hero);
 		}
-		
+
 	}
 
+	/**
+	 * Check for a collision between a mob and a solid tile
+	 * 
+	 * @param mob
+	 * @param tile
+	 * @return
+	 */
 	private boolean collision(Mob mob, Tile tile) {
 		return mob.getBounds().intersects(tile.getBounds());
 	}
+
+	/**
+	 * check for a collision between two mobs
+	 * 
+	 * @param mob1
+	 * @param mob2
+	 * @return
+	 */
 	private boolean mobCollision(Mob mob1, Mob mob2) {
-		return mob1.getBounds().intersects(mob2.getBounds()); 
+		return mob1.getBounds().intersects(mob2.getBounds());
 	}
 
 	public void drawEverything(Graphics2D g2) {
@@ -151,7 +165,7 @@ public class Level extends Screen {
 			ImageObserver observer = null; // is this a problem????
 			Mob thisMob = this.mobsToDraw.get(i);
 			thisMob.updateGrounded(solidTiles);
-			
+
 			// create a bullet if the mob var isShooting is true
 			this.spawnBullets(thisMob);
 
@@ -163,86 +177,104 @@ public class Level extends Screen {
 				if (collision(thisMob, thisTile)) {
 					thisMob.tileCollision(thisTile);
 
-				} 	
+				}
 			}
 
-			g2.drawImage(thisMob.getImage(), (int)thisMob.getX(), (int)thisMob.getY(), (int)thisMob.getX() + this.cellWidthHeight,
-					(int) (thisMob.getY() + this.cellWidthHeight), 0, 0, thisMob.getImage().getWidth(observer),
-					thisMob.getImage().getHeight(observer), observer);
+			g2.drawImage(thisMob.getImage(), (int) thisMob.getX(), (int) thisMob.getY(),
+					(int) thisMob.getX() + this.cellWidthHeight, (int) (thisMob.getY() + this.cellWidthHeight), 0, 0,
+					thisMob.getImage().getWidth(observer), thisMob.getImage().getHeight(observer), observer);
 
 			thisMob.updateMovement();
 
 		}
 		this.checkKillBulletBounds();
-		
+
 		// MasterList SOMEWHERE! for letters
 		// H is = Hero
 
 	}
-	
+
 	/*
 	 * checks if a given mob is shooting, then spawns bullets as appropriate
 	 */
 	public void spawnBullets(Mob thisMob) {
 		if (thisMob.getShooting()) {
 			double[] dir = thisMob.shootDirection();
-			Bullet bullet = new Bullet( (int)thisMob.getX(), (int) thisMob.getY(), dir[0], dir[1], this.hero);
+			Bullet bullet = new Bullet((int) thisMob.getX(), (int) thisMob.getY(), dir[0], dir[1], this.hero);
 			mobsToDraw.add(bullet);
 			bullets.add(bullet);
-			
 
 		}
-			
+
 	}
+
 	/**
-	 * check to see which mobs are touching to see if they die
-	 * Why is there a delay in deleting Mobs?
+	 * check to see which mobs are touching to see if they die Why is there a delay
+	 * in deleting Mobs?
 	 */
-	public void checkKillMobCollision(){
+	public void checkKillMobCollision() {
 		ArrayList<Mob> mobsToDelete = new ArrayList<Mob>();
 		for (int i = 0; i < this.mobsToDraw.size(); i++) {
 			Mob thisMob = this.mobsToDraw.get(i);
 			if (this.mobCollision(thisMob, this.hero) && !thisMob.equals(hero)) {
-//				mobsToDelete.add(thisMob);
-				//IMPLEMENT
+
+				mobsToDelete.add(thisMob);
+				// IMPLEMENT
 				thisMob.collidedWithHero();
-				
+
 			}
 		}
-		for (int i = 0; i < mobsToDelete.size(); i++) {
-			for (int j = 0; j < this.mobsToDraw.size(); j++) {
-				if (this.bullets.contains(mobsToDelete.get(i)) && this.mobsToDraw.contains(mobsToDelete.get(i)))
-						{
-					mobsToDelete.get(i).kill();
-					System.out.println("Bullet removed");
-						}
-				if (mobsToDelete.get(i).equals(mobsToDraw.get(j))){
-					this.mobsToDraw.remove(j);
-					System.out.println("Mob deleted");
-					
-					
-				}
-			}
-		}
-		
-		
+		this.killDeadMobs();
+
 	}
-	
-	
+
 	/**
 	 * Kill bullets that are too close to the sides or top bottoms of the screen
 	 */
 	public void checkKillBulletBounds() {
 		for (int i = 0; i < this.bullets.size(); i++) {
 			Bullet thisBullet = bullets.get(i);
-			if ((thisBullet.getX() + this.cellWidthHeight > (this.xCells*this.cellWidthHeight - this.bulletBoundKill)) ||( thisBullet.getX() < 0 + this.bulletBoundKill )|| 
-			(thisBullet.getY() + this.cellWidthHeight > this.yCells * this.cellWidthHeight - this.bulletBoundKill) || (thisBullet.getY() < 0 + this.bulletBoundKill))  {
+			if ((thisBullet.getX() + this.cellWidthHeight > (this.xCells * this.cellWidthHeight - this.bulletBoundKill))
+					|| (thisBullet.getX() < 0 + this.bulletBoundKill) || (thisBullet.getY()
+							+ this.cellWidthHeight > this.yCells * this.cellWidthHeight - this.bulletBoundKill)
+					|| (thisBullet.getY() < 0 + this.bulletBoundKill)) {
 				this.killBullets(thisBullet);
 			}
 		}
 	}
+	
+
 	/**
-	 * Remove the specified bullet from existence since it exists in bullets as well as mobsToDraw
+	 * Handles actions having to do with the death of mobs, removing them if hasDied is true
+	 */
+	public void killDeadMobs() {
+		ArrayList<Mob> mobsToDelete = new ArrayList<Mob>();
+		for (int i = 0; i < this.mobsToDraw.size(); i++) {
+			if (this.mobsToDraw.get(i).getHasDied()) {
+				mobsToDelete.add(this.mobsToDraw.get(i));
+			}
+		}
+		for (int i = 0; i < mobsToDelete.size(); i++) {
+		
+			
+			for (int j = 0; j < this.mobsToDraw.size(); j++) { // bullets have to be deleted in two places
+				if (this.bullets.contains(mobsToDelete.get(i)) && this.mobsToDraw.contains(mobsToDelete.get(i))) {
+//					mobsToDelete.get(i).kill(); // NOT IMPLEMENTED YET
+					System.out.println("Bullet removed");
+				}
+				if (mobsToDelete.get(i).equals(mobsToDraw.get(j))) {
+					this.mobsToDraw.remove(j);
+					System.out.println("Mob deleted");
+
+				}
+			}
+		}
+	}
+
+	/**
+	 * Remove the specified bullet from existence since it exists in bullets as well
+	 * as mobsToDraw
+	 * 
 	 * @param thisMob
 	 */
 	public void killBullets(Mob thisMob) {

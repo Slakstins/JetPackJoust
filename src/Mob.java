@@ -135,8 +135,12 @@ public abstract class Mob {
 		
 			this.setXVel(0);
 		} // WHY NO WORK
-		if (this.yPos + this.yVel < 0) {
+		if (this.yPos + this.yVel < 0 || this.yPos + this.yVel > this.FRAME_HEIGHT - this.CELLWIDTHHEIGHT * 2) {
+			
 			this.setYVel(0);
+			if (this.yPos > this.FRAME_HEIGHT - this.CELLWIDTHHEIGHT * 2) {
+				this.setPosition(this.xPos, this.FRAME_HEIGHT - this.CELLWIDTHHEIGHT  * 2);
+			}
 
 			
 		}
@@ -236,6 +240,10 @@ public abstract class Mob {
 	public void setKilled(boolean hasDied) {
 		// TODO Auto-generated method stub
 		this.hasDied = hasDied;
+	}
+	
+	public boolean getHasDied() {
+		return this.hasDied;
 	}
 
 	public abstract void collidedWithHero();
