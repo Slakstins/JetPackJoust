@@ -218,9 +218,9 @@ public class Level extends Screen {
 			Mob thisMob = this.mobsToDraw.get(i);
 			if (this.mobCollision(thisMob, this.hero) && !thisMob.equals(hero)) {
 
-//				mobsToDelete.add(thisMob);
+				mobsToDelete.add(thisMob);
 				// IMPLEMENT
-//				thisMob.collidedWithHero();
+				thisMob.collidedWithHero();
 
 			}
 		}

@@ -19,7 +19,7 @@ public class Hero extends Mob {
 	private ArrayList<String> walkImagesR = new ArrayList<String>();
 	private ArrayList<String> walkImagesL = new ArrayList<String>();
 	private ArrayList<String> idleImages = new ArrayList<String>();
-	
+	private String previousImage = "";
 	public Hero(int xPos, int yPos) {
 		super(xPos, yPos);
 		this.tick = 0;
@@ -39,8 +39,6 @@ public class Hero extends Mob {
 	 * 
 	 */
 	public void keyAcceleration() {
-		System.out.println(this.getIsGrounded());
-		System.out.println(this.getYVel());
 		if (this.getIsGrounded()) {
 			this.setXVel(0);
 			if (keyMap.get("left")) {
@@ -84,10 +82,11 @@ public class Hero extends Mob {
 		this.keyAcceleration();
 
 		this.fly();
+		this.velUpdate();
 
 		this.updateImages();
 
-		this.velUpdate();
+		
 		this.posUpdate();
 
 		this.shoot();
@@ -101,8 +100,13 @@ public class Hero extends Mob {
 	 */
 	@Override
 	public void fly() {
+		System.out.println(this.getYAcceleration());
 		if (this.keyMap.get("up")) {
-			this.setImage("HeroFly.png");
+			if (!this.previousImage.equals("HeroFly.png")) {
+				this.setImage("HeroFly.png");
+				this.previousImage = "HeroFly.png";
+			}
+//			
 //			this.setYVel(this.getYVel() - this.thrust);
 //			this.setPostition(this.getX(), this.getY());
 			this.setYAccel(-this.thrust);
@@ -113,6 +117,7 @@ public class Hero extends Mob {
 		}
 
 	}
+	
 
 	@Override
 	public void kill() {
