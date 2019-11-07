@@ -1,3 +1,4 @@
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -6,8 +7,8 @@ public class Ranger extends Mob {
 	private final int timeToMove = 150;
 	private final double speed = 1;
 	private boolean isShooting;
-	private ArrayList<String> idleImages = new ArrayList<String>();
-	private ArrayList<String> shootImages = new ArrayList<String>();
+	private ArrayList<Image> idleImages = new ArrayList<Image>();
+	private ArrayList<Image> shootImages = new ArrayList<Image>();
 
 	public Ranger(int xPos, int yPos) {
 		super(xPos, yPos);
@@ -24,12 +25,11 @@ public class Ranger extends Mob {
 		// set idle images
 		for (int i = 0; i <= 1; i++) {
 			String filename = "Ranger000" + Integer.toString(i) + ".png";
-			this.idleImages.add(filename);
+			this.saveImage(filename, this.idleImages);
 		}
 		
 		// set shooting image
-		this.shootImages.add("RangerShooting0000.png");
-		
+		this.saveImage("RangerShooting0000.png", this.shootImages);
 	}
 
 	@Override
@@ -160,9 +160,5 @@ public class Ranger extends Mob {
 
 	}
 	
-	private void updateAniTick() {
-		if (time % 30 == 0) {
-			aniTick++;
-		}
-	}
+	
 }

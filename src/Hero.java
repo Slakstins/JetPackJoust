@@ -16,12 +16,12 @@ public class Hero extends Mob {
 	private double groundedMoveVel = 5;
 	private double downWardDashVel = 3;
 	private boolean isAttacking = false;
-	private ArrayList<String> walkImagesR = new ArrayList<String>();
-	private ArrayList<String> walkImagesL = new ArrayList<String>();
-	private ArrayList<String> idleImages = new ArrayList<String>();
-	private ArrayList<String> flyImagesR = new ArrayList<String>();
-	private ArrayList<String> flyImagesL = new ArrayList<String>();
-	private ArrayList<String> dropImages = new ArrayList<String>();
+	private ArrayList<Image> walkImagesR = new ArrayList<Image>();
+	private ArrayList<Image> walkImagesL = new ArrayList<Image>();
+	private ArrayList<Image> idleImages = new ArrayList<Image>();
+	private ArrayList<Image> flyImagesR = new ArrayList<Image>();
+	private ArrayList<Image> flyImagesL = new ArrayList<Image>();
+	private ArrayList<Image> dropImages = new ArrayList<Image>();
 
 
 	public Hero(int xPos, int yPos) {
@@ -151,33 +151,35 @@ public class Hero extends Mob {
 		// set idle images
 		for (int i = 0; i <= 1; i++) {
 			String filename = "HeroIdle000" + Integer.toString(i) + ".png";
-			this.idleImages.add(filename);
+			this.saveImage(filename, this.idleImages);
 		}
 
 		// set walk right images
 		for (int i = 0; i <= 1; i++) {
 			String filename = "HeroWalkR000" + Integer.toString(i) + ".png";
-			this.walkImagesR.add(filename);
+			this.saveImage(filename, this.walkImagesR);
 		}
 
 		// set walk left images
 		for (int i = 0; i <= 1; i++) {
 			String filename = "HeroWalkL000" + Integer.toString(i) + ".png";
-			this.walkImagesL.add(filename);
+			this.saveImage(filename, this.walkImagesL);
 		}
 		
 		// set flying images
 		for (int i = 0; i <= 1; i++) {
 			String filename = "HeroFlyR000" + Integer.toString(i) + ".png";
-			this.flyImagesR .add(filename);
+			this.saveImage(filename, this.flyImagesR);
 		}
 		
 		// set drop/attack images
 		for (int i = 0; i <= 1; i++) {
 			String filename = "HeroDrop000" + Integer.toString(i) + ".png";
-			this.dropImages.add(filename);
+			this.saveImage(filename, this.dropImages);
 		}
 	}
+	
+
 
 	private void updateImages() {
 		if (this.keyMap.get("up")) {
@@ -207,11 +209,7 @@ public class Hero extends Mob {
 		return this.isAttacking;
 	}
 
-	private void updateAniTick() {
-		if (tick % 15 == 0) {
-			aniTick++;
-		}
-	}
+	
 
 	@Override
 	public void collidedWithHero() {

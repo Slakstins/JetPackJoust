@@ -248,10 +248,22 @@ public abstract class Mob {
 
 	public abstract void collidedWithHero();
 
+	protected void saveImage(String filename, ArrayList<Image> images) {
+		Image image = null;
+		try {
+			image = ImageIO.read(new File(filename));
+			images.add(image);
+		} catch (IOException e) {
+			System.out.println("Image not found!");
+		}
+	}	
 	
 	
-	
-	
+	protected void updateAniTick() {
+		if (tick % 15 == 0) {
+			aniTick++;
+		}
+	}
 	
 
 }
