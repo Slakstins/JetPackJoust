@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Ranger extends Mob {
@@ -5,25 +6,55 @@ public class Ranger extends Mob {
 	private final int timeToMove = 150;
 	private final double speed = 1;
 	private boolean isShooting;
+	private ArrayList<String> idleImages = new ArrayList<String>();
+	private ArrayList<String> shootImages = new ArrayList<String>();
 
 	public Ranger(int xPos, int yPos) {
 		super(xPos, yPos);
 		
 		this.time = 0;
-		this.setImage("Ranger.png");
-		// TODO Auto-generated constructor stub
+		this.aniTick = 0;
+		this.setImages();
+		this.setImage("Ranger0000.png");
+		
+
 	}
 	
+	private void setImages() {
+		// set idle images
+		for (int i = 0; i <= 1; i++) {
+			String filename = "Ranger000" + Integer.toString(i) + ".png";
+			this.idleImages.add(filename);
+		}
+		
+		// set shooting image
+		this.shootImages.add("RangerShooting0000.png");
+		
+	}
+
 	@Override
 	public void updateMovement(){
 		this.runAwayVel();
 		this.posUpdate();
 		this.velUpdate();
+		this.imageUpdate();
+		this.updateAniTick();
 
 		
 	}
+	private void imageUpdate() {
+		if (this.isShooting) {
+			this.setImage(this.shootImages.get(0));
+		} else {
+			if (this.aniTick >= this.idleImages.size())
+				this.aniTick = 0;
+			this.setImage(this.idleImages.get(aniTick));
+		}
+		
+	}
+
 	public void runAwayVel() {
-		this.time += 1;
+		this.time++;
 		Random random = new Random();
 		int direction = 0;
 		this.isShooting = false;
@@ -127,5 +158,11 @@ public class Ranger extends Mob {
 			return;
 		}
 
+	}
+	
+	private void updateAniTick() {
+		if (time % 30 == 0) {
+			aniTick++;
+		}
 	}
 }

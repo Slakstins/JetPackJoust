@@ -31,7 +31,7 @@ public class Hero extends Mob {
 		this.setImages();
 		this.setImage(this.idleImages.get(0));
 
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public void setKeyMap(HashMap<String, Boolean> keyMap) {
