@@ -15,7 +15,7 @@ public class Diver extends Mob {
 		this.totalVel = 3;
 		this.setImage("Diver.png");
 		this.setYAccel(0);
-		// TODO Auto-generated constructor stub
+
 	}
 
 	

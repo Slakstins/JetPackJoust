@@ -38,12 +38,14 @@ public class Ranger extends Mob {
 		this.velUpdate();
 		this.imageUpdate();
 		this.updateAniTick();
+		this.tick++;
 
 		
 	}
 	private void imageUpdate() {
 		if (this.isShooting) {
 			this.setImage(this.shootImages.get(0));
+			
 		} else {
 			if (this.aniTick >= this.idleImages.size())
 				this.aniTick = 0;

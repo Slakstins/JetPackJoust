@@ -31,6 +31,7 @@ public class Main {
 		LevelGenerator levelGenerator = new LevelGenerator();
 		levelGenerator.createLevel1Script();
 		levelGenerator.createLevel2Script();
+		levelGenerator.createLevel3Script();
 
 		// have only a draw component in main??
 		// Draw component needs access to the stuff to draw it
