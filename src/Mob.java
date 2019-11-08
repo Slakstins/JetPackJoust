@@ -129,21 +129,14 @@ public abstract class Mob {
 	/**
 	 * Call this often to make smooth!
 	 * values will have to be reduced if calling more often for smoothness
+	 * this also checks to make sure the mob does not go out of the frame //THIS SHOULD BE SEPARATED INTO TWO METHODS
 	 */
 	public void posUpdate() {
 		if (this.xPos + this.xVel > this.FRAME_WIDTH - this.CELLWIDTHHEIGHT || this.xPos + this.xVel < 0) {
 		
 			this.setXVel(0);
-		} // WHY NO WORK
-		if (this.yPos + this.yVel < 0 || this.yPos + this.yVel > this.FRAME_HEIGHT - this.CELLWIDTHHEIGHT * 2) {
-			
-			this.setYVel(0);
-			if (this.yPos > this.FRAME_HEIGHT - this.CELLWIDTHHEIGHT * 2) {
-				this.setPosition(this.xPos, this.FRAME_HEIGHT - this.CELLWIDTHHEIGHT  * 2);
-			}
-
-			
-		}
+		} 
+		
 		
 		this.xPos += this.xVel;
 		
@@ -225,13 +218,23 @@ public abstract class Mob {
 		}
 		this.isGrounded = false;
 	}
-
+	
+	
+/**
+ * update mob based on the collision with a tile
+ * if bottom row of tiles, prevent fallthrough from pressing down
+ * @param thisTile
+ */
 	public void tileCollision(Tile thisTile) {
 		double distanceMovedY = (this.getYVel());
 		if (this.getY() + this.CELLWIDTHHEIGHT < thisTile.getY() + distanceMovedY + 1) {
 
 			this.setYVel(0);
 			this.setPosition(this.getX(), thisTile.getY() - this.CELLWIDTHHEIGHT);
+		}
+		
+		if (this.yPos > this.FRAME_HEIGHT - this.CELLWIDTHHEIGHT * 2) {
+			this.setPosition(this.xPos, this.FRAME_HEIGHT - this.CELLWIDTHHEIGHT  * 2);
 		}
 		// TODO Auto-generated method stub
 		
