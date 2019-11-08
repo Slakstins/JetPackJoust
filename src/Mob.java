@@ -34,6 +34,9 @@ public abstract class Mob {
 	protected int aniTick;
 	private boolean hasDied;
 	
+	
+	private boolean invincible = false;
+	
 	public Mob(int xPos, int yPos) {
 		this.height = defaultMobHeight;
 		this.width = defaultMobWidth;
@@ -92,6 +95,8 @@ public abstract class Mob {
 	public boolean getIsGrounded() {
 		return this.isGrounded;
 	}
+	
+	
 	
 	public void setXAccel(double xAccel) {
 		this.xAcceleration = xAccel;
@@ -242,7 +247,12 @@ public abstract class Mob {
 
 	public void setKilled(boolean hasDied) {
 		// TODO Auto-generated method stub
+		if (this.invincible == true) {
+			this.hasDied = false;
+			return;
+		}
 		this.hasDied = hasDied;
+		
 	}
 	
 	public boolean getHasDied() {
@@ -267,6 +277,18 @@ public abstract class Mob {
 			aniTick++;
 		}
 	}
-	
+	/**
+	 * set the mob to be invincible for a period of time, tick must be incremented in the movement update for the subclass of mobs
+	 * @param invincible
+	 * @param time
+	 */
+	public void setInvincible(boolean invincible, long time) {
+		this.invincible = invincible;
+		
+	}
+
+	public boolean getInvincible() {
+		return invincible;
+	}
 
 }

@@ -10,6 +10,8 @@ public class Diver extends Mob {
 
 	public Diver(int xPos, int yPos) {
 		super(xPos, yPos);
+//		this.setInvincible(true, 5);
+
 		this.totalVel = 3;
 		this.setImage("Diver.png");
 		this.setYAccel(0);
@@ -20,7 +22,10 @@ public class Diver extends Mob {
 
 	@Override
 	public void updateMovement() {
-		this.updateDirection();
+		if (this.isEgg == false) {
+			this.updateDirection();
+		}
+	
 		this.posUpdate();
 
 	}
@@ -70,10 +75,14 @@ public class Diver extends Mob {
 	public void kill() {
 		// TODO Auto-generated method stub
 		if (this.isEgg == true) {
+			this.setKilled(true);
+		}
+		if (this.getInvincible() == true) {
 			return;
 		}
 		this.setKilled(false);
 		this.turnIntoEgg();
+		
 		
 		
 		
@@ -86,7 +95,10 @@ public class Diver extends Mob {
 		System.out.println("turned into egg");
 		this.setImage("Egg.png");
 		this.setIsEgg(true);
-		this.setXVel(-100);
+		this.setXVel(0);
+		this.setYVel(0);
+		this.setYAccel(-3);
+		this.setInvincible(true, 500);
 	}
 	
 	public void setIsEgg(boolean isEgg) {
@@ -124,6 +136,13 @@ public class Diver extends Mob {
 	 */
 	@Override
 	public void collidedWithHero() {
+		
+		
+		
+		
+		if (this.getInvincible() == true) {
+			return;
+		}
 		if(this.getHero().getIsAttacking() == false) {
 			this.getHero().setKilled(true);
 			return;

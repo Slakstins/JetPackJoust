@@ -12,7 +12,6 @@ public class Ranger extends Mob {
 
 	public Ranger(int xPos, int yPos) {
 		super(xPos, yPos);
-		
 		this.time = 0;
 		this.aniTick = 0;
 		this.setImages();
@@ -143,6 +142,9 @@ public class Ranger extends Mob {
 
 	@Override
 	public void collidedWithHero() {
+		if (this.getInvincible() == true) {
+			return;
+		}
 		if(this.getHero().getIsAttacking() == false) {
 			this.getHero().setKilled(true);
 			return;
