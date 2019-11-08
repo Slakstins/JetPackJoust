@@ -25,6 +25,7 @@ public abstract class Mob {
 	private double friction = 0.01;
 	protected final double FRAME_WIDTH = 1900;
 	protected final double FRAME_HEIGHT = 1000;
+	
 
 	protected final double CELLWIDTHHEIGHT = 100;
 	private boolean isGrounded;
@@ -36,6 +37,9 @@ public abstract class Mob {
 	
 	
 	private boolean invincible = false;
+	private boolean checkInvincible = false;
+	private long endInvincible;
+	
 	
 	public Mob(int xPos, int yPos) {
 		this.height = defaultMobHeight;
@@ -107,11 +111,17 @@ public abstract class Mob {
 	}
 	
 	
-	
+	/**
+	 * also calls update invincibility to save space in level
+	 * @param d
+	 * @param y
+	 */
 	public void setPosition(double d, double y) {
 		this.xPos = d;
 		this.yPos = y;
+		
 	}
+	
 	
 	public void setYVel(double d) {
 		this.yVel = d;
@@ -129,6 +139,17 @@ public abstract class Mob {
 		this.xVel = vel;
 	}
 	
+	public void keepInFrame() {
+		if (this.xPos + this.xVel > this.FRAME_WIDTH - this.CELLWIDTHHEIGHT || this.xPos + this.xVel < 0) {
+			
+			this.setXVel(0);
+		} 
+		
+		if (this.yPos  + this.yVel < 0) {
+			this.setYVel(0);
+		}
+	}
+	
 
 	
 	/**
@@ -137,11 +158,10 @@ public abstract class Mob {
 	 * this also checks to make sure the mob does not go out of the frame //THIS SHOULD BE SEPARATED INTO TWO METHODS
 	 */
 	public void posUpdate() {
-		if (this.xPos + this.xVel > this.FRAME_WIDTH - this.CELLWIDTHHEIGHT || this.xPos + this.xVel < 0) {
-		
-			this.setXVel(0);
-		} 
-		
+		this.tick++;
+		this.updateInvincibility();
+
+		keepInFrame();
 		
 		this.xPos += this.xVel;
 		
@@ -186,6 +206,10 @@ public abstract class Mob {
 	}
 	public double getY() {
 		return this.yPos;
+	}
+	
+	public double getGravity() {
+		return gravity;
 	}
 	
 	
@@ -284,11 +308,25 @@ public abstract class Mob {
 	 */
 	public void setInvincible(boolean invincible, long time) {
 		this.invincible = invincible;
+		this.checkInvincible  = true;
+		this.endInvincible = this.tick + time;
+		System.out.println(this.endInvincible);
 		
 	}
 
 	public boolean getInvincible() {
 		return invincible;
+	}
+	
+	public void updateInvincibility() {
+		if (this.invincible) {
+		
+			if (this.tick == this.endInvincible) {
+				this.invincible = false;
+				System.out.println("invinsibilty ended");
+			}
+		}
+		
 	}
 
 }

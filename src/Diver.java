@@ -24,9 +24,12 @@ public class Diver extends Mob {
 	public void updateMovement() {
 		if (this.isEgg == false) {
 			this.updateDirection();
+			this.posUpdate();
+			return;
 		}
 	
 		this.posUpdate();
+		this.velUpdate();
 
 	}
 
@@ -92,13 +95,12 @@ public class Diver extends Mob {
 	 * replace the diver with an egg! randomize velocity and set invulnerable temporarily somehow TBD
 	 */
 	public void turnIntoEgg() {
-		System.out.println("turned into egg");
 		this.setImage("Egg.png");
 		this.setIsEgg(true);
 		this.setXVel(0);
 		this.setYVel(0);
-		this.setYAccel(-3);
-		this.setInvincible(true, 500);
+		this.setYAccel(super.getGravity());
+		this.setInvincible(true, 5);
 	}
 	
 	public void setIsEgg(boolean isEgg) {
@@ -141,6 +143,10 @@ public class Diver extends Mob {
 		
 		
 		if (this.getInvincible() == true) {
+			return;
+		}
+		if (this.isEgg == true) {
+			this.setKilled(true);
 			return;
 		}
 		if(this.getHero().getIsAttacking() == false) {
