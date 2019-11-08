@@ -1,8 +1,11 @@
+import java.awt.Image;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 public class Bullet extends Mob {
 	private final double TOTAL_VELOCITY = 10;
-
+	private ArrayList<Image> images = new ArrayList<Image>();
+	
 	public Bullet(int xPos, int yPos, double xVel, double yVel, Hero hero) {
 		super(xPos, yPos);
 		this.height = 100;
@@ -13,8 +16,8 @@ public class Bullet extends Mob {
 		this.setYVel(yVel * TOTAL_VELOCITY);
 		this.setHero(hero);
 		
-		
-		this.setImage("bullet.png");
+		this.setImages();
+		this.setImage(this.images.get(0));
 		
 		
 		
@@ -26,6 +29,20 @@ public class Bullet extends Mob {
 	public Rectangle getBounds() {
 		return new Rectangle((int)this.getX(), (int)this.getY(), (int)this.width, (int)this.height);
 
+	}
+	@Override
+	public void updateMovement() {
+		this.velUpdate();
+		this.posUpdate();
+		this.imageUpdate();
+		this.updateAniTick();
+		
+	}
+	private void imageUpdate() {
+		if (this.aniTick >= this.images.size())
+			this.aniTick = 0;
+		this.setImage(this.images.get(aniTick));
+		
 	}
 	@Override
 	public void fly() {
@@ -63,6 +80,13 @@ public class Bullet extends Mob {
 		
 	}
 	
+	private void setImages() {
+		// set idle images
+		for (int i = 0; i < 3; i++) {
+			String filename = "RangerBullet000" + Integer.toString(i) + ".png";
+			this.saveImage(filename, this.images);
+		}
+	}
 	
 
 }
