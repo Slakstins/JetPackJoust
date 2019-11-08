@@ -80,7 +80,7 @@ public abstract class Mob {
 		try {
 			image = ImageIO.read(new File(filename));
 		} catch (IOException e) {
-			System.out.println("Image not found of hero!!");
+			System.out.println("Image not found " + filename);
 		}
 		this.setImage(image);
 

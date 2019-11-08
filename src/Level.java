@@ -263,8 +263,12 @@ public class Level extends Screen {
 					System.out.println("Bullet removed");
 				}
 				if (mobsToDelete.get(i).equals(mobsToDraw.get(j))) {
-					this.mobsToDraw.remove(j);
-					System.out.println("Mob deleted");
+					this.mobsToDraw.get(j).kill(); //nested in case kill changes into an egg which has another life
+					if (mobsToDelete.get(i).equals(mobsToDraw.get(j))) {
+						this.mobsToDraw.remove(j);
+						System.out.println("Mob deleted");
+					}
+					
 
 				}
 			}

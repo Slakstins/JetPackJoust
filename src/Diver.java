@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 
 public class Diver extends Mob {
 	private double totalVel;
+	private boolean isEgg = false;;
 
 	public Diver(int xPos, int yPos) {
 		super(xPos, yPos);
@@ -62,11 +63,34 @@ public class Diver extends Mob {
 		// TODO Auto-generated method stub
 
 	}
-
+	/**
+	 * diver becomes an egg and must be killed again to be removed from the game
+	 */
 	@Override
 	public void kill() {
 		// TODO Auto-generated method stub
+		if (this.isEgg == true) {
+			return;
+		}
+		this.setKilled(false);
+		this.turnIntoEgg();
+		
+		
+		
 
+	}
+	/**
+	 * replace the diver with an egg! randomize velocity and set invulnerable temporarily somehow TBD
+	 */
+	public void turnIntoEgg() {
+		System.out.println("turned into egg");
+		this.setImage("Egg.png");
+		this.setIsEgg(true);
+		this.setXVel(-100);
+	}
+	
+	public void setIsEgg(boolean isEgg) {
+		this.isEgg  = isEgg;
 	}
 
 	@Override
