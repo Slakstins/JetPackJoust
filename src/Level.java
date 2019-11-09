@@ -260,7 +260,6 @@ public class Level extends Screen {
 			for (int j = 0; j < this.mobsToDraw.size(); j++) { // bullets have to be deleted in two places
 				if (this.bullets.contains(mobsToDelete.get(i)) && this.mobsToDraw.contains(mobsToDelete.get(i))) {
 //					mobsToDelete.get(i).kill(); // NOT IMPLEMENTED YET
-					System.out.println("Bullet removed");
 				}
 				if (mobsToDelete.get(i).equals(mobsToDraw.get(j))) {
 					this.mobsToDraw.get(j).kill(); //nested in case kill changes into an egg which has another life

@@ -310,7 +310,6 @@ public abstract class Mob {
 		this.invincible = invincible;
 		this.checkInvincible  = true;
 		this.endInvincible = this.tick + time;
-		System.out.println(this.endInvincible);
 		
 	}
 
@@ -323,7 +322,7 @@ public abstract class Mob {
 		
 			if (this.tick == this.endInvincible) {
 				this.invincible = false;
-				System.out.println("invinsibilty ended");
+				System.out.println("invincibilty ended");
 			}
 		}
 		

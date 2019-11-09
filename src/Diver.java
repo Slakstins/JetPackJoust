@@ -1,17 +1,20 @@
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
 public class Diver extends Mob {
 	private double totalVel;
 	private boolean isEgg = false;
-	private long invincibleEggTime = 200;
+	private long invincibleEggTime = 50;
+	private long breakOutEggTime;
+	private long timeInEgg = 800;
+	private int eggYVel = 5;
 
 	public Diver(int xPos, int yPos) {
 		super(xPos, yPos);
-//		this.setInvincible(true, 5);
 
 		this.totalVel = 3;
 		this.setImage("Diver.png");
@@ -26,11 +29,12 @@ public class Diver extends Mob {
 		if (this.isEgg == false) {
 			this.updateDirection();
 			this.posUpdate();
+		
 			return;
 		}
-	
 		this.posUpdate();
 		this.velUpdate();
+		this.checkBreakOutOfEgg();
 
 	}
 
@@ -99,10 +103,39 @@ public class Diver extends Mob {
 	public void turnIntoEgg() {
 		this.setImage("Egg.png");
 		this.setIsEgg(true);
-		this.setXVel(0);
-		this.setYVel(0);
-		this.setYAccel(super.getGravity());
+		this.giveEggVelocity();
 		this.setInvincible(true, this.invincibleEggTime);
+		this.setBreakOutOfEggTime();
+	}
+	
+	public void giveEggVelocity() {
+		Random random = new Random();
+		double sign = 1;
+		if (random.nextFloat() > .5) {
+			sign = -1;
+		}
+		this.setXVel(random.nextFloat() * 5 * sign);
+		this.setYVel(-this.eggYVel);
+		this.setYAccel(super.getGravity());
+	}
+	
+	public void setBreakOutOfEggTime() {
+		this.breakOutEggTime = this.tick + this.timeInEgg;
+		System.out.println(this.breakOutEggTime);
+	}
+	
+	public void checkBreakOutOfEgg() {
+		if (this.tick == this.breakOutEggTime) {
+			this.breakOutOfEgg(); //IMPLEMENT THIS
+			System.out.println("broke out of egg");
+		
+		}
+	}
+	
+	public void breakOutOfEgg() {
+		this.isEgg = false;
+		this.setImage("Diver.png");
+		
 	}
 	
 	public void setIsEgg(boolean isEgg) {
@@ -149,7 +182,6 @@ public class Diver extends Mob {
 		}
 		if (this.isEgg == true) {
 			this.setKilled(true);
-			System.out.println("egg killed");
 			return;
 		}
 		if(this.getHero().getIsAttacking() == false) {
