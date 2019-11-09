@@ -56,7 +56,7 @@ public abstract class Mob {
 	}
 	
 	public Rectangle getBounds() {
-		return new Rectangle((int)this.getX(), (int)this.getY(), this.defaultMobWidth, this.defaultMobHeight);
+		return new Rectangle((int)this.getX() + 5, (int)this.getY(), this.defaultMobWidth - 10, this.defaultMobHeight );
 	}
 	
 	

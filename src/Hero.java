@@ -9,10 +9,10 @@ import javax.imageio.ImageIO;
 public class Hero extends Mob {
 
 	private HashMap<String, Boolean> keyMap;
-	private double xMoveVel = 0.05;
-	private double thrust = 0.05;
-	private double maxThrustSpeed = 1.5;
-	private double xMoveAccel = 0.05;
+	private double xMoveVel = 0.05; //also not used currently
+	private double thrust = 0.1;
+	private double maxThrustSpeed = 1.5; //not used currently
+	private double xMoveAccel = 0.1;
 	private double groundedMoveVel = 5;
 	private double downWardDashVel = 3;
 	private boolean isAttacking = false;

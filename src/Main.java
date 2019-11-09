@@ -29,9 +29,7 @@ public class Main {
 		System.out.println("Testing Arcade Game");
 
 		LevelGenerator levelGenerator = new LevelGenerator();
-		levelGenerator.createLevel1Script();
-		levelGenerator.createLevel2Script();
-		levelGenerator.createLevel3Script();
+		levelGenerator.createLevels();
 
 		// have only a draw component in main??
 		// Draw component needs access to the stuff to draw it

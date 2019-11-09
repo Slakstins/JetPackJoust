@@ -9,9 +9,9 @@ import java.util.Scanner;
 
 public class Level extends Screen {
 
-	ArrayList<Mob> mobsToDraw;
-	ArrayList<Tile> tilesToDraw;
-	ArrayList<Tile> solidTiles;
+	private ArrayList<Mob> mobsToDraw;
+	private ArrayList<Tile> tilesToDraw;
+	private ArrayList<Tile> solidTiles;
 	private int levelNum;
 	public final int cellWidthHeight = 100;
 	public final int xCells = 19;
@@ -19,7 +19,7 @@ public class Level extends Screen {
 	private final int bulletBoundKill = 10;
 	private Hero hero;
 	private HashMap<String, Boolean> keyMap;
-	private ArrayList<Diver> divers;
+//	private ArrayList<Diver> divers;
 	private ArrayList<Bullet> bullets;
 
 	public Level(String title, int levelNum) {
@@ -72,19 +72,19 @@ public class Level extends Screen {
 						Hero newMob = new Hero(i * this.cellWidthHeight, posY * this.cellWidthHeight);
 						newMob.setKeyMap(this.keyMap);
 						this.hero = newMob;
-						mobsToDraw.add(newMob);
+						getMobsToDraw().add(newMob);
 
 					}
 					if (toBuild == 'D') { // MAY NOT HAVE ACCESS TO HERO YET BECAUSE ITS SET AFTER
 
 						Diver newMob = new Diver(i * this.cellWidthHeight, posY * this.cellWidthHeight);
-						mobsToDraw.add(newMob);
+						getMobsToDraw().add(newMob);
 
 					}
 
 					if (toBuild == 'R') {
 						Ranger newMob = new Ranger(i * this.cellWidthHeight, posY * this.cellWidthHeight);
-						mobsToDraw.add(newMob);
+						getMobsToDraw().add(newMob);
 					}
 
 				}
@@ -120,8 +120,8 @@ public class Level extends Screen {
 	 * @return
 	 */
 	private void setMobsHero() {
-		for (int i = 0; i < this.mobsToDraw.size(); i++) {
-			this.mobsToDraw.get(i).setHero(this.hero);
+		for (int i = 0; i < this.getMobsToDraw().size(); i++) {
+			this.getMobsToDraw().get(i).setHero(this.hero);
 		}
 
 	}
@@ -148,7 +148,44 @@ public class Level extends Screen {
 		return mob1.getBounds().intersects(mob2.getBounds());
 	}
 
+//	public void resetLevelIfHeroDead() {
+//		if (this.hero.getHasDied()) {
+//			System.out.println("hero dead!");
+//
+//			this.clearLevelData();
+//			if (this.lives > -1) {
+//				this.lives -= 1;
+//				this.readLevelFile();
+//			} else {
+//				
+//				System.out.println(this.lives);
+//				if (this.lives < 0) {
+//					this.gameOver();
+//				}
+//			}
+//
+//		}
+//	}
+	/**
+	 * should switch to the game over screen
+	 */
+
+
+
+	
+	public boolean checkHeroDead() {
+		if (this.hero != null) {
+		return this.hero.getHasDied();
+		}
+		return false;
+	}
+
+
 	public void drawEverything(Graphics2D g2) {
+
+
+	
+
 		this.setMobsHero();
 		this.checkKillMobCollision();
 
@@ -161,9 +198,9 @@ public class Level extends Screen {
 					thisTile.getImage().getHeight(observer), observer);
 		}
 		// draw mobs
-		for (int i = 0; i < this.mobsToDraw.size(); i++) {
+		for (int i = 0; i < this.getMobsToDraw().size(); i++) {
 			ImageObserver observer = null; // is this a problem????
-			Mob thisMob = this.mobsToDraw.get(i);
+			Mob thisMob = this.getMobsToDraw().get(i);
 			thisMob.updateGrounded(solidTiles);
 
 			// create a bullet if the mob var isShooting is true
@@ -201,7 +238,7 @@ public class Level extends Screen {
 		if (thisMob.getShooting()) {
 			double[] dir = thisMob.shootDirection();
 			Bullet bullet = new Bullet((int) thisMob.getX(), (int) thisMob.getY(), dir[0], dir[1], this.hero);
-			mobsToDraw.add(bullet);
+			getMobsToDraw().add(bullet);
 			bullets.add(bullet);
 
 		}
@@ -214,8 +251,8 @@ public class Level extends Screen {
 	 */
 	public void checkKillMobCollision() {
 		ArrayList<Mob> mobsToDelete = new ArrayList<Mob>();
-		for (int i = 0; i < this.mobsToDraw.size(); i++) {
-			Mob thisMob = this.mobsToDraw.get(i);
+		for (int i = 0; i < this.getMobsToDraw().size(); i++) {
+			Mob thisMob = this.getMobsToDraw().get(i);
 			if (this.mobCollision(thisMob, this.hero) && !thisMob.equals(hero)) {
 
 				mobsToDelete.add(thisMob);
@@ -242,32 +279,30 @@ public class Level extends Screen {
 			}
 		}
 	}
-	
 
 	/**
-	 * Handles actions having to do with the death of mobs, removing them if hasDied is true
+	 * Handles actions having to do with the death of mobs, removing them if hasDied
+	 * is true
 	 */
 	public void killDeadMobs() {
 		ArrayList<Mob> mobsToDelete = new ArrayList<Mob>();
-		for (int i = 0; i < this.mobsToDraw.size(); i++) {
-			if (this.mobsToDraw.get(i).getHasDied()) {
-				mobsToDelete.add(this.mobsToDraw.get(i));
+		for (int i = 0; i < this.getMobsToDraw().size(); i++) {
+			if (this.getMobsToDraw().get(i).getHasDied()) {
+				mobsToDelete.add(this.getMobsToDraw().get(i));
 			}
 		}
 		for (int i = 0; i < mobsToDelete.size(); i++) {
-		
-			
-			for (int j = 0; j < this.mobsToDraw.size(); j++) { // bullets have to be deleted in two places
-				if (this.bullets.contains(mobsToDelete.get(i)) && this.mobsToDraw.contains(mobsToDelete.get(i))) {
+
+			for (int j = 0; j < this.getMobsToDraw().size(); j++) { // bullets have to be deleted in two places
+				if (this.bullets.contains(mobsToDelete.get(i)) && this.getMobsToDraw().contains(mobsToDelete.get(i))) {
 //					mobsToDelete.get(i).kill(); // NOT IMPLEMENTED YET
 				}
-				if (mobsToDelete.get(i).equals(mobsToDraw.get(j))) {
-					this.mobsToDraw.get(j).kill(); //nested in case kill changes into an egg which has another life
+				if (mobsToDelete.get(i).equals(getMobsToDraw().get(j))) {
+					this.getMobsToDraw().get(j).kill(); // nested in case kill changes into an egg which has another life
 					if (mobsToDelete.get(i).getHasDied()) {
-						this.mobsToDraw.remove(j);
+						this.getMobsToDraw().remove(j);
 						System.out.println("Mob deleted");
 					}
-					
 
 				}
 			}
@@ -282,6 +317,12 @@ public class Level extends Screen {
 	 */
 	public void killBullets(Mob thisMob) {
 		this.bullets.remove(thisMob);
-		this.mobsToDraw.remove(thisMob);
+		this.getMobsToDraw().remove(thisMob);
+	}
+
+
+
+	public ArrayList<Mob> getMobsToDraw() {
+		return mobsToDraw;
 	}
 }

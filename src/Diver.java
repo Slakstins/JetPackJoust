@@ -10,7 +10,7 @@ public class Diver extends Mob {
 	private boolean isEgg = false;
 	private long invincibleEggTime = 50;
 	private long breakOutEggTime;
-	private long timeInEgg = 800;
+	private long timeInEgg = 600;
 	private int eggYVel = 5;
 
 	public Diver(int xPos, int yPos) {
@@ -98,6 +98,7 @@ public class Diver extends Mob {
 
 	}
 	/**
+	 * 
 	 * replace the diver with an egg! randomize velocity and set invulnerable temporarily somehow TBD
 	 */
 	public void turnIntoEgg() {
@@ -121,13 +122,11 @@ public class Diver extends Mob {
 	
 	public void setBreakOutOfEggTime() {
 		this.breakOutEggTime = this.tick + this.timeInEgg;
-		System.out.println(this.breakOutEggTime);
 	}
 	
 	public void checkBreakOutOfEgg() {
 		if (this.tick == this.breakOutEggTime) {
 			this.breakOutOfEgg(); //IMPLEMENT THIS
-			System.out.println("broke out of egg");
 		
 		}
 	}
