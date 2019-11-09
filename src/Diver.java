@@ -6,7 +6,8 @@ import javax.imageio.ImageIO;
 
 public class Diver extends Mob {
 	private double totalVel;
-	private boolean isEgg = false;;
+	private boolean isEgg = false;
+	private long invincibleEggTime = 200;
 
 	public Diver(int xPos, int yPos) {
 		super(xPos, yPos);
@@ -79,6 +80,7 @@ public class Diver extends Mob {
 		// TODO Auto-generated method stub
 		if (this.isEgg == true) {
 			this.setKilled(true);
+			return;
 		}
 		if (this.getInvincible() == true) {
 			return;
@@ -100,7 +102,7 @@ public class Diver extends Mob {
 		this.setXVel(0);
 		this.setYVel(0);
 		this.setYAccel(super.getGravity());
-		this.setInvincible(true, 5);
+		this.setInvincible(true, this.invincibleEggTime);
 	}
 	
 	public void setIsEgg(boolean isEgg) {
@@ -147,6 +149,7 @@ public class Diver extends Mob {
 		}
 		if (this.isEgg == true) {
 			this.setKilled(true);
+			System.out.println("egg killed");
 			return;
 		}
 		if(this.getHero().getIsAttacking() == false) {
