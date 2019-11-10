@@ -19,7 +19,6 @@ public class Level extends Screen {
 	private final int bulletBoundKill = 10;
 	private Hero hero;
 	private HashMap<String, Boolean> keyMap;
-//	private ArrayList<Diver> divers;
 	private ArrayList<Bullet> bullets;
 
 	public Level(String title, int levelNum) {

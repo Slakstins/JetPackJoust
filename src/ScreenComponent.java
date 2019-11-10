@@ -1,3 +1,4 @@
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.HashMap;
@@ -39,6 +40,10 @@ public class ScreenComponent extends JComponent {
 		}
 	}
 	
+	public int getLives() {
+		return this.lives;
+	}
+	
 	public void goUpALevelIfMonstersDead() {
 		if (this.level.getMobsToDraw().size() < 2 && !this.level.checkHeroDead()) {
 			this.addLevel();
@@ -71,6 +76,10 @@ public class ScreenComponent extends JComponent {
 			this.levelChange = false;
 		}
 		this.level.drawEverything(g2);
+		Font font = new Font("Verdana", Font.BOLD, 25);
+		g2.setFont(font);
+		g2.drawString("Lives: " + this.lives , 5, 30);
+		g2.drawString("Level: " + this.levelNum, 5, 80);
 		this.goUpALevelIfMonstersDead();
 		this.checkHeroDeath();
 	}

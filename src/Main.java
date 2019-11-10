@@ -7,6 +7,7 @@ import javax.swing.Timer;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  * The main class for your arcade game.
@@ -35,6 +36,8 @@ public class Main {
 		// Draw component needs access to the stuff to draw it
 		// need to find a way to only create the level
 		JFrame frame = new JFrame();
+		JLabel lives = new JLabel();
+		
 
 		int frameWidth2 = FRAME_WIDTH;
 		int frameHeight2 = FRAME_HEIGHT;
@@ -47,7 +50,8 @@ public class Main {
 		ScreenComponent component = new ScreenComponent();
 		frame.add(component);
 		component.setKeyMap(input.getKeyMap());
-
+		
+		lives.setText(Integer.toString(component.getLives()));
 		GameAdvanceListener advanceListener = new GameAdvanceListener(component);
 		Timer timer = new Timer(REFRESHES, advanceListener);
 		timer.start();
