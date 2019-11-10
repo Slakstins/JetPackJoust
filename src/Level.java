@@ -64,7 +64,7 @@ public class Level extends Screen {
 			String line = scanner.nextLine();
 			for (int i = 0; i < line.length(); i++) {
 				char toBuild = line.charAt(i);
-				if (toBuild == 'H' || toBuild == 'D' || toBuild == 'R') {
+				if (toBuild == 'H' || toBuild == 'D' || toBuild == 'R' || toBuild == 'P') {
 
 					if (toBuild == 'H') {
 
@@ -83,6 +83,11 @@ public class Level extends Screen {
 
 					if (toBuild == 'R') {
 						Ranger newMob = new Ranger(i * this.cellWidthHeight, posY * this.cellWidthHeight);
+						getMobsToDraw().add(newMob);
+					}
+					
+					if (toBuild == 'P') {
+						Teleporter newMob = new Teleporter(i * this.cellWidthHeight, posY * this.cellWidthHeight);
 						getMobsToDraw().add(newMob);
 					}
 
