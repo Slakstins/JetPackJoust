@@ -6,8 +6,8 @@ public class Ranger extends Mob {
 	private final int timeToMove = 150;
 	private final double speed = 1;
 	private boolean isShooting;
-	private ArrayList<Image> idleImages = new ArrayList<Image>();
-	private ArrayList<Image> shootImages = new ArrayList<Image>();
+	protected ArrayList<Image> idleImages = new ArrayList<Image>();
+	protected ArrayList<Image> shootImages = new ArrayList<Image>();
 
 	public Ranger(int xPos, int yPos) {
 		super(xPos, yPos);
@@ -18,7 +18,7 @@ public class Ranger extends Mob {
 
 	}
 	
-	private void setImages() {
+	public void setImages() {
 		// set idle images
 		for (int i = 0; i <= 1; i++) {
 			String filename = "Ranger000" + Integer.toString(i) + ".png";

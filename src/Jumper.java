@@ -41,6 +41,18 @@ public class Jumper extends Ranger {
 		
 		
 		
+		
+	}
+	
+	public void setImages() {
+	// set idle images
+				for (int i = 0; i <= 1; i++) {
+					String filename = "Ranger2000" + Integer.toString(i) + ".png";
+					this.saveImage(filename, this.idleImages);
+				}
+				
+				// set shooting image
+				this.saveImage("RangerShooting0000.png", this.shootImages);
 	}
 
 }
