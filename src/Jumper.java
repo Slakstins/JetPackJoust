@@ -51,10 +51,7 @@ public class Jumper extends Ranger {
 	}
 		
 		
-<<<<<<< HEAD
-		
-		
-=======
+
 	public void setImages() {
 	// set idle images
 				for (int i = 0; i <= 1; i++) {
@@ -64,7 +61,6 @@ public class Jumper extends Ranger {
 				
 				// set shooting image
 				this.saveImage("RangerShooting0000.png", this.shootImages);
->>>>>>> refs/remotes/origin/master
 	}
 
 }
