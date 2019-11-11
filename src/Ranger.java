@@ -5,7 +5,7 @@ import java.util.Random;
 public class Ranger extends Mob {
 	private final int timeToMove = 150;
 	private final double speed = 1;
-	private boolean isShooting;
+	private int isShooting;
 	protected ArrayList<Image> idleImages = new ArrayList<Image>();
 	protected ArrayList<Image> shootImages = new ArrayList<Image>();
 
@@ -40,7 +40,7 @@ public class Ranger extends Mob {
 		
 	}
 	private void imageUpdate() {
-		if (this.getShooting()) {
+		if (this.getShooting() > 0) {
 			this.setImage(this.shootImages.get(0));
 			
 		} else {
@@ -54,7 +54,7 @@ public class Ranger extends Mob {
 	public void runAwayVel() {
 		Random random = new Random();
 		int direction = 0;
-		this.setIsShooting(false);
+		this.setIsShooting(0);
 		if (this.tick % (this.timeToMove*2) == 0 && this.tick!= 0) {
 			this.setXVel(0);
 			this.shoot();
@@ -96,10 +96,10 @@ public class Ranger extends Mob {
 
 	@Override
 	public void shoot() {
-		this.setIsShooting(true);
+		this.setIsShooting(1);
 	}
 
-	public boolean getShooting() {
+	public int getShooting() {
 		return this.isShooting;
 	}
 	
@@ -162,7 +162,7 @@ public class Ranger extends Mob {
 
 
 
-	public void setIsShooting(boolean isShooting) {
+	public void setIsShooting(int isShooting) {
 		this.isShooting = isShooting;
 	}
 	

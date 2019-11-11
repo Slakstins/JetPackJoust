@@ -20,7 +20,7 @@ public class Jumper extends Ranger {
 		newXVel = 5 + random.nextFloat() * speedXMax;
 
 		int direction = 0;
-		this.setIsShooting(false);
+		this.setIsShooting(0);
 		if (this.tick % (this.timeToMove *2) == 0) {
 			this.setXVel(0);
 			this.shoot();
@@ -38,12 +38,13 @@ public class Jumper extends Ranger {
 			}
 			this.setYVel(-this.jumpYVel);
 		}
-		
-		
-		
-		
 	}
-	
+	@Override
+	public void shoot() {
+		this.setIsShooting(2);
+	}
+		
+		
 	public void setImages() {
 	// set idle images
 				for (int i = 0; i <= 1; i++) {

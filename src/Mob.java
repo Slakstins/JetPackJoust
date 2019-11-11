@@ -30,7 +30,7 @@ public abstract class Mob {
 	protected final double CELLWIDTHHEIGHT = 100;
 	private boolean isGrounded;
 	protected int shootCooldown;
-	protected boolean shooting;
+	protected int shooting;
 	protected int tick;
 	protected int aniTick;
 	private boolean hasDied;
@@ -229,7 +229,7 @@ public abstract class Mob {
 		return this.image;
 	}
 	
-	public boolean getShooting() {
+	public int getShooting() {
 		return this.shooting;
 	}
 	/**

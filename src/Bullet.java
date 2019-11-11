@@ -6,7 +6,7 @@ public class Bullet extends Mob {
 	private final double TOTAL_VELOCITY = 10;
 	private ArrayList<Image> images = new ArrayList<Image>();
 	
-	public Bullet(int xPos, int yPos, double xVel, double yVel, Hero hero) {
+	public Bullet(int xPos, int yPos, double xVel, double yVel, Hero hero, int type) {
 		super(xPos, yPos);
 		this.height = 10;
 		this.width = 10;
@@ -16,7 +16,7 @@ public class Bullet extends Mob {
 		this.setYVel(yVel * TOTAL_VELOCITY);
 		this.setHero(hero);
 		
-		this.setImages();
+		this.setImages(type);
 		this.setImage(this.images.get(0));
 		
 		
@@ -80,12 +80,20 @@ public class Bullet extends Mob {
 		
 	}
 	
-	private void setImages() {
+	private void setImages(int type) {
 		// set idle images
-		for (int i = 0; i < 3; i++) {
-			String filename = "RangerBullet000" + Integer.toString(i) + ".png";
-			this.saveImage(filename, this.images);
+		if (type == 1) {
+			for (int i = 0; i < 3; i++) {
+				String filename = "RangerBullet000" + Integer.toString(i) + ".png";
+				this.saveImage(filename, this.images);
+			}
+		} else {
+			for (int i = 0; i < 3; i++) {
+				String filename = "RangerBullet2000" + Integer.toString(i) + ".png";
+				this.saveImage(filename, this.images);
+			}
 		}
+		
 	}
 	
 

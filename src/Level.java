@@ -241,9 +241,9 @@ public class Level extends Screen {
 	 * checks if a given mob is shooting, then spawns bullets as appropriate
 	 */
 	public void spawnBullets(Mob thisMob) {
-		if (thisMob.getShooting()) {
+		if (thisMob.getShooting() > 0) {
 			double[] dir = thisMob.shootDirection();
-			Bullet bullet = new Bullet((int) thisMob.getX(), (int) thisMob.getY(), dir[0], dir[1], this.hero);
+			Bullet bullet = new Bullet((int) thisMob.getX(), (int) thisMob.getY(), dir[0], dir[1], this.hero, thisMob.getShooting());
 			getMobsToDraw().add(bullet);
 			bullets.add(bullet);
 
