@@ -1,8 +1,12 @@
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
+import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
@@ -15,7 +19,7 @@ public class ScreenComponent extends JComponent {
 	private boolean levelChange;
 
 	public ScreenComponent() {
-		this.levelNum = 1;
+		this.levelNum = 0;
 		this.levelChange = true;
 	}
 
@@ -75,13 +79,27 @@ public class ScreenComponent extends JComponent {
 			this.level.readLevelFile();
 			this.levelChange = false;
 		}
-		this.level.drawEverything(g2);
-		Font font = new Font("Verdana", Font.BOLD, 25);
-		g2.setFont(font);
-		g2.drawString("Lives: " + this.lives , 5, 30);
-		g2.drawString("Level: " + this.levelNum, 5, 80);
-		this.goUpALevelIfMonstersDead();
-		this.checkHeroDeath();
+		
+		if (this.levelNum != 0) {
+			this.level.drawEverything(g2);
+			Font font = new Font("Verdana", Font.BOLD, 25);
+			g2.setFont(font);
+			g2.drawString("Lives: " + this.lives , 5, 30);
+			g2.drawString("Level: " + this.levelNum, 5, 80);
+			this.goUpALevelIfMonstersDead();
+			this.checkHeroDeath();
+		} else {
+			Image startScreen = null;
+			try {
+				startScreen = ImageIO.read(new File("startScreen.png"));
+			} catch (IOException e) {
+				System.out.println("Start Screen image not found ");
+			}
+			g2.drawImage(startScreen, 0, 0, 1900, 1000, 0, 0, 1900, 1000, null);
+			if (this.keyMap.get("space"))
+				this.addLevel();
+		}
+		
 	}
 
 	public void updateDraw() {

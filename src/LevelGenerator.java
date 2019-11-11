@@ -36,7 +36,30 @@ public class LevelGenerator {
 		pw.close();
 	}
 	
-	
+	public void createLevel0Script() {
+		PrintWriter pw = null;
+		try {
+			pw = new PrintWriter("level0.txt");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		}
+		
+
+		pw.append("EEEEEEEEEEEEEEEEEEE\n");
+		pw.append("EEEEEEEEEEEEEEEEEEE\n");
+		pw.append("EEEEEEEEEEEEEEEEEEE\n");
+		pw.append("EEEEEEEEEEEEEEEEEEE\n");
+		pw.append("EEEEEEEEEEEEEEEEEEE\n");
+		pw.append("EEEEEEEEEEEEEEEEEEE\n");
+		pw.append("EEEEEEEEEEEEEEEEEEE\n");
+		pw.append("EEEEEEEEEEEEEEEEEEE\n");
+		pw.append("EEEEEEEEEEEEEEEEEEE\n");
+		pw.append("EEEEEEEEEEEEEEEEEEE\n");
+
+		pw.close();
+	}
 	
 	public void createLevel1Script() {
 		PrintWriter pw = null;
