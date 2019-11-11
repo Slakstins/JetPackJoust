@@ -12,7 +12,7 @@ public class Teleporter extends Mob {
 		this.setImage("Teleporter.png");
 		
 
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public boolean timeToTeleport() {
