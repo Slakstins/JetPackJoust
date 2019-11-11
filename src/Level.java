@@ -18,6 +18,7 @@ public class Level extends Screen {
 	public final int yCells = 10;
 	private final int bulletBoundKill = 10;
 	private Hero hero;
+	private Hero hero2;
 	private HashMap<String, Boolean> keyMap;
 	private ArrayList<Bullet> bullets;
 
@@ -64,7 +65,8 @@ public class Level extends Screen {
 			String line = scanner.nextLine();
 			for (int i = 0; i < line.length(); i++) {
 				char toBuild = line.charAt(i);
-				if (toBuild == 'H' || toBuild == 'D' || toBuild == 'R' || toBuild == 'P' || toBuild == 'M' || toBuild  == 'J') {
+				if (toBuild == 'H' || toBuild == 'D' || toBuild == 'R' || toBuild == 'P' || toBuild == 'M'
+						|| toBuild == 'J' || toBuild == 'C') {
 
 					if (toBuild == 'H') {
 
@@ -93,15 +95,20 @@ public class Level extends Screen {
 						Ranger newMob = new Ranger(i * this.cellWidthHeight, posY * this.cellWidthHeight);
 						getMobsToDraw().add(newMob);
 					}
-					
+
 					if (toBuild == 'P') {
 						Teleporter newMob = new Teleporter(i * this.cellWidthHeight, posY * this.cellWidthHeight);
 
 						getMobsToDraw().add(newMob);
 					}
-					
+
 					if (toBuild == 'M') {
 						Multiplier newMob = new Multiplier(i * this.cellWidthHeight, posY * this.cellWidthHeight);
+
+						getMobsToDraw().add(newMob);
+					}
+					if (toBuild == 'C') {
+						Chicken newMob = new Chicken(i * this.cellWidthHeight, posY * this.cellWidthHeight);
 
 						getMobsToDraw().add(newMob);
 					}
@@ -167,26 +174,18 @@ public class Level extends Screen {
 		return mob1.getBounds().intersects(mob2.getBounds());
 	}
 
-
 	/**
 	 * should switch to the game over screen
 	 */
 
-
-
-	
 	public boolean checkHeroDead() {
 		if (this.hero != null) {
-		return this.hero.getHasDied();
+			return this.hero.getHasDied();
 		}
 		return false;
 	}
 
-
 	public void drawEverything(Graphics2D g2) {
-
-
-	
 
 		this.setMobsHero();
 		this.checkKillMobCollision();
@@ -224,9 +223,28 @@ public class Level extends Screen {
 					thisMob.getImage().getWidth(observer), thisMob.getImage().getHeight(observer), observer);
 
 			thisMob.updateMovement();
-			if (thisMob.checkDuplicate()) {
-				Multiplier multiplier = new Multiplier(thisMob.getX(), thisMob.getY());
-				this.mobsToDraw.add(multiplier);
+			if (thisMob.checkDuplicate() > 0) {
+				if (thisMob.checkDuplicate() == 1) {
+					Multiplier multiplier = new Multiplier(thisMob.getX(), thisMob.getY());
+					this.mobsToDraw.add(multiplier);
+				}
+				if (thisMob.checkDuplicate() == 2) {
+					Chicken mobAsChicken = (Chicken)thisMob;
+					for (int y = 1; y < mobAsChicken.getEggsDropped(); y++ ) {
+						System.out.println(this.mobsToDraw.size());
+						Chicken chicken = new Chicken(thisMob.getX(), thisMob.getY());
+						chicken.turnIntoEgg();
+						chicken.setInvincible(true, 50);
+
+						this.mobsToDraw.add(chicken);
+						
+						chicken.setHero(this.hero);
+						thisMob.setDuplicate(-1);
+						
+					}
+					
+				}
+			
 			}
 
 		}
@@ -304,7 +322,8 @@ public class Level extends Screen {
 //					mobsToDelete.get(i).kill(); // NOT IMPLEMENTED YET
 				}
 				if (mobsToDelete.get(i).equals(getMobsToDraw().get(j))) {
-					this.getMobsToDraw().get(j).kill(); // nested in case kill changes into an egg which has another life
+					this.getMobsToDraw().get(j).kill(); // nested in case kill changes into an egg which has another
+														// life
 					if (mobsToDelete.get(i).getHasDied()) {
 						this.getMobsToDraw().remove(j);
 						System.out.println("Mob deleted");
@@ -325,8 +344,6 @@ public class Level extends Screen {
 		this.bullets.remove(thisMob);
 		this.getMobsToDraw().remove(thisMob);
 	}
-
-
 
 	public ArrayList<Mob> getMobsToDraw() {
 		return mobsToDraw;

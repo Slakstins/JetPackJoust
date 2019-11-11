@@ -16,6 +16,7 @@ public class KeyInput extends KeyAdapter {
 		this.keyMap.put("down", false);
 		this.keyMap.put("u", false);
 		this.keyMap.put("space", false);
+		this.keyMap.put("p", false);
 	}
 
 	public HashMap<String, Boolean> getKeyMap() {
@@ -37,39 +38,40 @@ public class KeyInput extends KeyAdapter {
 
 		if (keyCode == event.VK_LEFT) {
 			this.keyMap.put("left", true);
-			// System.out.println("leftpressed!");
 
 		}
 		if (keyCode == event.VK_RIGHT) {
 			this.keyMap.put("right", true);
 
-			// System.out.println("rightpressed!");
 
 		}
 		if (keyCode == event.VK_UP) {
 			this.keyMap.put("up", true);
 
-			// System.out.println("uppressed!");
 
 		}
 		if (keyCode == event.VK_DOWN) {
 			this.keyMap.put("down", true);
 
-			// System.out.println("downpressed!");
 
 		}
 		if (keyCode == event.VK_SPACE) {
 			this.keyMap.put("space", true);
-			// System.out.println("spacebar pressed!");
 		}
-		if (keyCode == event.VK_U) {
-			this.screenComponent.addLevel();
-
+		
+		if (keyCode == event.VK_P) {
+			this.keyMap.put("p", !keyMap.get("p"));
 		}
 		if (keyCode == event.VK_D) {
 			this.screenComponent.removeLevel();
-
 		}
+		if (keyCode == event.VK_U) {
+			this.screenComponent.addLevel();
+		}
+		
+		
+	
+		
 
 	}
 

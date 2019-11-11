@@ -17,16 +17,16 @@ public class Jumper extends Ranger {
 
 		Random random = new Random();
 		double newXVel;
-		newXVel = 5 + random.nextFloat() * speedXMax;
+		newXVel = 2 + random.nextFloat() * speedXMax;
 
 		int direction = 0;
 		this.setIsShooting(false);
-		if (this.tick % (this.timeToMove *2) == 0) {
+		if (this.tick % (this.timeToMove * 2) == 0 && this.tick != 0) {
 			this.setXVel(0);
 			this.shoot();
 		}
 		
-		else if (this.tick % this.timeToMove == 0) {
+		else if (this.tick % this.timeToMove == 0 && this.tick != 0) {
 			// if one, travel right, if 0, travel left
 			direction = random.nextInt(2);
 			if (direction == 0) {
@@ -37,7 +37,14 @@ public class Jumper extends Ranger {
 				this.setXVel(-newXVel);
 			}
 			this.setYVel(-this.jumpYVel);
+			if (this.getX() < 10 && this.getXVel() < 0) {
+				this.setXVel(this.getXVel() * -1);
+			}
+			if (this.getX() > 1790 && this.getXVel() > 0) {
+				this.setXVel(this.getXVel() * -1);
+			}
 		}
+		
 		
 		
 		

@@ -11,14 +11,15 @@ public class Multiplier extends Teleporter {
 	/**
 	 * check to see if duplication should occur
 	 * Occurs at the time of teleportation
+	 * 1 is the duplication value for Multiplyer so that level knows what duplication to run
 	 * @return
 	 */
 	@Override
-	public boolean checkDuplicate() {
+	public int checkDuplicate() {
 		if (this.timeToTeleport()) {
-				return true;
+				return 1;
 		}
-		return false;
+		return -1;
 	}
 	
 	@Override

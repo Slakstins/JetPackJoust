@@ -58,7 +58,7 @@ public class Main {
 		timer.start();
 
 		input.setScreenComponent(component);
-		frame.setTitle("Level " + component.getLevel());
+		frame.setTitle("JOUST SORT OF");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocation(0, 0);
 

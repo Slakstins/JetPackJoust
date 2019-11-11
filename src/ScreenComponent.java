@@ -107,8 +107,10 @@ public class ScreenComponent extends JComponent {
 	}
 
 	public void updateDraw() {
+		if (keyMap.get("p") == false) {
 
 		this.repaint();
+		}
 	}
 
 }

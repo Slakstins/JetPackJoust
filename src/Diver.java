@@ -13,8 +13,8 @@ public class Diver extends Mob {
 	private long timeInEgg = 600;
 	private int eggYVel = 5;
 
-	public Diver(int xPos, int yPos) {
-		super(xPos, yPos);
+	public Diver(double d, double e) {
+		super(d, e);
 
 		this.totalVel = 3;
 		this.setImage("Diver.png");
