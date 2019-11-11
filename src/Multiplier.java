@@ -38,6 +38,8 @@ public class Multiplier extends Teleporter {
 		if (solidify) {
 			this.solidify();
 		}
+		
+		super.updateImages();
 	}
 	
 	

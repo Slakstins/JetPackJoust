@@ -52,7 +52,6 @@ public class Ranger extends Mob {
 	}
 
 	public void runAwayVel() {
-		this.tick -= 1;
 		Random random = new Random();
 		int direction = 0;
 		this.setIsShooting(false);

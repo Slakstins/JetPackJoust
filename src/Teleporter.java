@@ -28,7 +28,6 @@ public class Teleporter extends Mob {
 
 	@Override
 	public void updateMovement() {
-		System.out.println("TELEPORTERMOVING");
 		this.updateImages();
 
 		if (this.timeToTeleport()) {
@@ -177,18 +176,15 @@ public class Teleporter extends Mob {
 
 	}
 
-	private void updateImages() {
-		System.out.println("balg");
+	protected void updateImages() {
 		if (this.isTeleporting) {
 			if (this.aniTick >= this.flyImages.size())
 				this.aniTick = 0;
 			this.setImage(this.flyImages.get(aniTick));
-			System.out.println("ghost fly!");
 		} else {
 			if (this.aniTick >= this.idleImages.size())
 				this.aniTick = 0;
 			this.setImage(this.idleImages.get(aniTick));
-			System.out.println("ghost idle!");
 		}
 		
 	}
