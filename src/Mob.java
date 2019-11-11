@@ -34,6 +34,7 @@ public abstract class Mob {
 	protected int tick;
 	protected int aniTick;
 	private boolean hasDied;
+	private boolean duplicate;
 	
 	
 	private boolean invincible = false;
@@ -72,6 +73,7 @@ public abstract class Mob {
 	public void updateMovement() {
 		this.velUpdate();
 		this.posUpdate();
+		this.setDuplicate(false);
 		
 	}
 	public void setHero(Hero hero) {
@@ -330,6 +332,14 @@ public abstract class Mob {
 			}
 		}
 		
+	}
+
+	public boolean getDuplicate() {
+		return duplicate;
+	}
+
+	public void setDuplicate(boolean duplicate) {
+		this.duplicate = duplicate;
 	}
 
 }

@@ -26,7 +26,7 @@ public class Diver extends Mob {
 
 	@Override
 	public void updateMovement() {
-		if (this.isEgg == false) {
+		if (this.getIsEgg() == false) {
 			this.updateDirection();
 			this.posUpdate();
 		
@@ -82,7 +82,7 @@ public class Diver extends Mob {
 	@Override
 	public void kill() {
 		// TODO Auto-generated method stub
-		if (this.isEgg == true) {
+		if (this.getIsEgg() == true) {
 			this.setKilled(true);
 			return;
 		}
@@ -179,7 +179,7 @@ public class Diver extends Mob {
 		if (this.getInvincible() == true) {
 			return;
 		}
-		if (this.isEgg == true) {
+		if (this.getIsEgg() == true) {
 			this.setKilled(true);
 			return;
 		}
@@ -200,6 +200,12 @@ public class Diver extends Mob {
 		
 		// TODO Auto-generated method stub
 		
+	}
+
+
+
+	public boolean getIsEgg() {
+		return isEgg;
 	}
 
 }

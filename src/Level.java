@@ -64,7 +64,7 @@ public class Level extends Screen {
 			String line = scanner.nextLine();
 			for (int i = 0; i < line.length(); i++) {
 				char toBuild = line.charAt(i);
-				if (toBuild == 'H' || toBuild == 'D' || toBuild == 'R' || toBuild == 'P') {
+				if (toBuild == 'H' || toBuild == 'D' || toBuild == 'R' || toBuild == 'P' || toBuild == 'M' || toBuild  == 'J') {
 
 					if (toBuild == 'H') {
 
@@ -77,6 +77,14 @@ public class Level extends Screen {
 					if (toBuild == 'D') { // MAY NOT HAVE ACCESS TO HERO YET BECAUSE ITS SET AFTER
 
 						Diver newMob = new Diver(i * this.cellWidthHeight, posY * this.cellWidthHeight);
+
+						getMobsToDraw().add(newMob);
+
+					}
+					if (toBuild == 'J') { // MAY NOT HAVE ACCESS TO HERO YET BECAUSE ITS SET AFTER
+
+						Jumper newMob = new Jumper(i * this.cellWidthHeight, posY * this.cellWidthHeight);
+
 						getMobsToDraw().add(newMob);
 
 					}
@@ -87,7 +95,12 @@ public class Level extends Screen {
 					}
 					
 					if (toBuild == 'P') {
-//						Teleporter newMob = new Teleporter(i * this.cellWidthHeight, posY * this.cellWidthHeight);
+						Teleporter newMob = new Teleporter(i * this.cellWidthHeight, posY * this.cellWidthHeight);
+
+						getMobsToDraw().add(newMob);
+					}
+					
+					if (toBuild == 'M') {
 						Multiplier newMob = new Multiplier(i * this.cellWidthHeight, posY * this.cellWidthHeight);
 
 						getMobsToDraw().add(newMob);
@@ -154,24 +167,7 @@ public class Level extends Screen {
 		return mob1.getBounds().intersects(mob2.getBounds());
 	}
 
-//	public void resetLevelIfHeroDead() {
-//		if (this.hero.getHasDied()) {
-//			System.out.println("hero dead!");
-//
-//			this.clearLevelData();
-//			if (this.lives > -1) {
-//				this.lives -= 1;
-//				this.readLevelFile();
-//			} else {
-//				
-//				System.out.println(this.lives);
-//				if (this.lives < 0) {
-//					this.gameOver();
-//				}
-//			}
-//
-//		}
-//	}
+
 	/**
 	 * should switch to the game over screen
 	 */

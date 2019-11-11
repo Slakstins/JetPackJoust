@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Ranger extends Mob {
-	private long time;
 	private final int timeToMove = 150;
 	private final double speed = 1;
 	private boolean isShooting;
@@ -12,7 +11,6 @@ public class Ranger extends Mob {
 
 	public Ranger(int xPos, int yPos) {
 		super(xPos, yPos);
-		this.time = 0;
 		this.aniTick = 0;
 		this.setImages();
 		this.setImage("Ranger0000.png");
@@ -43,7 +41,7 @@ public class Ranger extends Mob {
 		
 	}
 	private void imageUpdate() {
-		if (this.isShooting) {
+		if (this.getShooting()) {
 			this.setImage(this.shootImages.get(0));
 			
 		} else {
@@ -55,16 +53,16 @@ public class Ranger extends Mob {
 	}
 
 	public void runAwayVel() {
-		this.time++;
+		this.tick -= 1;
 		Random random = new Random();
 		int direction = 0;
-		this.isShooting = false;
-		if (this.time % (this.timeToMove*2) == 0) {
+		this.setIsShooting(false);
+		if (this.tick % (this.timeToMove*2) == 0 && this.tick!= 0) {
 			this.setXVel(0);
 			this.shoot();
 		}
 		
-		else if (this.time % this.timeToMove == 0) {
+		else if (this.tick % this.timeToMove == 0) {
 			// if one, travel right, if 0, travel left
 			direction = random.nextInt(2);
 			if (direction == 0) {
@@ -100,11 +98,11 @@ public class Ranger extends Mob {
 
 	@Override
 	public void shoot() {
-		this.isShooting = true;
+		this.setIsShooting(true);
 	}
 
 	public boolean getShooting() {
-		return isShooting;
+		return this.isShooting;
 	}
 	
 	public double[] shootDirection() {
@@ -162,6 +160,12 @@ public class Ranger extends Mob {
 			return;
 		}
 
+	}
+
+
+
+	public void setIsShooting(boolean isShooting) {
+		this.isShooting = isShooting;
 	}
 	
 	
