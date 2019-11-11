@@ -35,8 +35,7 @@ public class Bullet extends Mob {
 		this.velUpdate();
 		this.posUpdate();
 		this.imageUpdate();
-		this.updateAniTick();
-		this.tick++;
+
 		
 	}
 	private void imageUpdate() {

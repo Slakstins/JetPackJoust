@@ -164,6 +164,7 @@ public abstract class Mob {
 	public void posUpdate() {
 		this.tick++;
 		this.updateInvincibility();
+		this.updateAniTick();
 
 		keepInFrame();
 		

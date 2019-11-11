@@ -37,8 +37,7 @@ public class Ranger extends Mob {
 		this.posUpdate();
 		this.velUpdate();
 		this.imageUpdate();
-		this.updateAniTick();
-		this.tick++;
+
 
 		
 	}
