@@ -11,6 +11,7 @@ public class Jumper extends Ranger {
 	}
 	/**
 	 * check to see if jumper should jump, if so, jump
+	 * Also calls the shoot method, when called it sets xVel to 0 
 	 */
 	@Override
 	public void runAwayVel() {
@@ -18,15 +19,14 @@ public class Jumper extends Ranger {
 		Random random = new Random();
 		double newXVel;
 		newXVel = 2 + random.nextFloat() * speedXMax;
-
-		int direction = 0;
-		if (this.tick % (this.timeToMove * 2) == 0 && this.tick != 0) {
 		this.setIsShooting(0);
+		int direction = 0;
+		if (this.tick % (this.timeToMove ) == this.timeToMove/2 && this.tick != 0) {
 			this.setXVel(0);
 			this.shoot();
 		}
 		
-		else if (this.tick % this.timeToMove == 0 && this.tick != 0) {
+		if (this.tick % this.timeToMove == 0 && this.tick != 0) {
 			// if one, travel right, if 0, travel left
 			direction = random.nextInt(2);
 			if (direction == 0) {
@@ -51,10 +51,7 @@ public class Jumper extends Ranger {
 	}
 		
 		
-<<<<<<< HEAD
-		
-		
-=======
+
 	public void setImages() {
 	// set idle images
 				for (int i = 0; i <= 1; i++) {
@@ -64,7 +61,6 @@ public class Jumper extends Ranger {
 				
 				// set shooting image
 				this.saveImage("RangerShooting0000.png", this.shootImages);
->>>>>>> refs/remotes/origin/master
 	}
 
 }
