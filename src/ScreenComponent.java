@@ -74,9 +74,13 @@ public class ScreenComponent extends JComponent {
 		JLabel lives = new JLabel();
 
 		if (this.levelChange) {
+			
 			this.level = new Level("Level " + this.levelNum, this.levelNum);
 			this.level.setKeyMap(keyMap);
-			this.level.readLevelFile();
+			if (this.levelNum != 0) {
+				this.level.readLevelFile();
+
+			}
 			this.levelChange = false;
 		}
 		
