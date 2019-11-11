@@ -41,11 +41,11 @@ public abstract class Mob {
 	private long endInvincible;
 	
 	
-	public Mob(int xPos, int yPos) {
+	public Mob(double d, double e) {
 		this.height = defaultMobHeight;
 		this.width = defaultMobWidth;
-		this.xPos = xPos;
-		this.yPos = yPos;
+		this.xPos = d;
+		this.yPos = e;
 		this.xVel = 0;
 		this.yVel = 0;
 		this.xAcceleration = 0;
@@ -148,6 +148,10 @@ public abstract class Mob {
 		if (this.yPos  + this.yVel < 0) {
 			this.setYVel(0);
 		}
+	}
+	
+	public boolean checkDuplicate() {
+		return false;
 	}
 	
 

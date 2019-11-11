@@ -9,6 +9,7 @@ public class LevelGenerator {
 		createLevel2Script();
 		createLevel3Script();
 		createLevel4Script();
+		createLevel5Script();
 	}
 	public void createGameOverScript() {
 		
@@ -72,11 +73,11 @@ public class LevelGenerator {
 		}
 		
 
+		pw.append("EEEEEEEEEEEEEEDEEEE\n");
 		pw.append("EEEEEEEEEEEEEEEEEEE\n");
-		pw.append("EEEEEEEEHEEEEEEEEEE\n");
 		pw.append("EEEEEEETTTEEEEEEEEE\n");
 		pw.append("EEEEEEEEEEEEEEEEEEE\n");
-		pw.append("EEEEPEEEEEREEEEEEED\n");
+		pw.append("EEEEEEEEEHEEEEEEEEE\n");
 		pw.append("EEEETEEETTTTEEEEEEE\n");
 		pw.append("EEEEEEEEEEEEEEEEEEE\n");
 		pw.append("EEEEEEEEEEEEEEEEEEE\n");
@@ -97,15 +98,15 @@ public class LevelGenerator {
 		}
 		
 
-		pw.append("EEEEDEEEEDEEEEEEEEE\n");
+		pw.append("EEEEEEEEEEEEEEEEEE\n");
 		pw.append("EEEEEEEEEEEEEEEEEEE\n");
 		pw.append("EEEEEEEEEEEEEEEEEEE\n");
-		pw.append("EEEEEEEEHEEEEEEEEEE\n");
+		pw.append("EEEEEEEEEEEEEEEEEEE\n");
 		pw.append("EEEEEREEEEEEETEEEEE\n");
-		pw.append("EEEETTTTEEEEEEEEEEE\n");
+		pw.append("EEEETTTTEEEEHEEEEEE\n");
 		pw.append("EEEEEEEEEEETTTEEEEE\n");
 		pw.append("EEEEEEEEEEEEEEEEEEE\n");
-		pw.append("EEEEEEEEEEEEEEEEEEE\n");
+		pw.append("EEDEEEEEEEEEEEEEEEE\n");
 		pw.append("TTTTTTTTTTTTTTTTTTT\n");
 
 		pw.close();
@@ -124,13 +125,13 @@ public class LevelGenerator {
 
 		pw.append("EEEEEEEEEEEEEEEEEEE\n");
 		pw.append("EEEEEEEEEEEEEEEEEEE\n");
-		pw.append("EEEEEEEEEEEEEEEEEEE\n");
+		pw.append("EEEEEPEEEEEEEEEEEEE\n");
 		pw.append("EEEEEEEEEEEEEEEEEEE\n");
 		pw.append("EEEEEEEEEEETTTEEEEE\n");
-		pw.append("EEETTTTTEEEEEEEEEEE\n");
+		pw.append("EEEEETTTEEEEEEEEEEE\n");
 		pw.append("TTTTEEEEEEETTTEEEEE\n");
-		pw.append("TEEEEEEEEEEEEEEEEEE\n");
-		pw.append("TEEEEEEEHEEEEEEEEER\n");
+		pw.append("EEEEEEEEEEEEEEEEEEE\n");
+		pw.append("EEEEEEEEHEEEEEEEEEE\n");
 		pw.append("TTTTTTTTTTTTTTTTTTT\n");
 
 		pw.close();
@@ -140,6 +141,31 @@ public class LevelGenerator {
 		PrintWriter pw = null;
 		try {
 			pw = new PrintWriter("level4.txt");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		}
+		
+
+		pw.append("EEEDEEEEEEEEEEEEEEE\n");
+		pw.append("EEETTTEEEEEEEEEPEEE\n");
+		pw.append("EEEEEEEEEEEEEEEEEEE\n");
+		pw.append("EETEEEEEEEEEEEEEEEE\n");
+		pw.append("EEEEEEEEHEEEEEEEEPE\n");
+		pw.append("EEEEEEETTTTEEEEEEEE\n");
+		pw.append("EEEEEEEEEEEEREEEEEE\n");
+		pw.append("EEEDEEEEEEETTTEEEEE\n");
+		pw.append("EEEEEEEEEEEEEEEEEEE\n");
+		pw.append("TTTTTTTTTTTTTTTTTTT\n");
+
+		pw.close();
+	}
+	
+	public void createLevel5Script() {
+		PrintWriter pw = null;
+		try {
+			pw = new PrintWriter("level5.txt");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

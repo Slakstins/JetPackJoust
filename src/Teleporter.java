@@ -6,8 +6,8 @@ public class Teleporter extends Mob {
 	private double nextX;
 	private double nextY;
 
-	public Teleporter(int xPos, int yPos) {
-		super(xPos, yPos);
+	public Teleporter(double d, double e) {
+		super(d, e);
 		this.tick = 0;
 		this.setImage("Teleporter.png");
 		
@@ -15,17 +15,27 @@ public class Teleporter extends Mob {
 		
 	}
 
+	public boolean timeToTeleport() {
+		if (this.tick % 500 == 0) {
+			return true;
+		}
+		return false;
+
+
+	}
+	
+
 	@Override
 	public void updateMovement() {
 		
-		if (this.tick % 500 == 0) {
+		if (this.timeToTeleport()) {
 			this.teleport();
 			this.setImage("Teleporter.png");
 		}
 		this.posUpdate();
 		boolean solidify = false;
-		if (this.isTeleporting && this.getX() + 20 > this.nextX && this.getX() - 20 < this.nextX) {
-			if (this.getY() + 20 > this.nextY && this.getY() - 20 < this.nextY) {
+		if (this.getIsTeleporting() && this.getX() + 20 > this.getNextX() && this.getX() - 20 < this.getNextX()) {
+			if (this.getY() + 20 > this.getNextY() && this.getY() - 20 < this.getNextY()) {
 				solidify = true;
 			}
 		}
@@ -33,8 +43,11 @@ public class Teleporter extends Mob {
 			this.solidify();
 		}
 	}
-	
+	/**
+	 * stop moving, expand, activate hitbox/hurtbox, change image to solid teleporter
+	 */
 	public void solidify() {
+		this.isTeleporting = false;
 		this.setXVel(0);
 		this.setYVel(0);
 		this.setImage("SolidTeleporter.png");
@@ -59,26 +72,26 @@ public class Teleporter extends Mob {
 
 		double newXVel;
 		double newYVel;
-		if (nextX - this.getX() == 0) {
+		if (getNextX() - this.getX() == 0) {
 			newXVel = 0;
 			newYVel = this.totalVel;
 		} else {
 
-			double angle = Math.atan((this.nextY - this.getY()) / (this.nextX - this.getX()));
+			double angle = Math.atan((this.getNextY() - this.getY()) / (this.getNextX() - this.getX()));
 
 			newXVel = this.totalVel * Math.cos(angle);
 			newYVel = this.totalVel * Math.sin(angle);
-			if (this.nextX < this.getX()) {
+			if (this.getNextX() < this.getX()) {
 				newXVel *= -1;
 			}
-			if (this.nextX < this.getX() && this.nextY > this.getY()) {
+			if (this.getNextX() < this.getX() && this.getNextY() > this.getY()) {
 				newYVel *= -1;
 			}
 
-			if (this.nextY < this.getY()) {
+			if (this.getNextY() < this.getY()) {
 				newYVel *= -1;
 			}
-			if (this.nextY < this.getY() && this.nextX > this.getX()) {
+			if (this.getNextY() < this.getY() && this.getNextX() > this.getX()) {
 				newYVel *= -1;
 			}
 
@@ -124,8 +137,48 @@ public class Teleporter extends Mob {
 
 	@Override
 	public void collidedWithHero() {
+		if (this.getInvincible()) {
+			return;
+		}
+		
+		if (this.getIsTeleporting()) {
+			return;
+		}
+		if(this.getHero().getIsAttacking() == false) {
+			this.getHero().setKilled(true);
+			return;
+		}
+		if(this.getY() <= this.getHero().getY()) {
+			this.getHero().setKilled(true);
+			return;
+			
+		} 
+		
+		if (this.getY() > this.getHero().getY() && this.getHero().getIsAttacking()) {
+			this.setKilled(true);
+			return;
+		}
+		
+		
+		
+		
+		
+		
+		
 		// TODO Auto-generated method stub
 
+	}
+
+	public boolean getIsTeleporting() {
+		return isTeleporting;
+	}
+
+	public double getNextX() {
+		return nextX;
+	}
+
+	public double getNextY() {
+		return nextY;
 	}
 	
 	

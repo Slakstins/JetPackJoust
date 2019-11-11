@@ -87,7 +87,9 @@ public class Level extends Screen {
 					}
 					
 					if (toBuild == 'P') {
-						Teleporter newMob = new Teleporter(i * this.cellWidthHeight, posY * this.cellWidthHeight);
+//						Teleporter newMob = new Teleporter(i * this.cellWidthHeight, posY * this.cellWidthHeight);
+						Multiplier newMob = new Multiplier(i * this.cellWidthHeight, posY * this.cellWidthHeight);
+
 						getMobsToDraw().add(newMob);
 					}
 
@@ -226,6 +228,10 @@ public class Level extends Screen {
 					thisMob.getImage().getWidth(observer), thisMob.getImage().getHeight(observer), observer);
 
 			thisMob.updateMovement();
+			if (thisMob.checkDuplicate()) {
+				Multiplier multiplier = new Multiplier(thisMob.getX(), thisMob.getY());
+				this.mobsToDraw.add(multiplier);
+			}
 
 		}
 		this.checkKillBulletBounds();
