@@ -1,3 +1,5 @@
+import java.awt.Image;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Teleporter extends Mob {
@@ -5,14 +7,15 @@ public class Teleporter extends Mob {
 	private boolean isTeleporting = false;
 	private double nextX;
 	private double nextY;
+	private ArrayList<Image> idleImages = new ArrayList<Image>();
+	private ArrayList<Image> flyImages = new ArrayList<Image>();
 
 	public Teleporter(double d, double e) {
 		super(d, e);
 		this.tick = 0;
-		this.setImage("Teleporter.png");
-		
+		this.setImages();
+		this.setImage(idleImages.get(0));
 
-		
 	}
 
 	public boolean timeToTeleport() {
@@ -21,16 +24,14 @@ public class Teleporter extends Mob {
 		}
 		return false;
 
-
 	}
-	
 
 	@Override
 	public void updateMovement() {
-		
+		this.updateImages();
+
 		if (this.timeToTeleport()) {
 			this.teleport();
-			this.setImage("Teleporter.png");
 		}
 		this.posUpdate();
 		boolean solidify = false;
@@ -42,30 +43,29 @@ public class Teleporter extends Mob {
 		if (solidify) {
 			this.solidify();
 		}
+
+		
 	}
+
 	/**
-	 * stop moving, expand, activate hitbox/hurtbox, change image to solid teleporter
+	 * stop moving, expand, activate hitbox/hurtbox
 	 */
 	public void solidify() {
 		this.isTeleporting = false;
 		this.setXVel(0);
 		this.setYVel(0);
-		this.setImage("SolidTeleporter.png");
 	}
-/**
- * select a random loaction on the stage and move to it
- */
+
+	/**
+	 * select a random loaction on the stage and move to it
+	 */
 	public void teleport() {
 		this.isTeleporting = true;
 		Random random = new Random();
 		this.nextX = random.nextFloat() * (FRAME_WIDTH - CELLWIDTHHEIGHT);
 		this.nextY = random.nextFloat() * (FRAME_HEIGHT - CELLWIDTHHEIGHT * 2);
-		
-		
-		updateDirection();
-		
-		
 
+		updateDirection();
 	}
 
 	public void updateDirection() {
@@ -99,10 +99,10 @@ public class Teleporter extends Mob {
 		this.setXVel(newXVel);
 		this.setYVel(newYVel);
 	}
-	
+
 	@Override
 	public void tileCollision(Tile tile) {
-		
+
 	}
 
 	@Override
@@ -140,33 +140,53 @@ public class Teleporter extends Mob {
 		if (this.getInvincible()) {
 			return;
 		}
-		
+
 		if (this.getIsTeleporting()) {
 			return;
 		}
-		if(this.getHero().getIsAttacking() == false) {
+		if (this.getHero().getIsAttacking() == false) {
 			this.getHero().setKilled(true);
 			return;
 		}
-		if(this.getY() <= this.getHero().getY()) {
+		if (this.getY() <= this.getHero().getY()) {
 			this.getHero().setKilled(true);
 			return;
-			
-		} 
-		
+
+		}
+
 		if (this.getY() > this.getHero().getY() && this.getHero().getIsAttacking()) {
 			this.setKilled(true);
 			return;
 		}
-		
-		
-		
-		
-		
-		
-		
-		// TODO Auto-generated method stub
 
+	}
+
+	private void setImages() {
+		// set idle images
+		for (int i = 0; i <= 4; i++) {
+			String filename = "ghost000" + Integer.toString(i) + ".png";
+			this.saveImage(filename, this.idleImages);
+		}
+
+		// set fly images
+		for (int i = 0; i <= 1; i++) {
+			String filename = "ghostFly000" + Integer.toString(i) + ".png";
+			this.saveImage(filename, this.flyImages);
+		}
+
+	}
+
+	protected void updateImages() {
+		if (this.isTeleporting) {
+			if (this.aniTick >= this.flyImages.size())
+				this.aniTick = 0;
+			this.setImage(this.flyImages.get(aniTick));
+		} else {
+			if (this.aniTick >= this.idleImages.size())
+				this.aniTick = 0;
+			this.setImage(this.idleImages.get(aniTick));
+		}
+		
 	}
 
 	public boolean getIsTeleporting() {
@@ -180,7 +200,5 @@ public class Teleporter extends Mob {
 	public double getNextY() {
 		return nextY;
 	}
-	
-	
 
 }

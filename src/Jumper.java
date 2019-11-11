@@ -20,8 +20,8 @@ public class Jumper extends Ranger {
 		newXVel = 2 + random.nextFloat() * speedXMax;
 
 		int direction = 0;
-		this.setIsShooting(false);
 		if (this.tick % (this.timeToMove * 2) == 0 && this.tick != 0) {
+		this.setIsShooting(0);
 			this.setXVel(0);
 			this.shoot();
 		}
@@ -44,10 +44,27 @@ public class Jumper extends Ranger {
 				this.setXVel(this.getXVel() * -1);
 			}
 		}
+	}
+	@Override
+	public void shoot() {
+		this.setIsShooting(2);
+	}
 		
 		
+<<<<<<< HEAD
 		
 		
+=======
+	public void setImages() {
+	// set idle images
+				for (int i = 0; i <= 1; i++) {
+					String filename = "Ranger2000" + Integer.toString(i) + ".png";
+					this.saveImage(filename, this.idleImages);
+				}
+				
+				// set shooting image
+				this.saveImage("RangerShooting0000.png", this.shootImages);
+>>>>>>> refs/remotes/origin/master
 	}
 
 }

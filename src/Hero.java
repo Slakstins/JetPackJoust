@@ -96,8 +96,6 @@ public class Hero extends Mob {
 
 		this.shoot();
 
-		this.tick++;
-		this.updateAniTick();
 	}
 
 	/**
