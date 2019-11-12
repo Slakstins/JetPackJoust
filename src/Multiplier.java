@@ -39,7 +39,7 @@ public class Multiplier extends Teleporter {
 
 		// set fly images
 		for (int i = 0; i <= 1; i++) {
-			String filename = "GhostFlying2000" + Integer.toString(i) + ".png";
+			String filename = "Ghost Flying2000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.flyImages);
 		}
 
