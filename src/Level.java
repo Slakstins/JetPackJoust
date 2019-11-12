@@ -13,12 +13,13 @@ public class Level extends Screen {
 	private ArrayList<Tile> tilesToDraw;
 	private ArrayList<Tile> solidTiles;
 	private int levelNum;
-	public final int cellWidthHeight = 100;
-	public final int xCells = 19;
-	public final int yCells = 10;
-	private final int bulletBoundKill = 10;
+	public static final int cellWidthHeight = 100;
+	public static final int xCells = 19;
+	public static final int yCells = 10;
+	private static final int bulletBoundKill = 10;
 	private Hero hero;
 	private Hero hero2;
+	private CollisionManager collisionManager;
 	private HashMap<String, Boolean> keyMap;
 	private ArrayList<Bullet> bullets;
 
@@ -29,6 +30,7 @@ public class Level extends Screen {
 		tilesToDraw = new ArrayList<Tile>();
 		solidTiles = new ArrayList<Tile>();
 		bullets = new ArrayList<Bullet>();
+		collisionManager = new CollisionManager();
 
 	}
 
@@ -152,16 +154,7 @@ public class Level extends Screen {
 
 	}
 
-	/**
-	 * Check for a collision between a mob and a solid tile
-	 * 
-	 * @param mob
-	 * @param tile
-	 * @return
-	 */
-	private boolean collision(Mob mob, Tile tile) {
-		return mob.getBounds().intersects(tile.getBounds());
-	}
+	
 
 	/**
 	 * check for a collision between two mobs
@@ -170,9 +163,7 @@ public class Level extends Screen {
 	 * @param mob2
 	 * @return
 	 */
-	private boolean mobCollision(Mob mob1, Mob mob2) {
-		return mob1.getBounds().intersects(mob2.getBounds());
-	}
+
 
 	/**
 	 * should switch to the game over screen
@@ -188,7 +179,7 @@ public class Level extends Screen {
 	public void drawEverything(Graphics2D g2) {
 
 		this.setMobsHero();
-		this.checkKillMobCollision();
+		this.collisionManager.checkKillMobCollision(this.mobsToDraw, this.bullets, this.hero);
 
 		// draw background and solids
 		for (int i = 0; i < this.tilesToDraw.size(); i++) {
@@ -209,10 +200,10 @@ public class Level extends Screen {
 
 			for (int j = 0; j < this.solidTiles.size(); j++) {
 				Tile thisTile = solidTiles.get(j);
-				if (collision(thisMob, thisTile) && bullets.contains(thisMob)) {
+				if (this.collisionManager.collision(thisMob, thisTile) && bullets.contains(thisMob)) {
 					this.killBullets(thisMob);
 				}
-				if (collision(thisMob, thisTile)) {
+				if (this.collisionManager.collision(thisMob, thisTile)) {
 					thisMob.tileCollision(thisTile);
 
 				}
@@ -269,25 +260,8 @@ public class Level extends Screen {
 
 	}
 
-	/**
-	 * check to see which mobs are touching to see if they die Why is there a delay
-	 * in deleting Mobs?
-	 */
-	public void checkKillMobCollision() {
-		ArrayList<Mob> mobsToDelete = new ArrayList<Mob>();
-		for (int i = 0; i < this.getMobsToDraw().size(); i++) {
-			Mob thisMob = this.getMobsToDraw().get(i);
-			if (this.mobCollision(thisMob, this.hero) && !thisMob.equals(hero)) {
 
-				mobsToDelete.add(thisMob);
-				// IMPLEMENT
-				thisMob.collidedWithHero();
 
-			}
-		}
-		this.killDeadMobs();
-
-	}
 
 	/**
 	 * Kill bullets that are too close to the sides or top bottoms of the screen
@@ -304,35 +278,8 @@ public class Level extends Screen {
 		}
 	}
 
-	/**
-	 * Handles actions having to do with the death of mobs, removing them if hasDied
-	 * is true
-	 */
-	public void killDeadMobs() {
-		ArrayList<Mob> mobsToDelete = new ArrayList<Mob>();
-		for (int i = 0; i < this.getMobsToDraw().size(); i++) {
-			if (this.getMobsToDraw().get(i).getHasDied()) {
-				mobsToDelete.add(this.getMobsToDraw().get(i));
-			}
-		}
-		for (int i = 0; i < mobsToDelete.size(); i++) {
+	
 
-			for (int j = 0; j < this.getMobsToDraw().size(); j++) { // bullets have to be deleted in two places
-				if (this.bullets.contains(mobsToDelete.get(i)) && this.getMobsToDraw().contains(mobsToDelete.get(i))) {
-//					mobsToDelete.get(i).kill(); // NOT IMPLEMENTED YET
-				}
-				if (mobsToDelete.get(i).equals(getMobsToDraw().get(j))) {
-					this.getMobsToDraw().get(j).kill(); // nested in case kill changes into an egg which has another
-														// life
-					if (mobsToDelete.get(i).getHasDied()) {
-						this.getMobsToDraw().remove(j);
-						System.out.println("Mob deleted");
-					}
-
-				}
-			}
-		}
-	}
 
 	/**
 	 * Remove the specified bullet from existence since it exists in bullets as well
