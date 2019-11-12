@@ -14,7 +14,7 @@ public class ScreenComponent extends JComponent {
 	private int levelNum;
 	private HashMap<String, Boolean> keyMap;
 	private Level level;
-	private int lives = 3;
+	private int lives = 69;
 
 	private boolean levelChange;
 

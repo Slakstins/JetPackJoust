@@ -10,23 +10,21 @@ public class Jumper extends Ranger {
 		// TODO Auto-generated constructor stub
 	}
 	/**
-	 * check to see if jumper should jump, if so, jump
-	 * Also calls the shoot method, when called it sets xVel to 0 
+	 * check to see if jumper time to jump is true and checks if grounded if so jump
 	 */
 	@Override
-	public void runAwayVel() {
+	public void slimeMove() {
 
-		Random random = new Random();
-		double newXVel;
-		newXVel = 2 + random.nextFloat() * speedXMax;
-		this.setIsShooting(0);
-		int direction = 0;
-		if (this.tick % (this.timeToMove ) == this.timeToMove/2 && this.tick != 0) {
-			this.setXVel(0);
-			this.shoot();
-		}
 		
-		if (this.tick % this.timeToMove == 0 && this.tick != 0) {
+		//jump if grounded
+		if (this.checkTimeToJump()) {
+			Random random = new Random();
+			double newXVel;
+			newXVel = 2 + random.nextFloat() * speedXMax;
+			int direction = 0;
+			if (this.tick % (this.timeToMove ) == this.timeToMove/2 && this.tick != 0) {
+				this.setXVel(0);
+			}
 			// if one, travel right, if 0, travel left
 			direction = random.nextInt(2);
 			if (direction == 0) {
@@ -36,15 +34,24 @@ public class Jumper extends Ranger {
 			if (direction == 1) {
 				this.setXVel(-newXVel);
 			}
-			this.setYVel(-this.jumpYVel);
+			
 			if (this.getX() < 10 && this.getXVel() < 0) {
 				this.setXVel(this.getXVel() * -1);
 			}
 			if (this.getX() > 1790 && this.getXVel() > 0) {
 				this.setXVel(this.getXVel() * -1);
 			}
+			this.setYVel(-this.jumpYVel);
+			
 		}
 	}
+	public boolean checkTimeToJump() {
+		if (this.tick % (this.timeToMove) == this.timeToMove/2 && this.tick!= 0 && this.getIsGrounded()) {
+			return true;
+		}
+		return false;
+	}
+	
 	@Override
 	public void shoot() {
 		this.setIsShooting(2);

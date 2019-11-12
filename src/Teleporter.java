@@ -7,8 +7,8 @@ public class Teleporter extends Mob {
 	private boolean isTeleporting = false;
 	private double nextX;
 	private double nextY;
-	private ArrayList<Image> idleImages = new ArrayList<Image>();
-	private ArrayList<Image> flyImages = new ArrayList<Image>();
+	protected ArrayList<Image> idleImages = new ArrayList<Image>();
+	protected ArrayList<Image> flyImages = new ArrayList<Image>();
 
 	public Teleporter(double d, double e) {
 		super(d, e);
