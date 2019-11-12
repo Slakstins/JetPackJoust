@@ -31,10 +31,13 @@ public class Ranger extends Mob {
 
 	@Override
 	public void updateMovement(){
-		this.runAwayVel();
+		this.setIsShooting(0);
+
+		this.slimeMove();
 		this.posUpdate();
 		this.velUpdate();
 		this.imageUpdate();
+		this.checkShoot();
 
 
 		
@@ -51,16 +54,12 @@ public class Ranger extends Mob {
 		
 	}
 
-	public void runAwayVel() {
-		Random random = new Random();
-		int direction = 0;
-		this.setIsShooting(0);
-		if (this.tick % (this.timeToMove*2) == 0 && this.tick!= 0) {
-			this.setXVel(0);
-			this.shoot();
-		}
+	public void slimeMove() {
 		
-		else if (this.tick % this.timeToMove == 0) {
+
+		if (this.checkTimeToMove()) {
+			Random random = new Random();
+			int direction = 0;
 			// if one, travel right, if 0, travel left
 			direction = random.nextInt(2);
 			if (direction == 0) {
@@ -74,6 +73,23 @@ public class Ranger extends Mob {
 		
 		
 		
+	}
+	
+	public boolean checkTimeToMove() {
+		return (this.tick % this.timeToMove == 0);
+	}
+	/**
+	 * Ranger moves twice for each time Jumper moves once
+	 * @return
+	 */
+	public boolean checkShoot() {
+		if (this.tick % (this.timeToMove * 2) == (this.timeToMove + this.timeToMove/2) && this.tick!= 0) {
+			this.setXVel(0);
+			this.shoot();
+			return true;
+		}
+		
+		return false;
 	}
 
 	@Override

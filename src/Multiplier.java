@@ -25,22 +25,9 @@ public class Multiplier extends Teleporter {
 	@Override
 	public void updateMovement() {
 		this.checkDuplicate();
-		if (this.timeToTeleport()) {
-			this.teleport();
-//			this.setImage("Multiplier.png");
-		}
-		this.posUpdate();
-		boolean solidify = false;
-		if (this.getIsTeleporting() && this.getX() + 20 > this.getNextX() && this.getX() - 20 < this.getNextX()) {
-			if (this.getY() + 20 > this.getNextY() && this.getY() - 20 < this.getNextY()) {
-				solidify = true;
-			}
-		}
-		if (solidify) {
-			this.solidify();
-		}
+
+		super.updateMovement();
 		
-		super.updateImages();
 	}
 	
 	

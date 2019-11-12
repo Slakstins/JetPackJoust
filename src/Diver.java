@@ -23,7 +23,10 @@ public class Diver extends Mob {
 	}
 
 	
-
+/**
+ * Update movement based on whether Diver is in an egg.
+ * Run checkBreakOutOfEgg
+ */
 	@Override
 	public void updateMovement() {
 		if (this.getIsEgg() == false) {
@@ -37,12 +40,14 @@ public class Diver extends Mob {
 		this.checkBreakOutOfEgg();
 
 	}
-
+/**
+ * set the direction to be towards the player and break the velocity into components acordingly to retain total velocity
+ */
 	public void updateDirection() {
 		
 		double newXVel;
 		double newYVel;
-		if (this.getHero().getX() - this.getX() == 0) {
+		if (this.getHero().getX() - this.getX() == 0) { //prevents divide by zero error
 			newXVel = 0;
 			newYVel = this.totalVel;
 		} else {
@@ -78,6 +83,8 @@ public class Diver extends Mob {
 	}
 	/**
 	 * diver becomes an egg and must be killed again to be removed from the game
+	 * Also becomes temporarily invincible to prevent instakilling of egg
+	 * If is an egg, kill
 	 */
 	@Override
 	public void kill() {
@@ -99,7 +106,7 @@ public class Diver extends Mob {
 	}
 	/**
 	 * 
-	 * replace the diver with an egg! randomize velocity and set invulnerable temporarily somehow TBD
+	 * replace the diver with an egg! randomize velocity and set invulnerable temporarily 
 	 */
 	public void turnIntoEgg() {
 		this.setImage("Egg.png");
@@ -123,7 +130,9 @@ public class Diver extends Mob {
 	public void setBreakOutOfEggTime() {
 		this.breakOutEggTime = this.tick + this.timeInEgg;
 	}
-	
+/**
+ * check to see if the time to break out of the egg has elapsed
+ */
 	public void checkBreakOutOfEgg() {
 		if (this.tick == this.breakOutEggTime) {
 			this.breakOutOfEgg(); //IMPLEMENT THIS
