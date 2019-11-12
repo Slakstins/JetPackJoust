@@ -3,8 +3,8 @@
 -------------------
 -------------------
 -R--R-------R--R---
-TTTTTTTT--TTTTTTTTT
+FFFFFFFF--FFFFFFFFF
 ---------------H---
---------------TT---
+--------------FF---
 ----M--------------
 TTTTTTTTTTTTTTTTTTT

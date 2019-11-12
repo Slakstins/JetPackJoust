@@ -1,10 +1,10 @@
 -------------------
 ----C--------------
 -R-----R-----R-----
-TTTTTTTTTTTTTTTTTTT
+FFFFFFFFFFFFFFFFFFF
 ---C-------C-------
 -R------R----R-----
-TTTTTTTTTTTTTTTTTTT
+FFFFFFFFFFFFFFFFFFF
 -------------------
 ------H------------
 TTTTTTTTTTTTTTTTTTT

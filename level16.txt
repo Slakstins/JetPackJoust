@@ -1,10 +1,10 @@
 -----------M-------
-T------TTT---------
----TTT----TTTTTT--T
-T------------------
-----TTTTT----------
+F------FFF---------
+---FFF----FFFFFF--F
+F------------------
+----FFFFF----------
 -------------------
-TTTTTTTTTTTTTTTTTTT
+FFFFFFFFFFFFFFFFFFF
 -------------------
 -J--J-J--H---J-J-J-
 TTTTTTTTTTTTTTTTTTT
