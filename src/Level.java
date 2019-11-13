@@ -41,6 +41,16 @@ public class Level extends Screen {
 	public void setKeyMap(HashMap<String, Boolean> keyMap) {
 		this.keyMap = keyMap;
 	}
+	
+	public void drawBackGround() {
+		for (int i = 0; i < this.xCells; i++) {
+			for (int j = 0; j < this.yCells; j++) {
+				Tile backgroundTile = new Air(i * this.cellWidthHeight, j * this.cellWidthHeight, this.cellWidthHeight,
+						this.cellWidthHeight);
+				this.tilesToDraw.add(backgroundTile);
+			}
+		}
+	}
 
 	public void readLevelFile() {
 		Scanner scanner;
@@ -55,13 +65,6 @@ public class Level extends Screen {
 		// add bakground tiles before others
 
 		// add background tiles before others
-		for (int i = 0; i < this.xCells; i++) {
-			for (int j = 0; j < this.yCells; j++) {
-				Tile backgroundTile = new Air(i * this.cellWidthHeight, j * this.cellWidthHeight, this.cellWidthHeight,
-						this.cellWidthHeight);
-				this.tilesToDraw.add(backgroundTile);
-			}
-		}
 
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
@@ -182,11 +185,42 @@ public class Level extends Screen {
 		}
 		return false;
 	}
+	
+	public void checkDuplication() {
+		for (int i = 0; i < this.mobsToDraw.size(); i++) {
+			Mob thisMob = this.mobsToDraw.get(i);
+			if (thisMob.checkDuplicate() > 0) {
+				if (thisMob.checkDuplicate() == 1) {
+					Multiplier multiplier = new Multiplier(thisMob.getX(), thisMob.getY());
+					this.mobsToDraw.add(multiplier);
+				}
+				if (thisMob.checkDuplicate() == 2) {
+					Chicken mobAsChicken = (Chicken)thisMob;
+					for (int y = 1; y < mobAsChicken.getEggsDropped(); y++ ) {
+						System.out.println(this.mobsToDraw.size());
+						Chicken chicken = new Chicken(thisMob.getX(), thisMob.getY());
+						chicken.turnIntoEgg();
+						chicken.setInvincible(true, 50);
+
+						this.mobsToDraw.add(chicken);
+						
+						chicken.setHero(this.hero);
+						thisMob.setDuplicate(-1);
+						
+					}
+					
+				}
+			
+			}
+		}
+	}
 
 	public void drawEverything(Graphics2D g2) {
+		this.checkDuplication();
 
 		this.setMobsHero();
 		this.collisionManager.checkKillMobCollision(this.mobsToDraw, this.bullets, this.hero);
+		
 
 		// draw background and solids
 		for (int i = 0; i < this.tilesToDraw.size(); i++) {
@@ -221,29 +255,7 @@ public class Level extends Screen {
 					thisMob.getImage().getWidth(observer), thisMob.getImage().getHeight(observer), observer);
 
 			thisMob.updateMovement();
-			if (thisMob.checkDuplicate() > 0) {
-				if (thisMob.checkDuplicate() == 1) {
-					Multiplier multiplier = new Multiplier(thisMob.getX(), thisMob.getY());
-					this.mobsToDraw.add(multiplier);
-				}
-				if (thisMob.checkDuplicate() == 2) {
-					Chicken mobAsChicken = (Chicken)thisMob;
-					for (int y = 1; y < mobAsChicken.getEggsDropped(); y++ ) {
-						System.out.println(this.mobsToDraw.size());
-						Chicken chicken = new Chicken(thisMob.getX(), thisMob.getY());
-						chicken.turnIntoEgg();
-						chicken.setInvincible(true, 50);
-
-						this.mobsToDraw.add(chicken);
-						
-						chicken.setHero(this.hero);
-						thisMob.setDuplicate(-1);
-						
-					}
-					
-				}
 			
-			}
 
 		}
 		this.checkKillBulletBounds();
