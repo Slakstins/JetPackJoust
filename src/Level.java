@@ -185,7 +185,9 @@ public class Level extends Screen {
 		}
 		return false;
 	}
-	
+	/**
+	 * check for the duplication methods implemented by Chicken and Diver
+	 */
 	public void checkDuplication() {
 		for (int i = 0; i < this.mobsToDraw.size(); i++) {
 			Mob thisMob = this.mobsToDraw.get(i);
@@ -214,15 +216,8 @@ public class Level extends Screen {
 			}
 		}
 	}
-
-	public void drawEverything(Graphics2D g2) {
-		this.checkDuplication();
-
-		this.setMobsHero();
-		this.collisionManager.checkKillMobCollision(this.mobsToDraw, this.bullets, this.hero);
-		
-
-		// draw background and solids
+	
+	public void drawTiles(Graphics2D g2) {
 		for (int i = 0; i < this.tilesToDraw.size(); i++) {
 			ImageObserver observer = null; // is this a problem????
 			Tile thisTile = this.tilesToDraw.get(i);
@@ -230,14 +225,28 @@ public class Level extends Screen {
 					thisTile.getY() + this.cellWidthHeight, 0, 0, thisTile.getImage().getWidth(observer),
 					thisTile.getImage().getHeight(observer), observer);
 		}
-		// draw mobs
+	}
+	
+	
+
+	public void drawEverything(Graphics2D g2) {
+		this.checkDuplication();
+		this.spawnBullets();
+
+		this.setMobsHero();
+		this.collisionManager.checkKillMobCollision(this.mobsToDraw, this.bullets, this.hero);
+		
+
+		// draw background and solids
+		this.drawTiles(g2);
+		// draw mobs and check for shooting and collisions in the same loop
+		// should these be separated into more methods?
 		for (int i = 0; i < this.getMobsToDraw().size(); i++) {
 			ImageObserver observer = null; // is this a problem????
 			Mob thisMob = this.getMobsToDraw().get(i);
 			thisMob.updateGrounded(solidTiles);
 
-			// create a bullet if the mob var isShooting is true
-			this.spawnBullets(thisMob);
+		
 
 			for (int j = 0; j < this.solidTiles.size(); j++) {
 				Tile thisTile = solidTiles.get(j);
@@ -268,13 +277,18 @@ public class Level extends Screen {
 	/*
 	 * checks if a given mob is shooting, then spawns bullets as appropriate
 	 */
-	public void spawnBullets(Mob thisMob) {
+	public void spawnBullets() {
+		for (int i = 0; i < this.mobsToDraw.size(); i++) {
+		Mob thisMob = this.mobsToDraw.get(i);
+				
+		
 		if (thisMob.getShooting() > 0) {
 			double[] dir = thisMob.shootDirection();
 			Bullet bullet = new Bullet((int) thisMob.getX(), (int) thisMob.getY(), dir[0], dir[1], this.hero, thisMob.getShooting());
 			getMobsToDraw().add(bullet);
 			bullets.add(bullet);
 
+		}
 		}
 
 	}
