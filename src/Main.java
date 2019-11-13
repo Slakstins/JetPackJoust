@@ -26,7 +26,7 @@ public class Main {
 	private final static int FRAME_WIDTH = 1900;
 	private final static int CELL_WIDTH_HEIGHT = 100;
 
-	public Main() {
+	public Main() { 	 
 
 		System.out.println("Testing Arcade Game");
 
