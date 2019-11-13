@@ -3,13 +3,13 @@ import java.util.ArrayList;
 public class CollisionManager {
 
 	/**
-	 * check to see which mobs are touching to see if they die Why is there a delay
-	 * in deleting Mobs?
+	 * check to see which mobs are touching to see if they die 
 	 */
 	public void checkKillMobCollision(ArrayList<Mob> mobsToDraw, ArrayList<Bullet> bullets, Hero hero) {
 		ArrayList<Mob> mobsToDelete = new ArrayList<Mob>();
 		for (int i = 0; i < mobsToDraw.size(); i++) {
-			Mob thisMob =  mobsToDraw.get(i);
+			Mob thisMob =  mobsToDraw.get(i);				
+
 			if (this.mobCollision(thisMob, hero) && !thisMob.equals(hero)) {
 
 				mobsToDelete.add(thisMob);
@@ -17,7 +17,7 @@ public class CollisionManager {
 
 			}
 		}
-		this.killDeadMobs(mobsToDraw, bullets);
+		this.killDeadMobs(mobsToDraw);
 		//some mobs that have multiple requirements for death will be marked not dead when calling collide with hero,
 		//so a kill function is used
 
@@ -26,15 +26,16 @@ public class CollisionManager {
 	private boolean mobCollision(Mob mob1, Mob mob2) {
 		return mob1.getBounds().intersects(mob2.getBounds());
 	}
+	
 	/**
 	 * Handles actions having to do with the death of mobs, removing them if hasDied
 	 * is true
 	 */
-	public void killDeadMobs(ArrayList<Mob> mobsToDraw, ArrayList<Bullet> bullets) {
+	public void killDeadMobs(ArrayList<Mob> mobsToDraw) {
 		ArrayList<Mob> mobsToDelete = new ArrayList<Mob>();
 		for (int i = 0; i < mobsToDraw.size(); i++) {
 			if (( mobsToDraw.get(i)).getHasDied()) {
-				mobsToDelete.add( mobsToDraw.get(i));
+				mobsToDelete.add(mobsToDraw.get(i));
 			}
 		}
 		for (int i = 0; i < mobsToDelete.size(); i++) {

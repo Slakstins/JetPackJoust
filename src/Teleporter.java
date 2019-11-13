@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Teleporter extends Mob {
-	private int totalVel = 5;
+	private int totalVel = 10;
 	private boolean isTeleporting = false;
 	private double nextX;
 	private double nextY;
@@ -166,6 +166,7 @@ public class Teleporter extends Mob {
 		for (int i = 0; i <= 4; i++) {
 			String filename = "ghost000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.idleImages);
+
 		}
 
 		// set fly images

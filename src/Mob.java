@@ -329,7 +329,6 @@ public abstract class Mob {
 		
 			if (this.tick == this.endInvincible) {
 				this.invincible = false;
-				System.out.println("invincibilty ended");
 			}
 		}
 		

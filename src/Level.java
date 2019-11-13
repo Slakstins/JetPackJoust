@@ -18,7 +18,6 @@ public class Level extends Screen {
 	public static final int yCells = 10;
 	private static final int bulletBoundKill = 10;
 	private Hero hero;
-	private Hero hero2;
 	private CollisionManager collisionManager;
 	private HashMap<String, Boolean> keyMap;
 	private ArrayList<Bullet> bullets;
@@ -189,22 +188,37 @@ public class Level extends Screen {
 	 * check for the duplication methods implemented by Chicken and Diver
 	 */
 	public void checkDuplication() {
+		
+		ArrayList<Mob> mobsToAdd = new ArrayList();
+
 		for (int i = 0; i < this.mobsToDraw.size(); i++) {
+			if (this.mobsToDraw.size() == 0) {
+				return;
+			}
 			Mob thisMob = this.mobsToDraw.get(i);
 			if (thisMob.checkDuplicate() > 0) {
 				if (thisMob.checkDuplicate() == 1) {
+
 					Multiplier multiplier = new Multiplier(thisMob.getX(), thisMob.getY());
-					this.mobsToDraw.add(multiplier);
+					multiplier.setDuplicate(-1);
+
+					mobsToAdd.add(multiplier);
+					
+					multiplier.setHero(this.hero);
+
+					
+					thisMob.setDuplicate(-1);
+
+
 				}
 				if (thisMob.checkDuplicate() == 2) {
 					Chicken mobAsChicken = (Chicken)thisMob;
 					for (int y = 1; y < mobAsChicken.getEggsDropped(); y++ ) {
-						System.out.println(this.mobsToDraw.size());
 						Chicken chicken = new Chicken(thisMob.getX(), thisMob.getY());
 						chicken.turnIntoEgg();
 						chicken.setInvincible(true, 50);
 
-						this.mobsToDraw.add(chicken);
+						mobsToAdd.add(chicken);
 						
 						chicken.setHero(this.hero);
 						thisMob.setDuplicate(-1);
@@ -212,8 +226,14 @@ public class Level extends Screen {
 					}
 					
 				}
+				
 			
 			}
+
+		}
+		
+		for (int i = 0; i < mobsToAdd.size(); i++) {
+			this.mobsToDraw.add(mobsToAdd.get(i));
 		}
 	}
 	
@@ -230,14 +250,27 @@ public class Level extends Screen {
 	
 
 	public void drawEverything(Graphics2D g2) {
-		this.checkDuplication();
-		this.spawnBullets();
+
+		this.collisionManager.checkKillMobCollision(this.mobsToDraw, this.bullets, this.hero);
+
 
 		this.setMobsHero();
-		this.collisionManager.checkKillMobCollision(this.mobsToDraw, this.bullets, this.hero);
+
+
+
+		this.spawnBullets();
 		
 
-		// draw background and solids
+
+		this.checkKillBulletBounds();
+
+
+
+
+
+
+
+		// draw solid and nonsolid tiles
 		this.drawTiles(g2);
 		// draw mobs and check for shooting and collisions in the same loop
 		// should these be separated into more methods?
@@ -264,13 +297,16 @@ public class Level extends Screen {
 					thisMob.getImage().getWidth(observer), thisMob.getImage().getHeight(observer), observer);
 
 			thisMob.updateMovement();
-			
+
 
 		}
-		this.checkKillBulletBounds();
+		this.checkDuplication();
+
+
 
 		// MasterList SOMEWHERE! for letters
 		// H is = Hero
+
 
 	}
 
