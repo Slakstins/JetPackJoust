@@ -4,10 +4,13 @@ import java.awt.event.ActionListener;
 public class GameAdvanceListener implements ActionListener {
 	
 	private ScreenComponent screenComponent;
+	private double time;
 
 	
 	public GameAdvanceListener(ScreenComponent screenComponent) {
 		this.screenComponent = screenComponent;
+		this.time = 0;
+		
 	}
 
 	@Override
@@ -20,8 +23,14 @@ public class GameAdvanceListener implements ActionListener {
 		// The component uses user actions from listeners
 		// to change the state of the game.
 		// update screen
+		this.time++;
 		this.screenComponent.updateDraw();
+		if (this.time % 60 == 0) {
+			screenComponent.addSecond();
+		}
 
 	}
+
+
 
 }

@@ -15,12 +15,19 @@ public class ScreenComponent extends JComponent {
 	private HashMap<String, Boolean> keyMap;
 	private Level level;
 	private int lives = 69;
+	private int seconds;
 
 	private boolean levelChange;
 
 	public ScreenComponent() {
 		this.levelNum = 0;
 		this.levelChange = true;
+		this.seconds = 0;
+	}
+	
+	public void addSecond() {
+		this.seconds++;
+		System.out.println(this.seconds);
 	}
 
 	public void addLevel() {
@@ -71,7 +78,6 @@ public class ScreenComponent extends JComponent {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
-		JLabel lives = new JLabel();
 
 		if (this.levelChange) {
 			
@@ -84,12 +90,13 @@ public class ScreenComponent extends JComponent {
 			this.levelChange = false;
 		}
 		
-		if (this.levelNum != 0) {
+		if (this.levelNum > 0) {
 			this.level.drawEverything(g2);
 			Font font = new Font("Verdana", Font.BOLD, 25);
 			g2.setFont(font);
 			g2.drawString("Lives: " + this.lives , 5, 30);
 			g2.drawString("Level: " + this.levelNum, 5, 80);
+			g2.drawString("Time: " + this.seconds, 5, 130);
 			this.goUpALevelIfMonstersDead();
 			this.checkHeroDeath();
 		} else {

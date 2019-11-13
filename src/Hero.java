@@ -10,9 +10,7 @@ import javax.imageio.ImageIO;
 public class Hero extends Mob {
 
 	private HashMap<String, Boolean> keyMap;
-	private double xMoveVel = 0.05; //also not used currently
 	private double thrust = 0.1;
-	private double maxThrustSpeed = 1.5; //not used currently
 	private double xMoveAccel = 0.1;
 	private double groundedMoveVel = 5;
 	private double downWardDashVel = 3;
@@ -103,17 +101,13 @@ public class Hero extends Mob {
 	 */
 	@Override
 	public void fly() {
-		//System.out.println(this.getYAcceleration());
 		if (this.keyMap.get("up")) {
 
 
-//			this.setYVel(this.getYVel() - this.thrust);
-//			this.setPostition(this.getX(), this.getY());
 			this.setYAccel(-this.thrust);
 		} else {
 			this.setYAccel(this.gravity);
 
-			// this.setImage("HeroIdle.png");
 		}
 
 	}

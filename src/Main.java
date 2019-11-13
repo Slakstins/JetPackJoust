@@ -28,7 +28,6 @@ public class Main {
 
 	public Main() { 	 
 
-		System.out.println("Testing Arcade Game");
 
 		LevelGenerator levelGenerator = new LevelGenerator();
 		levelGenerator.createLevels();
@@ -56,6 +55,7 @@ public class Main {
 		GameAdvanceListener advanceListener = new GameAdvanceListener(component);
 		Timer timer = new Timer(REFRESHES, advanceListener);
 		timer.start();
+		
 
 		input.setScreenComponent(component);
 		frame.setTitle("JOUST SORT OF");
