@@ -47,7 +47,6 @@ public class CollisionManager {
 														// life
 					if (mobsToDelete.get(i).getHasDied()) {
 						mobsToDraw.remove(j);
-						System.out.println("Mob deleted");
 					}
 
 				}

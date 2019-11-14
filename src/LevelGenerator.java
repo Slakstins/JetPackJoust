@@ -2,8 +2,8 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
 public class LevelGenerator {
-	
-	//List of letters corresponding to mobs:
+
+	// List of letters corresponding to mobs:
 	// T = tile
 	// F = floating tile
 	// - = empty
@@ -18,11 +18,7 @@ public class LevelGenerator {
 	//
 	//
 	//
-	
-	
-	
-	
-	
+
 	public void createLevels() {
 		createGameOverScript();
 		createLevel1Script();
@@ -47,18 +43,12 @@ public class LevelGenerator {
 		createLevel18Script();
 
 		createLevel19Script();
-//		createLevel20Script();
-
+		createWinScreen();
 
 	}
-	
 
-	
-
-	
-	
 	public void createGameOverScript() {
-		
+
 		PrintWriter pw = null;
 		try {
 			pw = new PrintWriter("level-1.txt");
@@ -67,7 +57,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("T---T--------------\n");
 		pw.append("-T-T--TTT--T-T-----\n");
@@ -82,7 +71,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
-	
+
 	public void createLevel0Script() {
 		PrintWriter pw = null;
 		try {
@@ -92,7 +81,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("-------------------\n");
 		pw.append("-------------------\n");
@@ -107,7 +95,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
-	
+
 	public void createLevel1Script() {
 		PrintWriter pw = null;
 		try {
@@ -117,7 +105,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("-------------------\n");
 		pw.append("-------------P-----\n");
@@ -132,7 +119,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
-	
+
 	public void createLevel2Script() {
 		PrintWriter pw = null;
 		try {
@@ -142,7 +129,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("-------------------\n");
 		pw.append("-------------------\n");
@@ -157,7 +143,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
-	
+
 	public void createLevel3Script() {
 		PrintWriter pw = null;
 		try {
@@ -167,7 +153,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("-------------------\n");
 		pw.append("-------------------\n");
@@ -182,7 +167,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
-	
+
 	public void createLevel4Script() {
 		PrintWriter pw = null;
 		try {
@@ -192,7 +177,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("------------D------\n");
 		pw.append("---FRF-------------\n");
@@ -207,7 +191,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
-	
+
 	public void createLevel5Script() {
 		PrintWriter pw = null;
 		try {
@@ -217,7 +201,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("-----R-------------\n");
 		pw.append("-----F-----R-------\n");
@@ -232,7 +215,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
-	
+
 	public void createLevel6Script() {
 		PrintWriter pw = null;
 		try {
@@ -242,7 +225,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("-------------------\n");
 		pw.append("-------------------\n");
@@ -257,7 +239,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
-	
+
 	public void createLevel7Script() {
 		PrintWriter pw = null;
 		try {
@@ -267,7 +249,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("-------------------\n");
 		pw.append("--R------------P---\n");
@@ -282,7 +263,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
-	
+
 	public void createLevel8Script() {
 		PrintWriter pw = null;
 		try {
@@ -292,7 +273,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("-------------------\n");
 		pw.append("----FRF------------\n");
@@ -307,7 +287,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
-	
+
 	public void createLevel9Script() {
 		PrintWriter pw = null;
 		try {
@@ -317,7 +297,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("------D------------\n");
 		pw.append("--------------R----\n");
@@ -332,9 +311,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
-	
 
-	
 	public void createLevel10Script() {
 		PrintWriter pw = null;
 		try {
@@ -344,7 +321,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("---------H---------\n");
 		pw.append("--------FFFF--M----\n");
@@ -359,7 +335,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
-	
+
 	public void createLevel11Script() {
 		PrintWriter pw = null;
 		try {
@@ -369,7 +345,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("-------------------\n");
 		pw.append("-------------------\n");
@@ -384,7 +359,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
-	
+
 	public void createLevel12Script() {
 		PrintWriter pw = null;
 		try {
@@ -394,7 +369,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("-------------------\n");
 		pw.append("--------M----------\n");
@@ -409,7 +383,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
-	
+
 	public void createLevel13Script() {
 		PrintWriter pw = null;
 		try {
@@ -419,7 +393,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("-------------------\n");
 		pw.append("-------------------\n");
@@ -434,6 +407,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
+
 	public void createLevel14Script() {
 		PrintWriter pw = null;
 		try {
@@ -443,7 +417,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("---C--------C------\n");
 		pw.append("-------------------\n");
@@ -458,6 +431,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
+
 	public void createLevel15Script() {
 		PrintWriter pw = null;
 		try {
@@ -467,7 +441,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("-----------M-------\n");
 		pw.append("F------FFF---------\n");
@@ -482,6 +455,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
+
 	public void createLevel16Script() {
 		PrintWriter pw = null;
 		try {
@@ -491,7 +465,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("-------------------\n");
 		pw.append("---M---------------\n");
@@ -506,7 +479,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
-	
+
 	public void createLevel17Script() {
 		PrintWriter pw = null;
 		try {
@@ -516,7 +489,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("-------------------\n");
 		pw.append("----C--------------\n");
@@ -531,6 +503,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
+
 	public void createLevel18Script() {
 		PrintWriter pw = null;
 		try {
@@ -540,8 +513,6 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
-
 
 		pw.append("-------------------\n");
 		pw.append("-----R-------------\n");
@@ -556,7 +527,7 @@ public class LevelGenerator {
 
 		pw.close();
 	}
-	
+
 	public void createLevel19Script() {
 		PrintWriter pw = null;
 		try {
@@ -566,14 +537,13 @@ public class LevelGenerator {
 			e.printStackTrace();
 			return;
 		}
-		
 
 		pw.append("----R-------R------\n");
-		pw.append("---RFR-----RFR-----\n");
+		pw.append("----F-------F------\n");
 		pw.append("--RF-FR---RF-FR----\n");
-		pw.append("-RF---FR-RF---FR----\n");
+		pw.append("--F---F---F---F-----\n");
 		pw.append("RF-----FRF-----FR--\n");
-		pw.append("F-------F-------FR-\n");
+		pw.append("F-------F-------F--\n");
 		pw.append("-----------------FR\n");
 		pw.append("F-----------------F\n");
 		pw.append("--------H----------\n");
@@ -581,8 +551,29 @@ public class LevelGenerator {
 
 		pw.close();
 	}
-	
-	
-	
+
+	public void createWinScreen() {
+		PrintWriter pw = null;
+		try {
+			pw = new PrintWriter("level20.txt");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		}
+
+		pw.append("--T---T------R------\n");
+		pw.append("---T-T-TTT-T-T-----\n");
+		pw.append("----T--T-T-T-T-----\n");
+		pw.append("----T--TTT-TTT-----\n");
+		pw.append("--------H----------\n");
+		pw.append("--T-T-T-T-TTT------\n");
+		pw.append("--T-T-T-T-T-T------\n");
+		pw.append("--TTTTT-T-T-T------\n");
+		pw.append("-------------------\n");
+		pw.append("-------------------\n");
+
+		pw.close();
+	}
 
 }

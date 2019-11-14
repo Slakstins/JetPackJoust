@@ -309,6 +309,10 @@ public class Level extends Screen {
 
 
 	}
+	
+	public boolean getHeroKill() {
+		return this.hero.getGotKill();
+	}
 
 	/*
 	 * checks if a given mob is shooting, then spawns bullets as appropriate
@@ -363,5 +367,11 @@ public class Level extends Screen {
 
 	public ArrayList<Mob> getMobsToDraw() {
 		return mobsToDraw;
+	}
+
+	public void setHeroKillFalse() {
+		this.hero.setGotKill(false);
+		// TODO Auto-generated method stub
+		
 	}
 }

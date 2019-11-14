@@ -21,6 +21,7 @@ public class Hero extends Mob {
 	private ArrayList<Image> flyImagesR = new ArrayList<Image>();
 	private ArrayList<Image> flyImagesL = new ArrayList<Image>();
 	private ArrayList<Image> dropImages = new ArrayList<Image>();
+	private boolean gotKill;
 
 
 	public Hero(int xPos, int yPos) {
@@ -31,6 +32,14 @@ public class Hero extends Mob {
 		this.setImage(this.idleImages.get(0));
 
 
+	}
+	
+	public void gotKill() {
+		this.gotKill = true;
+	}
+	
+	public boolean getGotKill() {
+		return this.gotKill;
 	}
 	
 
@@ -116,6 +125,7 @@ public class Hero extends Mob {
 	@Override
 	public void kill() {
 		// TODO Auto-generated method stub
+		this.gotKill = false;
 
 	}
 
@@ -209,6 +219,12 @@ public class Hero extends Mob {
 	public void collidedWithHero() {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void setGotKill(boolean b) {
+		this.gotKill = false;
+		// TODO Auto-generated method stub
+		
 	}
 
 

@@ -275,13 +275,18 @@ public abstract class Mob {
 		// TODO Auto-generated method stub
 		
 	}
-
+	/**
+	 * set the mob as dead and mark that the hero got a kill
+	 * @param hasDied
+	 */
 	public void setKilled(boolean hasDied) {
 		// TODO Auto-generated method stub
+		
 		if (this.invincible == true) {
 			this.hasDied = false;
 			return;
 		}
+		this.hero.gotKill();
 		this.hasDied = hasDied;
 		
 	}
