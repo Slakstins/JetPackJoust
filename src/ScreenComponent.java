@@ -117,7 +117,7 @@ public class ScreenComponent extends JComponent {
 			g2.drawString("Level: " + this.levelNum, 1745, 30);
 			g2.drawString("Time: " + this.seconds, 5, 80);
 			if (this.comboTimer > 0) {
-				g2.drawString("Combo multiplyer: x" + this.comboMultiplyer, 5, 190);
+				g2.drawString("Combo multiplier: x" + this.comboMultiplyer, 5, 190);
 				g2.drawString("Combo time: " + this.comboTimer, 5, 220);
 			}
 			g2.drawString("Total score: " + this.totalScore, 5, 120);
