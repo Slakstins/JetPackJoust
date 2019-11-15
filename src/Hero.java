@@ -169,6 +169,10 @@ public class Hero extends Mob {
 			String filename = "HeroFlyR000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.flyImagesR);
 		}
+		for (int i = 0; i <= 1; i++) {
+			String filename = "HeroFlyL000" + Integer.toString(i) + ".png";
+			this.saveImage(filename, this.flyImagesL);
+		}
 
 		// set drop/attack images
 		for (int i = 0; i <= 1; i++) {
@@ -178,14 +182,22 @@ public class Hero extends Mob {
 	}
 
 	private void updateImages() {
-		if (this.keyMap.get("up")) {
-			if (this.aniTick >= this.flyImagesR.size())
-				this.aniTick = 0;
-			this.setImage(this.flyImagesR.get(aniTick));
-		} else if (keyMap.get("down")) {
+		if (keyMap.get("down")) {
 			if (this.aniTick >= this.dropImages.size())
 				this.aniTick = 0;
 			this.setImage(this.dropImages.get(aniTick));
+		} else if (keyMap.get("right") && !this.getIsGrounded()) {
+			if (this.aniTick >= this.flyImagesR.size())
+				this.aniTick = 0;
+			this.setImage(this.flyImagesR.get(aniTick));
+		} else if (keyMap.get("left") && !this.getIsGrounded()) {
+			if (this.aniTick >= this.flyImagesL.size())
+				this.aniTick = 0;
+			this.setImage(this.flyImagesL.get(aniTick));
+		} else if (this.keyMap.get("up")) {
+			if (this.aniTick >= this.flyImagesR.size())
+				this.aniTick = 0;
+			this.setImage(this.flyImagesR.get(aniTick));
 		} else if (keyMap.get("right")) {
 			if (this.aniTick >= this.walkImagesR.size())
 				this.aniTick = 0;
