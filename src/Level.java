@@ -61,8 +61,6 @@ public class Level extends Screen {
 		}
 		int posY = 0;
 
-		// add bakground tiles before others
-
 		// add background tiles before others
 
 		while (scanner.hasNextLine()) {
@@ -80,14 +78,14 @@ public class Level extends Screen {
 						getMobsToDraw().add(newMob);
 
 					}
-					if (toBuild == 'D') { // MAY NOT HAVE ACCESS TO HERO YET BECAUSE ITS SET AFTER
+					if (toBuild == 'D') {
 
 						Diver newMob = new Diver(i * this.cellWidthHeight, posY * this.cellWidthHeight);
 
 						getMobsToDraw().add(newMob);
 
 					}
-					if (toBuild == 'J') { // MAY NOT HAVE ACCESS TO HERO YET BECAUSE ITS SET AFTER
+					if (toBuild == 'J') {
 
 						Jumper newMob = new Jumper(i * this.cellWidthHeight, posY * this.cellWidthHeight);
 
@@ -160,14 +158,6 @@ public class Level extends Screen {
 		}
 
 	}
-
-	/**
-	 * check for a collision between two mobs
-	 * 
-	 * @param mob1
-	 * @param mob2
-	 * @return
-	 */
 
 	/**
 	 * should switch to the game over screen
@@ -250,8 +240,10 @@ public class Level extends Screen {
 
 		this.checkKillBulletBounds();
 
-		// draw solid and nonsolid tiles
+		// draw solid and non-solid tiles
+
 		this.drawTiles(g2);
+
 		// draw mobs and check for shooting and collisions in the same loop
 		// should these be separated into more methods?
 		for (int i = 0; i < this.getMobsToDraw().size(); i++) {
@@ -279,8 +271,7 @@ public class Level extends Screen {
 		}
 		this.checkDuplication();
 
-		// MasterList SOMEWHERE! for letters
-		// H is = Hero
+		// MasterList is in LevelGenerator for letters/tile meanings
 
 	}
 
