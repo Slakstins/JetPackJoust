@@ -11,16 +11,19 @@ public class Diver extends Mob {
 	private boolean isEgg = false;
 	private long invincibleEggTime = 50;
 	private long breakOutEggTime;
-	private long timeInEgg = 600;
+	private long timeInEgg;
 	private int eggYVel = 5;
 	protected ArrayList<Image> dragonRimages = new ArrayList<Image>();
 	protected ArrayList<Image> dragonLimages = new ArrayList<Image>();
 	protected ArrayList<Image> eggImage = new ArrayList<Image>();
+	private double maxEggVel;
 
 	public Diver(double d, double e) {
 		super(d, e);
 
 		this.totalVel = 3;
+		this.setTimeInEgg(600);
+		this.setMaxEggVel(5);
 		this.aniTick = 0;
 		this.setImages();
 		this.setImage(this.dragonRimages.get(0));
@@ -156,13 +159,13 @@ public class Diver extends Mob {
 		if (random.nextFloat() > .5) {
 			sign = -1;
 		}
-		this.setXVel(random.nextFloat() * 5 * sign);
+		this.setXVel(random.nextFloat() * this.getMaxEggVel() * sign);
 		this.setYVel(-this.eggYVel);
 		this.setYAccel(super.getGravity());
 	}
 
 	public void setBreakOutOfEggTime() {
-		this.breakOutEggTime = this.tick + this.timeInEgg;
+		this.breakOutEggTime = this.tick + this.getTimeInEgg();
 	}
 
 	/**
@@ -237,6 +240,22 @@ public class Diver extends Mob {
 
 	public boolean getIsEgg() {
 		return isEgg;
+	}
+
+	public long getTimeInEgg() {
+		return timeInEgg;
+	}
+
+	public void setTimeInEgg(long timeInEgg) {
+		this.timeInEgg = timeInEgg;
+	}
+
+	public double getMaxEggVel() {
+		return maxEggVel;
+	}
+
+	public void setMaxEggVel(double maxEggVel) {
+		this.maxEggVel = maxEggVel;
 	}
 
 }

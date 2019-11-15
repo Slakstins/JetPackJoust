@@ -11,6 +11,10 @@ public class GameAdvanceListener implements ActionListener {
 		this.time = 0;
 
 	}
+	
+	public double getTime() {
+		return this.time;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

@@ -1,10 +1,15 @@
 
 public class Chicken extends Diver {
-	private int eggsDropped = 3; // actual number of eggs dropped is eggsDropped + 1 for index
+	private int eggsDropped = 5; // actual number of eggs dropped is eggsDropped + 1 for index
+	private long eggTime = 300;
+
+
 
 	public Chicken(double d, double e) {
 		super(d, e);
 		this.setDuplicate(-1);
+		this.setTimeInEgg(this.eggTime);
+		this.setMaxEggVel(10);
 
 	}
 
@@ -39,7 +44,6 @@ public class Chicken extends Diver {
 	 */
 	@Override
 	public void kill() {
-		System.out.println("KILL");
 		this.setDuplicate(2); // only difference from Ranger
 
 		super.kill();
