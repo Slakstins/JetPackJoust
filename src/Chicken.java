@@ -38,7 +38,6 @@ public class Chicken extends Diver {
 	 */
 	@Override
 	public void kill() {
-		System.out.println("KILL");
 		this.setDuplicate(2); // only difference from Ranger
 
 		
