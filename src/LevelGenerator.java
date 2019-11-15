@@ -562,7 +562,7 @@ public class LevelGenerator {
 			return;
 		}
 
-		pw.append("--T---T------R------\n");
+		pw.append("--T---T------------\n");
 		pw.append("---T-T-TTT-T-T-----\n");
 		pw.append("----T--T-T-T-T-----\n");
 		pw.append("----T--TTT-TTT-----\n");
