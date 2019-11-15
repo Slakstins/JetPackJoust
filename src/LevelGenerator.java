@@ -381,7 +381,7 @@ public class LevelGenerator {
 
 		pw.append("-------------------\n");
 		pw.append("-------------------\n");
-		pw.append("-------J----T------\n");
+		pw.append("-------J-----------\n");
 		pw.append("------FFF----------\n");
 		pw.append("-------------------\n");
 		pw.append("------------J------\n");
@@ -521,11 +521,11 @@ public class LevelGenerator {
 		pw.append("---------H---------\n");
 		pw.append("--------FFF--------\n");
 		pw.append("-FFF---------------\n");
-		pw.append("---------C----FFF--\n");
+		pw.append("--------------FFF--\n");
 		pw.append("--FFF--------------\n");
 		pw.append("---------------FFF-\n");
 		pw.append("F--F-------FFF-----\n");
-		pw.append("-------------------\n");
+		pw.append("--------C----------\n");
 		pw.append("TTTTTTTTTTTTTTTTTTT\n");
 
 		pw.close();
