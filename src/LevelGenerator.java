@@ -13,7 +13,7 @@ public class LevelGenerator {
 	// R = ranger
 	// J = jumper
 	// P = teleporter
-	// M = multiplyer
+	// M = multiplier
 	//
 	//
 	//
