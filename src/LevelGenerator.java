@@ -266,12 +266,12 @@ public class LevelGenerator {
 
 		pw.append("-------------------\n");
 		pw.append("----FRF------------\n");
-		pw.append("-----F-C-----------\n");
+		pw.append("-----F-D-----------\n");
 		pw.append("----------FFF------\n");
 		pw.append("-------------------\n");
 		pw.append("------------H------\n");
 		pw.append("-----------FFF-----\n");
-		pw.append("-----C-------------\n");
+		pw.append("-----D-------------\n");
 		pw.append("-------------------\n");
 		pw.append("TTTTTTTTTTTTTTTTTTT\n");
 
@@ -289,7 +289,7 @@ public class LevelGenerator {
 
 		pw.append("------D------------\n");
 		pw.append("--------------R----\n");
-		pw.append("--C------R---FFFFFF\n");
+		pw.append("--D------R---FFFFFF\n");
 		pw.append("---------F---------\n");
 		pw.append("----------F------P-\n");
 		pw.append("------------F------\n");
@@ -381,13 +381,13 @@ public class LevelGenerator {
 
 		pw.append("-------------------\n");
 		pw.append("-------------------\n");
-		pw.append("-------J-----------\n");
+		pw.append("-------J----T------\n");
 		pw.append("------FFF----------\n");
 		pw.append("-------------------\n");
 		pw.append("------------J------\n");
 		pw.append("-FFF-FFF----FFF-FFF\n");
 		pw.append("----F----------F---\n");
-		pw.append("---CC----H-----CC--\n");
+		pw.append("---DD----H-----DD--\n");
 		pw.append("TTTTTTTTTTTTTTTTTTT\n");
 
 		pw.close();
@@ -402,7 +402,7 @@ public class LevelGenerator {
 			return;
 		}
 
-		pw.append("---C--------C------\n");
+		pw.append("---D--------D------\n");
 		pw.append("-------------------\n");
 		pw.append("----J---------P----\n");
 		pw.append("---FFF-------------\n");
@@ -452,7 +452,7 @@ public class LevelGenerator {
 		pw.append("---M---------------\n");
 		pw.append("-------R-----------\n");
 		pw.append("-----FFFFF---------\n");
-		pw.append("---------C-----J---\n");
+		pw.append("---------D-----J---\n");
 		pw.append("--------------FFFFF\n");
 		pw.append("--H----------------\n");
 		pw.append("-FFFFF-------------\n");
@@ -472,10 +472,10 @@ public class LevelGenerator {
 		}
 
 		pw.append("-------------------\n");
-		pw.append("----C--------------\n");
+		pw.append("----D----D-----D---\n");
 		pw.append("-R-----R-----R-----\n");
 		pw.append("FFFFFFFFFFFFFFFFFFF\n");
-		pw.append("---C-------C-------\n");
+		pw.append("---D-------D---D---\n");
 		pw.append("-R------R----R-----\n");
 		pw.append("FFFFFFFFFFFFFFFFFFF\n");
 		pw.append("-------------------\n");
@@ -494,15 +494,15 @@ public class LevelGenerator {
 			return;
 		}
 
-		pw.append("-------------------\n");
-		pw.append("-----R-------------\n");
-		pw.append("---FFFFFFR---------\n");
-		pw.append("----C----F-----C---\n");
-		pw.append("----------H--------\n");
-		pw.append("---C-----FFFF---C--\n");
-		pw.append("-------------------\n");
-		pw.append("----C---------C----\n");
-		pw.append("J-----------------J\n");
+		pw.append("----R-------R------\n");
+		pw.append("----F-------F------\n");
+		pw.append("--RF-FR---RF-FR----\n");
+		pw.append("--F---F---F---F-----\n");
+		pw.append("RF-----FRF-----FR--\n");
+		pw.append("F-------F-------F--\n");
+		pw.append("-----------------FR\n");
+		pw.append("F-----------------F\n");
+		pw.append("--------H----------\n");
 		pw.append("TTTTTTTTTTTTTTTTTTT\n");
 
 		pw.close();
@@ -517,15 +517,15 @@ public class LevelGenerator {
 			return;
 		}
 
-		pw.append("----R-------R------\n");
-		pw.append("----F-------F------\n");
-		pw.append("--RF-FR---RF-FR----\n");
-		pw.append("--F---F---F---F-----\n");
-		pw.append("RF-----FRF-----FR--\n");
-		pw.append("F-------F-------F--\n");
-		pw.append("-----------------FR\n");
-		pw.append("F-----------------F\n");
-		pw.append("--------H----------\n");
+		pw.append("-------------------\n");
+		pw.append("---------H---------\n");
+		pw.append("--------FFF--------\n");
+		pw.append("-FFF---------------\n");
+		pw.append("---------C----FFF--\n");
+		pw.append("--FFF--------------\n");
+		pw.append("---------------FFF-\n");
+		pw.append("F--F-------FFF-----\n");
+		pw.append("-------------------\n");
 		pw.append("TTTTTTTTTTTTTTTTTTT\n");
 
 		pw.close();

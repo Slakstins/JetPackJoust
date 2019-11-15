@@ -21,7 +21,7 @@ public class ScreenComponent extends JComponent {
 	private int comboTime = 5;
 	private int levelScore;
 	private double totalScore;
-	private int numOfLives = 1;
+	private int numOfLives = 10;
 
 	private boolean isPaused = false;
 
@@ -93,7 +93,7 @@ public class ScreenComponent extends JComponent {
 
 	public void gameOver() {
 		this.levelChange = true;
-		this.levelNum = -1; // freezes game because lives is still < 0
+		this.levelNum = -1; 
 	}
 
 	protected void paintComponent(Graphics g) {
@@ -200,7 +200,9 @@ public class ScreenComponent extends JComponent {
 		this.seconds = 0;
 		this.lives = this.numOfLives;
 	}
-
+    /**
+     * check to see if a kill was gotten and update accoringly
+     */
 	public void updateScore() {
 		if (this.level.getHeroKill()) {
 			this.levelScore += 1 * this.comboMultiplyer;
