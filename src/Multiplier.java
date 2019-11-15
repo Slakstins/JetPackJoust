@@ -1,6 +1,6 @@
 
 public class Multiplier extends Teleporter {
-	
+
 	private boolean duplicate;
 
 	public Multiplier(double d, double e) {
@@ -8,28 +8,30 @@ public class Multiplier extends Teleporter {
 		this.duplicate = false;
 		this.setImages();
 	}
+
 	/**
-	 * check to see if duplication should occur
-	 * Occurs at the time of teleportation
-	 * 1 is the duplication value for Multiplyer so that level knows what duplication to run
+	 * check to see if duplication should occur Occurs at the time of teleportation
+	 * 1 is the duplication value for Multiplyer so that level knows what
+	 * duplication to run
+	 * 
 	 * @return
 	 */
 	@Override
 	public int checkDuplicate() {
 		if (this.timeToTeleport()) {
-				return 1;
+			return 1;
 		}
 		return -1;
 	}
-	
+
 	@Override
 	public void updateMovement() {
 		this.checkDuplicate();
 
 		super.updateMovement();
-		
+
 	}
-	
+
 	private void setImages() {
 		// set idle images
 		for (int i = 0; i <= 4; i++) {
@@ -44,8 +46,5 @@ public class Multiplier extends Teleporter {
 		}
 
 	}
-	
-	
-	
 
 }

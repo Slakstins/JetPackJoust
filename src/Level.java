@@ -241,8 +241,9 @@ public class Level extends Screen {
 		this.checkKillBulletBounds();
 
 		// draw solid and non-solid tiles
+
 		this.drawTiles(g2);
-		
+
 		// draw mobs and check for shooting and collisions in the same loop
 		// should these be separated into more methods?
 		for (int i = 0; i < this.getMobsToDraw().size(); i++) {

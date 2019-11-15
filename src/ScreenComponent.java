@@ -114,21 +114,20 @@ public class ScreenComponent extends JComponent {
 		if (this.levelNum != 0) {
 			if (this.levelNum == 20 || this.levelNum == -1) {
 				if (this.keyMap.get("space")) {
-				this.restartGame();
+					this.restartGame();
 				}
 			}
 			this.level.drawEverything(g2);
 			Font font = new Font("Verdana", Font.BOLD, 25);
 			g2.setFont(font);
 			if (this.levelNum > 0) {
-			g2.drawString("Lives: " + this.lives, 5, 30);
-			g2.drawString("Level: " + this.levelNum, 1745, 30);
-			
-			g2.drawString("Time: " + this.seconds, 5, 80);
-			if (this.levelNum != 20) {
-			g2.drawString("Level score: " + this.levelScore, 5, 150);
-			}
+				g2.drawString("Lives: " + this.lives, 5, 30);
+				g2.drawString("Level: " + this.levelNum, 1745, 30);
 
+				g2.drawString("Time: " + this.seconds, 5, 80);
+				if (this.levelNum != 20) {
+					g2.drawString("Level score: " + this.levelScore, 5, 150);
+				}
 			}
 			if (this.comboTimer > 0) {
 				g2.drawString("Combo multiplier: x" + this.comboMultiplyer, 5, 190);
@@ -136,13 +135,14 @@ public class ScreenComponent extends JComponent {
 			}
 			g2.drawString("Total score: " + this.totalScore, 5, 120);
 
-			
 			if (this.levelNum == 20) {
-				g2.drawString("TOTAL SCORE: " + (int)(1000 * this.totalScore /(this.seconds)), 1500, 400);
+				g2.drawString("TOTAL SCORE: " + (int) (1000 * this.totalScore / (this.seconds)), 1500, 400);
 
 			}
-			
-			
+			if (this.levelNum == -1 || this.levelNum == 20) {
+				g2.drawString("Press space to play again!", 775, 470);
+
+			}
 
 			this.goUpALevelIfMonstersDead();
 			this.checkHeroDeath();
@@ -191,7 +191,7 @@ public class ScreenComponent extends JComponent {
 		this.level.setHeroKillFalse();
 
 	}
-	
+
 	public void restartGame() {
 		this.levelNum = 0;
 		this.comboTimer = 0;
@@ -200,7 +200,7 @@ public class ScreenComponent extends JComponent {
 		this.seconds = 0;
 		this.lives = this.numOfLives;
 	}
-	
+
 	public void updateScore() {
 		if (this.level.getHeroKill()) {
 			this.levelScore += 1 * this.comboMultiplyer;
