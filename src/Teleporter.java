@@ -112,25 +112,21 @@ public class Teleporter extends Mob {
 
 	@Override
 	public void kill() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void spawn() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void shoot() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public double[] shootDirection() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

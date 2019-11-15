@@ -71,7 +71,6 @@ public abstract class Mob {
 	public void updateMovement() {
 		this.velUpdate();
 		this.posUpdate();
-//		this.setDuplicate(false);
 
 	}
 
@@ -274,7 +273,6 @@ public abstract class Mob {
 		if (this.yPos > this.FRAME_HEIGHT - this.CELLWIDTHHEIGHT * 2) {
 			this.setPosition(this.xPos, this.FRAME_HEIGHT - this.CELLWIDTHHEIGHT * 2);
 		}
-		// TODO Auto-generated method stub
 
 	}
 
@@ -284,7 +282,6 @@ public abstract class Mob {
 	 * @param hasDied
 	 */
 	public void setKilled(boolean hasDied) {
-		// TODO Auto-generated method stub
 
 		if (this.invincible == true) {
 			this.hasDied = false;

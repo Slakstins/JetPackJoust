@@ -15,13 +15,16 @@ public class GameAdvanceListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		advanceOneTick();
-		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * The component uses user actions from listeners to change the state of the
+	 * game.
+	 * Update the time
+	 */
 	public void advanceOneTick() {
-		// The component uses user actions from listeners
-		// to change the state of the game.
+
 		// update screen
 
 		screenComponent.updateIsPaused();

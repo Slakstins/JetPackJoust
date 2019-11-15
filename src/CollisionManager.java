@@ -67,8 +67,5 @@ public class CollisionManager {
 		return mob.getBounds().intersects(tile.getBounds());
 	}
 
-	/**
-	 * Kill bullets that are too close to the sides or top bottoms of the screen
-	 */
 
 }

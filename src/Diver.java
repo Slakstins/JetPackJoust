@@ -116,7 +116,6 @@ public class Diver extends Mob {
 
 	@Override
 	public void fly() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -127,7 +126,6 @@ public class Diver extends Mob {
 	 */
 	@Override
 	public void kill() {
-		// TODO Auto-generated method stub
 		if (this.getIsEgg() == true) {
 			this.setKilled(true);
 			return;
@@ -189,13 +187,11 @@ public class Diver extends Mob {
 
 	@Override
 	public void spawn() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void shoot() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -236,7 +232,6 @@ public class Diver extends Mob {
 			return;
 		}
 
-		// TODO Auto-generated method stub
 
 	}
 

@@ -47,7 +47,6 @@ public class Bullet extends Mob {
 
 	@Override
 	public void fly() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -58,13 +57,11 @@ public class Bullet extends Mob {
 
 	@Override
 	public void spawn() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void shoot() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -79,7 +76,6 @@ public class Bullet extends Mob {
 		this.setKilled(true);
 		this.getHero().setKilled(true);
 
-		// TODO Auto-generated method stub
 
 	}
 
