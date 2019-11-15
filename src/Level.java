@@ -40,7 +40,7 @@ public class Level extends Screen {
 	public void setKeyMap(HashMap<String, Boolean> keyMap) {
 		this.keyMap = keyMap;
 	}
-	
+
 	public void drawBackGround() {
 		for (int i = 0; i < this.xCells; i++) {
 			for (int j = 0; j < this.yCells; j++) {
@@ -126,15 +126,13 @@ public class Level extends Screen {
 								this.cellWidthHeight, "Tile.png");
 						this.tilesToDraw.add(newTile);
 						this.solidTiles.add(newTile);
-						
+
 					} else if (toBuild == 'F') {
 						newTile = new Tile(i * this.cellWidthHeight, posY * this.cellWidthHeight, this.cellWidthHeight,
 								this.cellWidthHeight, "FloatTile.png");
 						this.tilesToDraw.add(newTile);
 						this.solidTiles.add(newTile);
 					}
-						
-						
 
 				}
 
@@ -163,8 +161,6 @@ public class Level extends Screen {
 
 	}
 
-	
-
 	/**
 	 * check for a collision between two mobs
 	 * 
@@ -172,7 +168,6 @@ public class Level extends Screen {
 	 * @param mob2
 	 * @return
 	 */
-
 
 	/**
 	 * should switch to the game over screen
@@ -184,11 +179,12 @@ public class Level extends Screen {
 		}
 		return false;
 	}
+
 	/**
 	 * check for the duplication methods implemented by Chicken and Diver
 	 */
 	public void checkDuplication() {
-		
+
 		ArrayList<Mob> mobsToAdd = new ArrayList();
 
 		for (int i = 0; i < this.mobsToDraw.size(); i++) {
@@ -203,40 +199,37 @@ public class Level extends Screen {
 					multiplier.setDuplicate(-1);
 
 					mobsToAdd.add(multiplier);
-					
+
 					multiplier.setHero(this.hero);
 
-					
 					thisMob.setDuplicate(-1);
-
 
 				}
 				if (thisMob.checkDuplicate() == 2) {
-					Chicken mobAsChicken = (Chicken)thisMob;
-					for (int y = 1; y < mobAsChicken.getEggsDropped(); y++ ) {
+					Chicken mobAsChicken = (Chicken) thisMob;
+					for (int y = 1; y < mobAsChicken.getEggsDropped(); y++) {
 						Chicken chicken = new Chicken(thisMob.getX(), thisMob.getY());
 						chicken.turnIntoEgg();
 						chicken.setInvincible(true, 50);
 
 						mobsToAdd.add(chicken);
-						
+
 						chicken.setHero(this.hero);
 						thisMob.setDuplicate(-1);
-						
+
 					}
-					
+
 				}
-				
-			
+
 			}
 
 		}
-		
+
 		for (int i = 0; i < mobsToAdd.size(); i++) {
 			this.mobsToDraw.add(mobsToAdd.get(i));
 		}
 	}
-	
+
 	public void drawTiles(Graphics2D g2) {
 		for (int i = 0; i < this.tilesToDraw.size(); i++) {
 			ImageObserver observer = null; // is this a problem????
@@ -246,29 +239,16 @@ public class Level extends Screen {
 					thisTile.getImage().getHeight(observer), observer);
 		}
 	}
-	
-	
 
 	public void drawEverything(Graphics2D g2) {
 
 		this.collisionManager.checkKillMobCollision(this.mobsToDraw, this.bullets, this.hero);
 
-
 		this.setMobsHero();
 
-
-
 		this.spawnBullets();
-		
-
 
 		this.checkKillBulletBounds();
-
-
-
-
-
-
 
 		// draw solid and nonsolid tiles
 		this.drawTiles(g2);
@@ -278,8 +258,6 @@ public class Level extends Screen {
 			ImageObserver observer = null; // is this a problem????
 			Mob thisMob = this.getMobsToDraw().get(i);
 			thisMob.updateGrounded(solidTiles);
-
-		
 
 			for (int j = 0; j < this.solidTiles.size(); j++) {
 				Tile thisTile = solidTiles.get(j);
@@ -298,18 +276,14 @@ public class Level extends Screen {
 
 			thisMob.updateMovement();
 
-
 		}
 		this.checkDuplication();
-
-
 
 		// MasterList SOMEWHERE! for letters
 		// H is = Hero
 
-
 	}
-	
+
 	public boolean getHeroKill() {
 		return this.hero.getGotKill();
 	}
@@ -319,22 +293,19 @@ public class Level extends Screen {
 	 */
 	public void spawnBullets() {
 		for (int i = 0; i < this.mobsToDraw.size(); i++) {
-		Mob thisMob = this.mobsToDraw.get(i);
-				
-		
-		if (thisMob.getShooting() > 0) {
-			double[] dir = thisMob.shootDirection();
-			Bullet bullet = new Bullet((int) thisMob.getX(), (int) thisMob.getY(), dir[0], dir[1], this.hero, thisMob.getShooting());
-			getMobsToDraw().add(bullet);
-			bullets.add(bullet);
+			Mob thisMob = this.mobsToDraw.get(i);
 
-		}
+			if (thisMob.getShooting() > 0) {
+				double[] dir = thisMob.shootDirection();
+				Bullet bullet = new Bullet((int) thisMob.getX(), (int) thisMob.getY(), dir[0], dir[1], this.hero,
+						thisMob.getShooting());
+				getMobsToDraw().add(bullet);
+				bullets.add(bullet);
+
+			}
 		}
 
 	}
-
-
-
 
 	/**
 	 * Kill bullets that are too close to the sides or top bottoms of the screen
@@ -350,9 +321,6 @@ public class Level extends Screen {
 			}
 		}
 	}
-
-	
-
 
 	/**
 	 * Remove the specified bullet from existence since it exists in bullets as well
@@ -372,6 +340,6 @@ public class Level extends Screen {
 	public void setHeroKillFalse() {
 		this.hero.setGotKill(false);
 		// TODO Auto-generated method stub
-		
+
 	}
 }

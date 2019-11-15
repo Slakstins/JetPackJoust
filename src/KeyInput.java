@@ -43,22 +43,19 @@ public class KeyInput extends KeyAdapter {
 		if (keyCode == event.VK_RIGHT) {
 			this.keyMap.put("right", true);
 
-
 		}
 		if (keyCode == event.VK_UP) {
 			this.keyMap.put("up", true);
-
 
 		}
 		if (keyCode == event.VK_DOWN) {
 			this.keyMap.put("down", true);
 
-
 		}
 		if (keyCode == event.VK_SPACE) {
 			this.keyMap.put("space", true);
 		}
-		
+
 		if (keyCode == event.VK_P) {
 			this.keyMap.put("p", !keyMap.get("p"));
 		}
@@ -68,10 +65,6 @@ public class KeyInput extends KeyAdapter {
 		if (keyCode == event.VK_U) {
 			this.screenComponent.addLevel();
 		}
-		
-		
-	
-		
 
 	}
 

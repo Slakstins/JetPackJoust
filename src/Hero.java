@@ -23,7 +23,6 @@ public class Hero extends Mob {
 	private ArrayList<Image> dropImages = new ArrayList<Image>();
 	private boolean gotKill;
 
-
 	public Hero(int xPos, int yPos) {
 		super(xPos, yPos);
 		this.tick = 0;
@@ -31,17 +30,15 @@ public class Hero extends Mob {
 		this.setImages();
 		this.setImage(this.idleImages.get(0));
 
-
 	}
-	
+
 	public void gotKill() {
 		this.gotKill = true;
 	}
-	
+
 	public boolean getGotKill() {
 		return this.gotKill;
 	}
-	
 
 	public void setKeyMap(HashMap<String, Boolean> keyMap) {
 		this.keyMap = keyMap;
@@ -98,7 +95,6 @@ public class Hero extends Mob {
 
 		this.updateImages();
 
-		
 		this.posUpdate();
 
 		this.shoot();
@@ -112,7 +108,6 @@ public class Hero extends Mob {
 	public void fly() {
 		if (this.keyMap.get("up")) {
 
-
 			this.setYAccel(-this.thrust);
 		} else {
 			this.setYAccel(this.gravity);
@@ -120,7 +115,6 @@ public class Hero extends Mob {
 		}
 
 	}
-	
 
 	@Override
 	public void kill() {
@@ -169,21 +163,19 @@ public class Hero extends Mob {
 			String filename = "HeroWalkL000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.walkImagesL);
 		}
-		
+
 		// set flying images
 		for (int i = 0; i <= 1; i++) {
 			String filename = "HeroFlyR000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.flyImagesR);
 		}
-		
+
 		// set drop/attack images
 		for (int i = 0; i <= 1; i++) {
 			String filename = "HeroDrop000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.dropImages);
 		}
 	}
-	
-
 
 	private void updateImages() {
 		if (this.keyMap.get("up")) {
@@ -202,18 +194,17 @@ public class Hero extends Mob {
 			if (this.aniTick >= this.walkImagesL.size())
 				this.aniTick = 0;
 			this.setImage(this.walkImagesL.get(aniTick));
-		}  else {
+		} else {
 			if (this.aniTick >= this.idleImages.size())
 				this.aniTick = 0;
 			this.setImage(this.idleImages.get(aniTick));
 		}
 
 	}
+
 	public boolean getIsAttacking() {
 		return this.isAttacking;
 	}
-
-	
 
 	@Override
 	public void collidedWithHero() {
@@ -224,8 +215,7 @@ public class Hero extends Mob {
 	public void setGotKill(boolean b) {
 		this.gotKill = false;
 		// TODO Auto-generated method stub
-		
-	}
 
+	}
 
 }

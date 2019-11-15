@@ -25,7 +25,6 @@ public abstract class Mob {
 	private double friction = 0.01;
 	protected final double FRAME_WIDTH = 1900;
 	protected final double FRAME_HEIGHT = 1000;
-	
 
 	protected final double CELLWIDTHHEIGHT = 100;
 	private boolean isGrounded;
@@ -35,13 +34,11 @@ public abstract class Mob {
 	protected int aniTick;
 	private boolean hasDied;
 	private int duplicate;
-	
-	
+
 	private boolean invincible = false;
 	private boolean checkInvincible = false;
 	private long endInvincible;
-	
-	
+
 	public Mob(double d, double e) {
 		this.height = defaultMobHeight;
 		this.width = defaultMobWidth;
@@ -55,35 +52,37 @@ public abstract class Mob {
 		this.isGrounded = false;
 		this.hero = null;
 	}
-	
+
 	public Rectangle getBounds() {
-		return new Rectangle((int)this.getX() + 5, (int)this.getY(), this.defaultMobWidth - 10, this.defaultMobHeight );
+		return new Rectangle((int) this.getX() + 5, (int) this.getY(), this.defaultMobWidth - 10,
+				this.defaultMobHeight);
 	}
-	
-	
-	
-	
 
 	public abstract void fly();
+
 	public abstract void kill();
+
 	public abstract void spawn();
+
 	public abstract void shoot();
+
 	public abstract double[] shootDirection();
-	
+
 	public void updateMovement() {
 		this.velUpdate();
 		this.posUpdate();
 //		this.setDuplicate(false);
-		
+
 	}
+
 	public void setHero(Hero hero) {
 		this.hero = hero;
 	}
-	
+
 	public Hero getHero() {
 		return this.hero;
 	}
-	
+
 	public void setImage(String filename) {
 		Image image = null;
 		try {
@@ -94,74 +93,72 @@ public abstract class Mob {
 		this.setImage(image);
 
 	}
-	
-	public void setIsGrounded(boolean grounded ) {
+
+	public void setIsGrounded(boolean grounded) {
 		this.isGrounded = grounded;
 	}
+
 	public boolean getIsGrounded() {
 		return this.isGrounded;
 	}
-	
-	
-	
+
 	public void setXAccel(double xAccel) {
 		this.xAcceleration = xAccel;
 	}
-	
+
 	public void setYAccel(double yAccel) {
 		this.yAcceleration = yAccel;
 	}
-	
-	
+
 	/**
 	 * also calls update invincibility to save space in level
+	 * 
 	 * @param d
 	 * @param y
 	 */
 	public void setPosition(double d, double y) {
 		this.xPos = d;
 		this.yPos = y;
-		
+
 	}
-	
-	
+
 	public void setYVel(double d) {
 		this.yVel = d;
-		
+
 	}
+
 	public double getYVel() {
-		
+
 		return this.yVel;
 	}
+
 	public double getXVel() {
 		return this.xVel;
 	}
-	
+
 	public void setXVel(double vel) {
 		this.xVel = vel;
 	}
-	
+
 	public void keepInFrame() {
 		if (this.xPos + this.xVel > this.FRAME_WIDTH - this.CELLWIDTHHEIGHT || this.xPos + this.xVel < 0) {
-			
+
 			this.setXVel(0);
-		} 
-		
-		if (this.yPos  + this.yVel < 0) {
+		}
+
+		if (this.yPos + this.yVel < 0) {
 			this.setYVel(0);
 		}
 	}
-	
+
 	public int checkDuplicate() {
 		return -1;
 	}
-	
 
-	
 	/**
-	 * Call this often to make smooth!
-	 * values will have to be reduced if calling more often for smoothness
-	 * this also checks to make sure the mob does not go out of the frame //THIS SHOULD BE SEPARATED INTO TWO METHODS
+	 * Call this often to make smooth! values will have to be reduced if calling
+	 * more often for smoothness this also checks to make sure the mob does not go
+	 * out of the frame //THIS SHOULD BE SEPARATED INTO TWO METHODS
 	 */
 	public void posUpdate() {
 		this.tick++;
@@ -169,21 +166,22 @@ public abstract class Mob {
 		this.updateAniTick();
 
 		keepInFrame();
-		
+
 		this.xPos += this.xVel;
-		
+
 		this.yPos += this.yVel;
 	}
+
 	/**
 	 * call often to make smooth
 	 */
 	public void velUpdate() {
-		
+
 		if (this.xVel + this.xAcceleration < this.maxXVel && this.xVel + this.xAcceleration > -this.maxXVel) {
-		this.xVel += this.xAcceleration;
+			this.xVel += this.xAcceleration;
 		}
 		if (this.yVel < this.maxYVel && this.yVel > -this.maxYVel) {
-		this.yVel += this.yAcceleration;
+			this.yVel += this.yAcceleration;
 		}
 		if (this.xVel > 0) {
 			this.xVel = this.xVel - this.friction;
@@ -191,49 +189,53 @@ public abstract class Mob {
 		if (this.xVel < 0) {
 			this.xVel = this.xVel + this.friction;
 		}
-		// getting rid of friction for some reaseon fixes the issue of going faster to the left
+		// getting rid of friction for some reaseon fixes the issue of going faster to
+		// the left
 	}
+
 	public double getXAcceleration() {
 		return this.xAcceleration;
 	}
+
 	public double getYAcceleration() {
 		return this.yAcceleration;
 	}
-	
+
 	public void setXAcceleration(double accelerationX) {
 		this.xAcceleration = accelerationX;
 	}
-	
+
 	public void setYAcceleration(double accelerationY) {
 		this.yAcceleration = accelerationY;
 	}
-	
+
 	public double getX() {
 		return this.xPos;
 	}
+
 	public double getY() {
 		return this.yPos;
 	}
-	
+
 	public double getGravity() {
 		return gravity;
 	}
-	
-	
-	
+
 	public void setImage(Image newImage) {
 		this.image = newImage;
 	}
-	
+
 	public Image getImage() {
 		return this.image;
 	}
-	
+
 	public int getShooting() {
 		return this.shooting;
 	}
+
 	/**
 	 * check to see if the mob is standing on a tile
+	 * 
 	 * @param tiles
 	 */
 	public void updateGrounded(ArrayList<Tile> tiles) {
@@ -248,19 +250,19 @@ public abstract class Mob {
 					&& (!(this.getY() + this.CELLWIDTHHEIGHT < thisTile.getY() - 3))) {
 				this.isGrounded = true;
 				return;
-				
+
 			}
 
 		}
 		this.isGrounded = false;
 	}
-	
-	
-/**
- * update mob based on the collision with a tile
- * if bottom row of tiles, prevent fallthrough from pressing down
- * @param thisTile
- */
+
+	/**
+	 * update mob based on the collision with a tile if bottom row of tiles, prevent
+	 * fallthrough from pressing down
+	 * 
+	 * @param thisTile
+	 */
 	public void tileCollision(Tile thisTile) {
 		double distanceMovedY = (this.getYVel());
 		if (this.getY() + this.CELLWIDTHHEIGHT < thisTile.getY() + distanceMovedY + 1) {
@@ -268,29 +270,31 @@ public abstract class Mob {
 			this.setYVel(0);
 			this.setPosition(this.getX(), thisTile.getY() - this.CELLWIDTHHEIGHT);
 		}
-		
+
 		if (this.yPos > this.FRAME_HEIGHT - this.CELLWIDTHHEIGHT * 2) {
-			this.setPosition(this.xPos, this.FRAME_HEIGHT - this.CELLWIDTHHEIGHT  * 2);
+			this.setPosition(this.xPos, this.FRAME_HEIGHT - this.CELLWIDTHHEIGHT * 2);
 		}
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	/**
 	 * set the mob as dead and mark that the hero got a kill
+	 * 
 	 * @param hasDied
 	 */
 	public void setKilled(boolean hasDied) {
 		// TODO Auto-generated method stub
-		
+
 		if (this.invincible == true) {
 			this.hasDied = false;
 			return;
 		}
 		this.hero.gotKill();
 		this.hasDied = hasDied;
-		
+
 	}
-	
+
 	public boolean getHasDied() {
 		return this.hasDied;
 	}
@@ -305,38 +309,40 @@ public abstract class Mob {
 		} catch (IOException e) {
 			System.out.println("Image not found!");
 		}
-	}	
-	
-	
+	}
+
 	protected void updateAniTick() {
 		if (tick % 15 == 0) {
 			aniTick++;
 		}
 	}
+
 	/**
-	 * set the mob to be invincible for a period of time, tick must be incremented in the movement update for the subclass of mobs
+	 * set the mob to be invincible for a period of time, tick must be incremented
+	 * in the movement update for the subclass of mobs
+	 * 
 	 * @param invincible
 	 * @param time
 	 */
 	public void setInvincible(boolean invincible, long time) {
 		this.invincible = invincible;
-		this.checkInvincible  = true;
+		this.checkInvincible = true;
 		this.endInvincible = this.tick + time;
-		
+
 	}
 
 	public boolean getInvincible() {
 		return invincible;
 	}
-	
+
 	public void updateInvincibility() {
 		if (this.invincible) {
-		
+
 			if (this.tick == this.endInvincible) {
 				this.invincible = false;
 			}
 		}
-		
+
 	}
 
 	public int getDuplicate() {

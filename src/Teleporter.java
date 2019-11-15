@@ -44,7 +44,6 @@ public class Teleporter extends Mob {
 			this.solidify();
 		}
 
-		
 	}
 
 	/**
@@ -187,7 +186,7 @@ public class Teleporter extends Mob {
 				this.aniTick = 0;
 			this.setImage(this.idleImages.get(aniTick));
 		}
-		
+
 	}
 
 	public boolean getIsTeleporting() {

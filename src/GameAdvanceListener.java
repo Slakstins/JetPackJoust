@@ -23,14 +23,14 @@ public class GameAdvanceListener implements ActionListener {
 		// The component uses user actions from listeners
 		// to change the state of the game.
 		// update screen
-		
+
 		screenComponent.updateIsPaused();
 
 		this.time++;
 		this.screenComponent.updateDraw();
 		if (this.time % 60 == 0) {
-			if (this.screenComponent.getIsPaused() == false ) {
-				if ( this.screenComponent.getLevel() < 20) {
+			if (this.screenComponent.getIsPaused() == false) {
+				if (this.screenComponent.getLevel() < 20) {
 					screenComponent.addSecond();
 				}
 				screenComponent.lowerComboTimer();

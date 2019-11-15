@@ -28,11 +28,9 @@ public class Diver extends Mob {
 
 	}
 
-	
-/**
- * Update movement based on whether Diver is in an egg.
- * Run checkBreakOutOfEgg
- */
+	/**
+	 * Update movement based on whether Diver is in an egg. Run checkBreakOutOfEgg
+	 */
 	@Override
 	public void updateMovement() {
 		if (this.getIsEgg() == false) {
@@ -46,29 +44,29 @@ public class Diver extends Mob {
 		this.checkBreakOutOfEgg();
 		this.updateImages();
 	}
-	
+
 	public void setImages() {
 		// set right moving images
 		for (int i = 0; i <= 3; i++) {
 			String filename = "dragonR000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.dragonRimages);
 		}
-		
+
 		// set left moving images
 		for (int i = 0; i <= 3; i++) {
 			String filename = "dragonL000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.dragonLimages);
 		}
-		
+
 		// set egg image
 		this.saveImage("Egg.png", this.eggImage);
-		
+
 	}
-	
+
 	private void updateImages() {
 		if (this.isEgg)
 			this.setImage(this.eggImage.get(0));
-		else if (this.getXVel() >=0) {
+		else if (this.getXVel() >= 0) {
 			if (this.aniTick >= this.dragonRimages.size())
 				this.aniTick = 0;
 			this.setImage(this.dragonRimages.get(aniTick));
@@ -77,31 +75,33 @@ public class Diver extends Mob {
 				this.aniTick = 0;
 			this.setImage(this.dragonLimages.get(aniTick));
 		}
-		
+
 	}
-/**
- * set the direction to be towards the player and break the velocity into components accordingly to retain total velocity
- */
+
+	/**
+	 * set the direction to be towards the player and break the velocity into
+	 * components accordingly to retain total velocity
+	 */
 	public void updateDirection() {
-		
+
 		double newXVel;
 		double newYVel;
-		if (this.getHero().getX() - this.getX() == 0) { //prevents divide by zero error
+		if (this.getHero().getX() - this.getX() == 0) { // prevents divide by zero error
 			newXVel = 0;
 			newYVel = this.totalVel;
 		} else {
 
 			double angle = Math.atan((this.getHero().getY() - this.getY()) / (this.getHero().getX() - this.getX()));
-			
+
 			newXVel = this.totalVel * Math.cos(angle);
 			newYVel = this.totalVel * Math.sin(angle);
-			if(this.getHero().getX() < this.getX()) {
+			if (this.getHero().getX() < this.getX()) {
 				newXVel *= -1;
 			}
 			if (this.getHero().getX() < this.getX() && this.getHero().getY() > this.getY()) {
 				newYVel *= -1;
 			}
-		
+
 			if (this.getHero().getY() < this.getY()) {
 				newYVel *= -1;
 			}
@@ -109,7 +109,6 @@ public class Diver extends Mob {
 				newYVel *= -1;
 			}
 
-			
 		}
 		this.setXVel(newXVel);
 		this.setYVel(newYVel);
@@ -120,10 +119,11 @@ public class Diver extends Mob {
 		// TODO Auto-generated method stub
 
 	}
+
 	/**
 	 * diver becomes an egg and must be killed again to be removed from the game
-	 * Also becomes temporarily invincible to prevent instakilling of egg
-	 * If is an egg, kill
+	 * Also becomes temporarily invincible to prevent instakilling of egg If is an
+	 * egg, kill
 	 */
 	@Override
 	public void kill() {
@@ -137,15 +137,13 @@ public class Diver extends Mob {
 		}
 		this.setKilled(false);
 		this.turnIntoEgg();
-		
-		
-		
-		
 
 	}
+
 	/**
 	 * 
-	 * replace the diver with an egg! randomize velocity and set invulnerable temporarily 
+	 * replace the diver with an egg! randomize velocity and set invulnerable
+	 * temporarily
 	 */
 	public void turnIntoEgg() {
 		this.setIsEgg(true);
@@ -153,7 +151,7 @@ public class Diver extends Mob {
 		this.setInvincible(true, this.invincibleEggTime);
 		this.setBreakOutOfEggTime();
 	}
-	
+
 	public void giveEggVelocity() {
 		Random random = new Random();
 		double sign = 1;
@@ -164,28 +162,29 @@ public class Diver extends Mob {
 		this.setYVel(-this.eggYVel);
 		this.setYAccel(super.getGravity());
 	}
-	
+
 	public void setBreakOutOfEggTime() {
 		this.breakOutEggTime = this.tick + this.timeInEgg;
 	}
-/**
- * check to see if the time to break out of the egg has elapsed
- */
+
+	/**
+	 * check to see if the time to break out of the egg has elapsed
+	 */
 	public void checkBreakOutOfEgg() {
 		if (this.tick == this.breakOutEggTime) {
-			this.breakOutOfEgg(); //IMPLEMENT THIS
-		
+			this.breakOutOfEgg(); // IMPLEMENT THIS
+
 		}
 	}
-	
+
 	public void breakOutOfEgg() {
 		this.isEgg = false;
 		this.setImage("Diver.png");
-		
+
 	}
-	
+
 	public void setIsEgg(boolean isEgg) {
-		this.isEgg  = isEgg;
+		this.isEgg = isEgg;
 	}
 
 	@Override
@@ -200,29 +199,21 @@ public class Diver extends Mob {
 
 	}
 
-
-
 	@Override
 	public double[] shootDirection() {
 		double[] var = new double[2];
 		var[0] = 1;
 		var[1] = 1;
 		return var;
-		
+
 	}
 
-
-
 	/**
-	 * Kill hero if not attacking
-	 * if attacking and above diver, kill diver
+	 * Kill hero if not attacking if attacking and above diver, kill diver
 	 */
 	@Override
 	public void collidedWithHero() {
-		
-		
-		
-		
+
 		if (this.getInvincible() == true) {
 			return;
 		}
@@ -230,26 +221,24 @@ public class Diver extends Mob {
 			this.setKilled(true);
 			return;
 		}
-		if(this.getHero().getIsAttacking() == false) {
+		if (this.getHero().getIsAttacking() == false) {
 			this.getHero().setKilled(true);
 			return;
 		}
-		if(this.getY() <= this.getHero().getY()) {
+		if (this.getY() <= this.getHero().getY()) {
 			this.getHero().setKilled(true);
 			return;
-			
-		} 
-		
+
+		}
+
 		if (this.getY() > this.getHero().getY() && this.getHero().getIsAttacking()) {
 			this.setKilled(true);
 			return;
 		}
-		
+
 		// TODO Auto-generated method stub
-		
+
 	}
-
-
 
 	public boolean getIsEgg() {
 		return isEgg;
