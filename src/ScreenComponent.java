@@ -14,19 +14,21 @@ public class ScreenComponent extends JComponent {
 	private int levelNum;
 	private HashMap<String, Boolean> keyMap;
 	private Level level;
-	private int lives = 69;
+	private int lives;
 	private int seconds;
 	private int comboTimer;
 	private int comboMultiplyer;
 	private int comboTime = 5;
 	private int levelScore;
-	private int totalScore;
+	private double totalScore;
+	private int numOfLives = 69;
 
 	private boolean isPaused = false;
 
 	private boolean levelChange;
 
 	public ScreenComponent() {
+		this.lives = this.numOfLives;
 		this.comboMultiplyer = 1;
 		this.comboTimer = 1;
 		this.levelNum = 0;
@@ -110,6 +112,9 @@ public class ScreenComponent extends JComponent {
 		}
 
 		if (this.levelNum != 0) {
+			if (this.levelNum == 20 && this.keyMap.get("space")) {
+				this.restartGame();
+			}
 			this.level.drawEverything(g2);
 			Font font = new Font("Verdana", Font.BOLD, 25);
 			g2.setFont(font);
@@ -124,9 +129,11 @@ public class ScreenComponent extends JComponent {
 			g2.drawString("Level score: " + this.levelScore, 5, 150);
 			
 			if (this.levelNum == 20) {
-				g2.drawString("TOTAL SCORE: " + this.totalScore * (500 - this.seconds), 1000, 150);
+				g2.drawString("TOTAL SCORE: " + (1000 * this.totalScore /(this.seconds)), 1000, 150);
 
 			}
+			
+			
 
 			this.goUpALevelIfMonstersDead();
 			this.checkHeroDeath();
@@ -174,6 +181,15 @@ public class ScreenComponent extends JComponent {
 		}
 		this.level.setHeroKillFalse();
 
+	}
+	
+	public void restartGame() {
+		this.levelNum = 0;
+		this.comboTimer = 0;
+		this.levelChange = true;
+		this.totalScore = 0;
+		this.seconds = 0;
+		this.lives = this.numOfLives;
 	}
 	
 	public void updateScore() {
