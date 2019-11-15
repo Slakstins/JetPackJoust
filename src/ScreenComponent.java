@@ -14,19 +14,21 @@ public class ScreenComponent extends JComponent {
 	private int levelNum;
 	private HashMap<String, Boolean> keyMap;
 	private Level level;
-	private int lives = 69;
+	private int lives;
 	private int seconds;
 	private int comboTimer;
 	private int comboMultiplyer;
 	private int comboTime = 5;
 	private int levelScore;
-	private int totalScore;
+	private double totalScore;
+	private int numOfLives = 1;
 
 	private boolean isPaused = false;
 
 	private boolean levelChange;
 
 	public ScreenComponent() {
+		this.lives = this.numOfLives;
 		this.comboMultiplyer = 1;
 		this.comboTimer = 1;
 		this.levelNum = 0;
@@ -71,7 +73,7 @@ public class ScreenComponent extends JComponent {
 	}
 
 	public void goUpALevelIfMonstersDead() {
-		if (this.level.getMobsToDraw().size() < 2 && !this.level.checkHeroDead()) {
+		if (this.level.getMobsToDraw().size() < 2 && !this.level.checkHeroDead() && this.levelNum != 20) {
 			this.addLevel();
 		}
 	}
@@ -110,23 +112,37 @@ public class ScreenComponent extends JComponent {
 		}
 
 		if (this.levelNum != 0) {
+			if (this.levelNum == 20 || this.levelNum == -1) {
+				if (this.keyMap.get("space")) {
+				this.restartGame();
+				}
+			}
 			this.level.drawEverything(g2);
 			Font font = new Font("Verdana", Font.BOLD, 25);
 			g2.setFont(font);
+			if (this.levelNum > 0) {
 			g2.drawString("Lives: " + this.lives, 5, 30);
 			g2.drawString("Level: " + this.levelNum, 1745, 30);
+			
 			g2.drawString("Time: " + this.seconds, 5, 80);
+			if (this.levelNum != 20) {
+			g2.drawString("Level score: " + this.levelScore, 5, 150);
+			}
+
+			}
 			if (this.comboTimer > 0) {
 				g2.drawString("Combo multiplier: x" + this.comboMultiplyer, 5, 190);
 				g2.drawString("Combo time: " + this.comboTimer, 5, 220);
 			}
 			g2.drawString("Total score: " + this.totalScore, 5, 120);
-			g2.drawString("Level score: " + this.levelScore, 5, 150);
+
 			
 			if (this.levelNum == 20) {
-				g2.drawString("TOTAL SCORE: " + this.totalScore * (500 - this.seconds), 1000, 150);
+				g2.drawString("TOTAL SCORE: " + (int)(1000 * this.totalScore /(this.seconds)), 1500, 400);
 
 			}
+			
+			
 
 			this.goUpALevelIfMonstersDead();
 			this.checkHeroDeath();
@@ -174,6 +190,15 @@ public class ScreenComponent extends JComponent {
 		}
 		this.level.setHeroKillFalse();
 
+	}
+	
+	public void restartGame() {
+		this.levelNum = 0;
+		this.comboTimer = 0;
+		this.levelChange = true;
+		this.totalScore = 0;
+		this.seconds = 0;
+		this.lives = this.numOfLives;
 	}
 	
 	public void updateScore() {
