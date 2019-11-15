@@ -47,7 +47,6 @@ public class Chicken extends Diver {
 		this.setDuplicate(2); // only difference from Ranger
 
 		super.kill();
-
 	}
 
 	public int getEggsDropped() {
