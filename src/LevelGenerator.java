@@ -51,7 +51,7 @@ public class LevelGenerator {
 
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level-1.txt");
+			pw = new PrintWriter("./levels/level-1.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -74,7 +74,7 @@ public class LevelGenerator {
 	public void createLevel0Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level0.txt");
+			pw = new PrintWriter("./levels/level0.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -97,7 +97,7 @@ public class LevelGenerator {
 	public void createLevel1Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level1.txt");
+			pw = new PrintWriter("./levels/level1.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -120,7 +120,7 @@ public class LevelGenerator {
 	public void createLevel2Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level2.txt");
+			pw = new PrintWriter("./levels/level2.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -143,7 +143,7 @@ public class LevelGenerator {
 	public void createLevel3Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level3.txt");
+			pw = new PrintWriter("./levels/level3.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -166,7 +166,7 @@ public class LevelGenerator {
 	public void createLevel4Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level4.txt");
+			pw = new PrintWriter("./levels/level4.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -189,7 +189,7 @@ public class LevelGenerator {
 	public void createLevel5Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level5.txt");
+			pw = new PrintWriter("./levels/level5.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -212,7 +212,7 @@ public class LevelGenerator {
 	public void createLevel6Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level6.txt");
+			pw = new PrintWriter("./levels/level6.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -235,7 +235,7 @@ public class LevelGenerator {
 	public void createLevel7Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level7.txt");
+			pw = new PrintWriter("./levels/level7.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -258,7 +258,7 @@ public class LevelGenerator {
 	public void createLevel8Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level8.txt");
+			pw = new PrintWriter("./levels/level8.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -281,7 +281,7 @@ public class LevelGenerator {
 	public void createLevel9Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level9.txt");
+			pw = new PrintWriter("./levels/level9.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -304,7 +304,7 @@ public class LevelGenerator {
 	public void createLevel10Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level10.txt");
+			pw = new PrintWriter("./levels/level10.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -327,7 +327,7 @@ public class LevelGenerator {
 	public void createLevel11Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level11.txt");
+			pw = new PrintWriter("./levels/level11.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -350,7 +350,7 @@ public class LevelGenerator {
 	public void createLevel12Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level12.txt");
+			pw = new PrintWriter("./levels/level12.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -373,7 +373,7 @@ public class LevelGenerator {
 	public void createLevel13Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level13.txt");
+			pw = new PrintWriter("./levels/level13.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -396,7 +396,7 @@ public class LevelGenerator {
 	public void createLevel14Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level14.txt");
+			pw = new PrintWriter("./levels/level14.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -419,7 +419,7 @@ public class LevelGenerator {
 	public void createLevel15Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level15.txt");
+			pw = new PrintWriter("./levels/level15.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -442,7 +442,7 @@ public class LevelGenerator {
 	public void createLevel16Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level16.txt");
+			pw = new PrintWriter("./levels/level16.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -465,7 +465,7 @@ public class LevelGenerator {
 	public void createLevel17Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level17.txt");
+			pw = new PrintWriter("./levels/level17.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -488,7 +488,7 @@ public class LevelGenerator {
 	public void createLevel18Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level18.txt");
+			pw = new PrintWriter("./levels/level18.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -511,7 +511,7 @@ public class LevelGenerator {
 	public void createLevel19Script() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level19.txt");
+			pw = new PrintWriter("./levels/level19.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
@@ -534,7 +534,7 @@ public class LevelGenerator {
 	public void createWinScreen() {
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("level20.txt");
+			pw = new PrintWriter("./levels/level20.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;

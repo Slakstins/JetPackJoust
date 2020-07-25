@@ -54,7 +54,7 @@ public class Level extends Screen {
 	public void readLevelFile() {
 		Scanner scanner;
 		try {
-			scanner = new Scanner(new File("level" + levelNum + ".txt"));
+			scanner = new Scanner(new File("./levels/level" + levelNum + ".txt"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return;
