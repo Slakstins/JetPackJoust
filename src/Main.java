@@ -1,11 +1,9 @@
-import java.awt.Graphics;
 
-import java.awt.Graphics2D;
-import java.awt.event.ActionListener;
+
 
 import javax.swing.Timer;
 
-import javax.swing.JComponent;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -24,7 +22,6 @@ public class Main {
 	private final static int REFRESHES = 10; // should be 10
 	private final static int FRAME_HEIGHT = 1000;
 	private final static int FRAME_WIDTH = 1900;
-	private final static int CELL_WIDTH_HEIGHT = 100;
 
 	public Main() {
 
