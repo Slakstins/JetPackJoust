@@ -149,7 +149,7 @@ public class ScreenComponent extends JComponent {
 		} else {
 			Image startScreen = null;
 			try {
-				startScreen = ImageIO.read(new File("startScreen.png"));
+				startScreen = ImageIO.read(new File("./images/startScreen.png"));
 			} catch (IOException e) {
 				System.out.println("Start Screen image not found ");
 			}

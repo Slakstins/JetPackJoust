@@ -159,14 +159,14 @@ public class Teleporter extends Mob {
 	private void setImages() {
 		// set idle images
 		for (int i = 0; i <= 4; i++) {
-			String filename = "ghost000" + Integer.toString(i) + ".png";
+			String filename = "./images/ghost000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.idleImages);
 
 		}
 
 		// set fly images
 		for (int i = 0; i <= 1; i++) {
-			String filename = "ghostFly000" + Integer.toString(i) + ".png";
+			String filename = "./images/ghostFly000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.flyImages);
 		}
 

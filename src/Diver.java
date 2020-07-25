@@ -51,18 +51,18 @@ public class Diver extends Mob {
 	public void setImages() {
 		// set right moving images
 		for (int i = 0; i <= 3; i++) {
-			String filename = "dragonR000" + Integer.toString(i) + ".png";
+			String filename = "./images/dragonR000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.dragonRimages);
 		}
 
 		// set left moving images
 		for (int i = 0; i <= 3; i++) {
-			String filename = "dragonL000" + Integer.toString(i) + ".png";
+			String filename = "./images/dragonL000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.dragonLimages);
 		}
 
 		// set egg image
-		this.saveImage("Egg.png", this.eggImage);
+		this.saveImage("./images/Egg.png", this.eggImage);
 
 	}
 
@@ -180,7 +180,7 @@ public class Diver extends Mob {
 
 	public void breakOutOfEgg() {
 		this.isEgg = false;
-		this.setImage("Diver.png");
+		this.setImage("./images/Diver.png");
 
 	}
 

@@ -13,19 +13,19 @@ public class Ranger extends Mob {
 		super(xPos, yPos);
 		this.aniTick = 0;
 		this.setImages();
-		this.setImage("Ranger0000.png");
+		this.setImage("./images/Ranger0000.png");
 
 	}
 
 	public void setImages() {
 		// set idle images
 		for (int i = 0; i <= 1; i++) {
-			String filename = "Ranger000" + Integer.toString(i) + ".png";
+			String filename = "./images/Ranger000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.idleImages);
 		}
 
 		// set shooting image
-		this.saveImage("RangerShooting0000.png", this.shootImages);
+		this.saveImage("./images/RangerShooting0000.png", this.shootImages);
 	}
 
 	@Override

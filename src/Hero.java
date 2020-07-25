@@ -148,35 +148,35 @@ public class Hero extends Mob {
 	private void setImages() {
 		// set idle images
 		for (int i = 0; i <= 1; i++) {
-			String filename = "HeroIdle000" + Integer.toString(i) + ".png";
+			String filename = "./images/HeroIdle000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.idleImages);
 		}
 
 		// set walk right images
 		for (int i = 0; i <= 1; i++) {
-			String filename = "HeroWalkR000" + Integer.toString(i) + ".png";
+			String filename = "./images/HeroWalkR000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.walkImagesR);
 		}
 
 		// set walk left images
 		for (int i = 0; i <= 1; i++) {
-			String filename = "HeroWalkL000" + Integer.toString(i) + ".png";
+			String filename = "./images/HeroWalkL000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.walkImagesL);
 		}
 
 		// set flying images
 		for (int i = 0; i <= 1; i++) {
-			String filename = "HeroFlyR000" + Integer.toString(i) + ".png";
+			String filename = "./images/HeroFlyR000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.flyImagesR);
 		}
 		for (int i = 0; i <= 1; i++) {
-			String filename = "HeroFlyL000" + Integer.toString(i) + ".png";
+			String filename = "./images/HeroFlyL000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.flyImagesL);
 		}
 
 		// set drop/attack images
 		for (int i = 0; i <= 1; i++) {
-			String filename = "HeroDrop000" + Integer.toString(i) + ".png";
+			String filename = "./images/HeroDrop000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.dropImages);
 		}
 	}

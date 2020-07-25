@@ -83,12 +83,12 @@ public class Bullet extends Mob {
 		// set idle images
 		if (type == 1) {
 			for (int i = 0; i < 3; i++) {
-				String filename = "RangerBullet000" + Integer.toString(i) + ".png";
+				String filename = "./images/RangerBullet000" + Integer.toString(i) + ".png";
 				this.saveImage(filename, this.images);
 			}
 		} else {
 			for (int i = 0; i < 3; i++) {
-				String filename = "RangerBullet2000" + Integer.toString(i) + ".png";
+				String filename = "./images/RangerBullet2000" + Integer.toString(i) + ".png";
 				this.saveImage(filename, this.images);
 			}
 		}

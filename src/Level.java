@@ -121,13 +121,13 @@ public class Level extends Screen {
 					Tile newTile;
 					if (toBuild == 'T') {
 						newTile = new Tile(i * this.cellWidthHeight, posY * this.cellWidthHeight, this.cellWidthHeight,
-								this.cellWidthHeight, "Tile.png");
+								this.cellWidthHeight, "./images/Tile.png");
 						this.tilesToDraw.add(newTile);
 						this.solidTiles.add(newTile);
 
 					} else if (toBuild == 'F') {
 						newTile = new Tile(i * this.cellWidthHeight, posY * this.cellWidthHeight, this.cellWidthHeight,
-								this.cellWidthHeight, "FloatTile.png");
+								this.cellWidthHeight, "./images/FloatTile.png");
 						this.tilesToDraw.add(newTile);
 						this.solidTiles.add(newTile);
 					}

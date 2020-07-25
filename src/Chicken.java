@@ -16,18 +16,18 @@ public class Chicken extends Diver {
 	public void setImages() {
 		// set right moving images
 		for (int i = 0; i <= 3; i++) {
-			String filename = "chickenR000" + Integer.toString(i) + ".png";
+			String filename = "./images/chickenR000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.dragonRimages);
 		}
 
 		// set left moving images
 		for (int i = 0; i <= 3; i++) {
-			String filename = "chickenL000" + Integer.toString(i) + ".png";
+			String filename = "./images/chickenL000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.dragonLimages);
 		}
 
 		// set egg image
-		this.saveImage("Egg2.png", this.eggImage);
+		this.saveImage("./images/Egg2.png", this.eggImage);
 	}
 
 	/**

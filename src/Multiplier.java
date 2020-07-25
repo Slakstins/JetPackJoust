@@ -35,13 +35,13 @@ public class Multiplier extends Teleporter {
 	private void setImages() {
 		// set idle images
 		for (int i = 0; i <= 4; i++) {
-			String filename = "Ghost2000" + Integer.toString(i) + ".png";
+			String filename = "./images/Ghost2000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.idleImages);
 		}
 
 		// set fly images
 		for (int i = 0; i <= 1; i++) {
-			String filename = "Ghost Flying2000" + Integer.toString(i) + ".png";
+			String filename = "./images/Ghost Flying2000" + Integer.toString(i) + ".png";
 			this.saveImage(filename, this.flyImages);
 		}
 
